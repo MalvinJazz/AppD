@@ -8,21 +8,22 @@ class Denuncia(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255, blank=True, default = 'Anonimo')
     dpi = models.CharField(max_length=13, blank=True)
-    #Departamento = models.CharField()
-    #Municipio = models.CharField()
     direccion = models.CharField(max_length=255, blank=False)
-    coordenadas = models.CharField(blank=True)
+    coordenadas = models.CharField(max_length=255,blank=True)
     descripcion = models.TextField(blank=False)
     solicitud = models.TextField(blank=True)
     archivo = models.FileField(blank=True)
     fecha = models.DateTimeField(auto_now=True,auto_now_add=False)
 
+    motivo = models.ForeignKey('Motivo')
+
     verbose_name = 'Denuncias'
 
     def __unicode__(self):
-        return str(nombre)
+        return str(self.nombre)
 
-class Institucion(models.Model):
+class Motivo(models.Model):
     id = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=255, blank = False)
-    direccion = 
+    motivo = models.CharField(max_length=100)
+
+    institucion = models.ForeignKey('institucion.Institucion')
