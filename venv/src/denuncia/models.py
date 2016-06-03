@@ -13,7 +13,7 @@ class Denuncia(models.Model):
     descripcion = models.TextField(blank=False)
     solicitud = models.TextField(blank=True)
     archivo = models.FileField(blank=True)
-    fecha = models.DateTimeField(auto_now=True,auto_now_add=False)
+    fecha = models.DateTimeField(auto_now=True, auto_now_add=False, blank = False)
 
     motivo = models.ForeignKey('Motivo')
 
