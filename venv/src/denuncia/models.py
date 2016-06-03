@@ -26,4 +26,6 @@ class Motivo(models.Model):
     id = models.AutoField(primary_key=True)
     motivo = models.CharField(max_length=100)
 
+    verbose_name = 'Motivos'
+
     institucion = models.ForeignKey('institucion.Institucion')
