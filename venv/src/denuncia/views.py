@@ -6,10 +6,13 @@ from .forms import DenunciaForm
 
 def denunciar(request):
 
-    form = DenunciaForm
+    form = DenunciaForm(request.POST or None)
 
     context = {
         'form':form
     }
+
+    if form.is_valid():
+        form.save()
 
     return render(request,'denuncia.html',context)

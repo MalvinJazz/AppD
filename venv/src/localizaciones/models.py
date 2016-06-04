@@ -10,17 +10,12 @@ class Departamento(models.Model):
 
     def __unicode__(self):
         return str(self.nombre)
-
-    #class Meta:
-        #verbose_name = 'Departamentos'
-
+        
 class Municipio(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255)
 
     departamento = models.ForeignKey('Departamento')
-
-    verbose_name = 'Municipios'
 
     def __unicode__(self):
         return str(self.nombre)
@@ -30,8 +25,6 @@ class Direccion(models.Model):
     direccion = models.CharField(max_length=255)
 
     municipio = models.ForeignKey('Municipio')
-
-    verbose_name = 'Direcciones'
 
     def __unicode__(self):
         return str(self.direccion)

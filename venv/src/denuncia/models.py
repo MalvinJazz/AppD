@@ -29,3 +29,6 @@ class Motivo(models.Model):
     verbose_name = 'Motivos'
 
     institucion = models.ForeignKey('institucion.Institucion')
+
+    def __unicode__(self):
+        return str(self.motivo)

@@ -1,8 +1,9 @@
 from django.contrib import admin
 
-from .models import Institucion,Sede,Telefono
+from .models import Institucion,Sede,Telefono,Correo
 
+# Register your models here.
 admin.site.register(Institucion)
 admin.site.register(Sede)
 admin.site.register(Telefono)
-# Register your models here.
+admin.site.register(Correo)
