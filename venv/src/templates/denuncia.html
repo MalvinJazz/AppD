@@ -1,10 +1,48 @@
 {% extends 'base.html' %}
 
-{% block content %}
-<form method="POST" action=''>
-  {% csrf_token %}
-
-  {{form.as_p}}
-  <input type="submit" value='Enviar'>
-</form>
+{% block head %}
+<div class="title">
+  <h1>Realizar denuncia</h1>
+</div>
 {% endblock %}
+
+{% block content %}
+<div id="section">
+  <div id="bloqueForms">
+    <form method="POST" action=''>
+      {% csrf_token %}
+      <div class = "camposForms">
+        <div class="form-group">
+          <label>Nombre: </label>
+            {{form.nombre}} </br>
+          <label>DPI: </label>
+            {{form.dpi}} </br>
+          <label>Direccion: </label>
+            {{form.direccion}} </br>
+          <label>Motivo: </label>
+            {{form.motivo}} </br>
+          <label>Descripción: </label>
+            {{form.descripcion}} </br>
+          <label>Solicitud: </label>
+            {{form.solicitud}} </br>
+          <label>Archivo: </label>
+            {{form.archivo}} </br>
+          <input type="submit" class="btn btn-default" value='Enviar'>
+      </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+
+
+<!-- fields = [
+        'nombre',
+        'dpi',
+        'direccion',
+        'descripcion',
+        'solicitud',
+        'archivo',
+        'motivo',
+    ] -->

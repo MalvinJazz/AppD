@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 
 from .forms import DenunciaForm
@@ -20,12 +20,16 @@ def denunciar(request):
         vIn = motivo.institucion
         vIn = Correo.objects.filter(institucion = vIn)
 
+        print vIn
+
         send_mail(
             motivo.motivo,
             vForm.descripcion,
             'prueba',
             vIn,
         )
+
+        #redirect('/denuncia')
 
     return render(request,'denuncia.html',context)
 

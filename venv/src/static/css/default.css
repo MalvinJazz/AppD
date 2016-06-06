@@ -1,0 +1,971 @@
+	html, body
+	{
+		height: 100%;
+	}
+
+	body
+	{
+		margin: 0px;
+		padding: 0px;
+		background: #181818;
+		font-family: 'Didact Gothic', sans-serif;
+		font-size: 12pt;
+		font-weight: 200;
+		color: #FFF;
+	}
+
+
+	h1, h2, h3
+	{
+		margin: 0;
+		padding: 0;
+	}
+
+	p, ol, ul
+	{
+		margin-top: 0;
+	}
+
+	ol, ul
+	{
+		padding: 0;
+		list-style: none;
+	}
+
+	p
+	{
+		line-height: 180%;
+	}
+
+	strong
+	{
+	}
+
+	a
+	{
+		color: #ee0000;
+	}
+
+	a:hover
+	{
+		text-decoration: none;
+	}
+
+	.container
+	{
+		overflow: hidden;
+		margin: 0em auto;
+		width: 100%;
+	}
+
+	.paranga{
+		min-height: 600px;
+		clear: both;
+	}
+
+/*********************************************************************************/
+/* Image Style                                                                   */
+/*********************************************************************************/
+
+	.image
+	{
+		display: inline-block;
+	}
+
+	.image img
+	{
+		display: block;
+		width: 100%;
+	}
+
+	.image-full
+	{
+		display: block;
+		width: 100%;
+		margin: 0 0 2em 0;
+	}
+
+	.image-left
+	{
+		float: left;
+		margin: 0 2em 2em 0;
+	}
+
+	.image-centered
+	{
+		display: block;
+		margin: 0 0 2em 0;
+	}
+
+	.image-centered img
+	{
+		margin: 0 auto;
+		width: auto;
+	}
+
+/*********************************************************************************/
+/* List Styles                                                                   */
+/*********************************************************************************/
+
+	ul.style1
+	{
+	}
+
+	ul.actions
+	{
+	}
+
+	ul.actions li
+	{
+		display: inline-block;
+		padding: 0em 0.50em;
+	}
+
+
+/*********************************************************************************/
+/* Social Icon Styles                                                            */
+/*********************************************************************************/
+
+	ul.contact
+	{
+		margin: 0;
+		padding: 2em 0em 0em 0em;
+		list-style: none;
+	}
+
+	ul.contact li
+	{
+		display: inline-block;
+		padding: 0em 0.30em;
+		font-size: 1em;
+	}
+
+	ul.contact li span
+	{
+		display: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	ul.contact li a
+	{
+		color: #FFF;
+	}
+
+	ul.contact li a:before
+	{
+		display: inline-block;
+		background: #3f3f3f;
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		border-radius: 20px;
+		text-align: center;
+		color: #FFFFFF;
+	}
+
+	ul.contact li a.icon-twitter:before { background: #2DAAE4; }
+	ul.contact li a.icon-facebook:before { background: #39599F; }
+	ul.contact li a.icon-dribbble:before { background: #C4376B;	}
+	ul.contact li a.icon-tumblr:before { background: #31516A; }
+	ul.contact li a.icon-rss:before { background: #F2600B; }
+
+/*********************************************************************************/
+/* Button Style                                                                  */
+/*********************************************************************************/
+
+	.button
+	{
+		display: inline-block;
+		padding: 1em 2em 1em 2em;
+		letter-spacing: 0.10em;
+		margin-top: 2em;
+		padding: 1.40em 3em;
+		background: #2651a8;
+		border-radius: 6px;
+		text-decoration: none;
+		font-weight: 700;
+		font-size: 1em;
+		color: #FFF;
+	}
+
+	.button-alt
+	{
+		padding: 1em 2em;
+		border-color: rgba(0,0,0,.8);
+		color: #FFF;
+	}
+
+/*********************************************************************************/
+/* 4-column                                                                      */
+/*********************************************************************************/
+
+	.box1,
+	.box2,
+	.box3,
+	.box4
+	{
+		width: 235px;
+	}
+
+	.box1,
+	.box2,
+	.box3,
+	{
+		float: left;
+		margin-right: 20px;
+	}
+
+	.box4
+	{
+		float: right;
+	}
+
+/*********************************************************************************/
+/* 3-column                                                                      */
+/*********************************************************************************/
+
+	.boxA
+	{
+		float: left;
+		text-align: right;
+		color: rgba(0,0,0,.5);
+	}
+
+	.boxB,
+	.boxC
+	{
+		width: 384px;
+		text-align: right;
+		color: rgba(0,0,0,.5);
+	}
+
+	.boxA
+	{
+		float: left;
+		text-align: right;
+		color: rgba(0,0,0,.5);
+	}
+	.boxB
+	{
+		float: left;
+		margin-right: 20px;
+
+	}
+
+	.boxC
+	{
+		float: right;
+		text-align: right;
+		color: rgba(0,0,0,.5);
+	}
+
+/*********************************************************************************/
+/* 2-column                                                                      */
+/*********************************************************************************/
+
+	.tbox1
+	{
+		width: 48%;
+		clear: both;
+	}
+	.tbox2
+	{
+		width: 48%;
+		clear: both;
+	}
+
+	.tbox1
+	{
+		float: left;
+	}
+
+	.tbox2
+	{
+		float: right;
+	}
+
+
+/*********************************************************************************/
+/* Heading Titles                                                                */
+/*********************************************************************************/
+
+	.title
+	{
+		margin-bottom: 3em;
+	}
+
+	.title h2
+	{
+		font-size: 2.7em;
+	}
+
+	.title .byline
+	{
+		font-size: 1.3em;
+		color: rgba(255,255,255,0.60);
+	}
+
+/*********************************************************************************/
+/* Header                                                                        */
+/*********************************************************************************/
+
+	#wrapper
+	{
+		position: relative;
+		padding: 5em 0em 7em 0em;
+		background: #FFF;
+		color: black;
+	}
+
+	#section
+	{
+			position: relative;
+			padding: 5em 0em 7em 0em;
+	    background-color:#FFF;
+
+	}
+
+/*********************************************************************************/
+/* Header                                                                        */
+/*********************************************************************************/
+
+	#header-wrapper
+	{
+		position: relative;
+		padding: 5em 0em 7em 0em;
+		background: #111111 url(images/fond.jpg) no-repeat center;
+		background-size: cover;
+	}
+
+	#header
+	{
+		position: relative;
+		padding: 5em 0em;
+	}
+
+	.contenedor {
+
+		height: 100%;
+
+	}
+/*********************************************************************************/
+/* Logo                                                                          */
+/*********************************************************************************/
+
+	#logo
+	{
+		position: absolute;
+		top: 3.6em;
+		left: 0;
+	}
+
+	#logo h1
+	{
+		font-size: 2.6em;
+		color: #79C255;
+	}
+
+	#logo a
+	{
+		text-decoration: none;
+		color: rgba(255,255,255,1);
+	}
+
+/*********************************************************************************/
+/* Menu                                                                          */
+/*********************************************************************************/
+
+#menu
+{
+	position: absolute;
+	top: 4.5em;
+	right: 0;
+	padding-right: 4%;
+}
+
+#menu ul
+{
+	/*display: inline-block;*/
+}
+
+#menu li
+{
+	display: block;
+	float: left;
+	text-align: center;
+}
+
+#menu li a, #menu li span
+{
+	padding: 1em 1.5em;
+	padding-left: 20px;
+	padding-right: 10px;
+	letter-spacing: 1px;
+	text-decoration: initial;
+	text-transform: uppercase;
+	align-items:  left;
+	font-size: 1em;
+	color: rgba(255,255,255,0.80);
+	background-color: black;
+	padding-top: 10px;
+
+}
+
+#menu li:hover a, #menu li.active a, #menu li.active span
+{
+}
+
+#menu .active a
+{
+	background: #2651a8;
+	border-radius: 6px;
+	color: rgba(255,255,255,1);
+}
+
+#menu .icon
+{
+}
+
+
+	/*#menu > li {
+		display: inline-block;
+		padding: 10px 5px;
+		width: 90px;
+	}*/
+
+
+	.submenu li ul{
+		display: none;
+		width: 100px;
+		width: 80px;
+		position: relative;
+	}
+
+	.submenu li ul li{
+		display: block;
+		width: 100%;
+		text-align: left;
+		display: none;
+		width: 90%;
+		padding-top: 5px;
+	}
+	.submenu li:hover > ul{
+		display:inherit;
+
+	}
+	.fin{
+		clear: both;
+	}
+
+/*********************************************************************************/
+/* Banner                                                                        */
+/*********************************************************************************/
+
+	#banner
+	{
+		padding-top: 10em;
+		text-align: center;
+	}
+
+	#banner .title h2
+	{
+		font-size: 4em;
+	}
+
+	#banner .title .byline
+	{
+		font-size: 2em;
+	}
+
+	#banner .button
+	{
+		margin-top: 2em;
+		padding: 1.40em 3em;
+		border-radius: 6px;
+		font-weight: 700;
+		font-size: 1em;
+
+	}
+
+	.banner
+	{
+		margin-bottom: 5em;
+	}
+
+/*********************************************************************************/
+/* Page                                                                          */
+/*********************************************************************************/
+
+	#page
+	{
+	}
+
+/*********************************************************************************/
+/* Content                                                                       */
+/*********************************************************************************/
+
+	#content
+	{
+	}
+
+/*********************************************************************************/
+/* Sidebar                                                                       */
+/*********************************************************************************/
+
+	#sidebar
+	{
+	}
+
+/*********************************************************************************/
+/* Footer                                                                        */
+/*********************************************************************************/
+
+	#footer
+	{
+	}
+
+/*********************************************************************************/
+/* Copyright                                                                     */
+/*********************************************************************************/
+
+	#copyright
+	{
+		overflow: hidden;
+		padding: 5em 0em;
+		border-top: 1px solid rgba(0,0,0,0.08);
+		background-color: black;
+		width: 100%;
+	}
+
+	#copyright p
+	{
+		text-align: center;
+		font-size: 1em;
+		color: rgba(255,255,255,0.3);
+	}
+
+	#copyright a
+	{
+		text-decoration: none;
+		color: rgba(255,255,255,0.6);
+	}
+
+
+/*********************************************************************************/
+/* Welcome                                                                       */
+/*********************************************************************************/
+
+	#tercerBloque
+	{
+		position: relative;
+		/*padding: 7em 0em 7em 0em;*/
+		margin-top: 0;
+		background: #2651a8;
+		background-size: cover;
+		text-align: center;
+	}
+
+	#tercerBloque .container
+	{
+		width: 1000px;
+		padding: 0px 100px;
+		color: rgba(255,255,255,0.8);
+	}
+
+	#tercerBloque a
+	{
+		color: rgba(255,255,255,0.8);
+	}
+
+	#tercerBloque .button
+	{
+		background: #FFF;
+		color: #2651a8;
+	}
+
+
+	#cuartoBloque
+	{
+		position: relative;
+		/*padding: 7em 0em 7em 0em;*/
+		margin-top: 0;
+		background: #2651a8;
+		background-size: cover;
+		text-align: center;
+	}
+
+	#cuartoBloque .container
+	{
+		width: 1000px;
+		padding: 0px 100px;
+		color: rgba(255,255,255,0.8);
+	}
+
+	#cuartoBloque a
+	{
+		color: rgba(255,255,255,0.8);
+	}
+
+	#cuartoBloque .button
+	{
+		background: #FFF;
+		color: #2651a8;
+	}
+
+
+/*********************************************************************************/
+/* Extra                                                                         */
+/*********************************************************************************/
+
+#bloqueChartAzul
+{
+	position: absolute;
+
+	background: #2651a8;
+	background-size: cover;
+	text-align: center;
+	width: 100%;
+}
+
+	#segundoBloque
+	{
+		text-align: center;
+		color: rgba(0,0,0,0.6);
+
+	}
+
+
+	#segundoBloque
+	{
+		text-align: center;
+		color: rgba(0,0,0,0.6);
+	}
+
+	#segundoBloque .fa
+	{
+		display: block;
+		padding: 1em 0em;
+		color: rgba(0,0,0,1);
+		font-size: 2em;
+	}
+
+	#segundoBloque .title h2
+	{
+		font-weight: bold;
+		color: rgba(0,0,0,0.8);
+		text-align: center;
+	}
+
+	#segundoBloque .title .byline
+	{
+		text-align: center;
+		color: rgba(0,0,0,.5);
+	}
+
+
+	.texto {
+		text-align: justify;
+		width: 47%;
+		margin-left: 27%;
+		font-size: 121%;
+
+	}
+
+	.titulo {
+		text-align: left;
+		margin-left: 27%;
+	}
+
+	.tHome {
+		text-align: left;
+		margin-left: 15%;
+	}
+
+	.tContenedor {
+		width: 85%;
+		margin-left: 15%;
+	}
+
+
+	.firma{
+		width: 100%;
+		text-align: right;
+	}
+
+	.firmaBold {
+		font-weight: bold;
+	}
+
+	.mContenedor {
+		width: 85%;
+		margin-left: 15%;
+		margin-right: 15%;
+		padding-left: 15%;
+		padding-right: 15%;
+	}
+
+/***********************/
+
+#grupo{
+	color: black;
+	text-align: center;
+}
+
+
+#bloqueChart
+{
+	text-align: center;
+	color: rgba(0,0,0,0.6);
+}
+
+
+#bloqueChart
+{
+	text-align: center;
+	color: rgba(0,0,0,0.6);
+}
+
+#dobleBloque
+{
+	background: #FFF;
+	display: flex;
+	color: black;
+}
+
+.bloqueEstadistica {
+	text-align: center;
+	background: #FFF;
+}
+
+
+.bloqueUno {
+	text-align: right;
+	color: black;
+	float: left;
+	width: 50%;
+	display: inline-block;
+}
+
+.bloqueDos {
+	text-align: left;
+	float: right;
+	width: 49%;
+	/*display: inline-block;*/
+}
+
+.bloqueUno {
+	margin-right: 15px;
+}
+
+.bloqueDos p {
+	margin-left: 15px;
+}
+
+
+.bDos {
+	text-align: left;
+	float: right;
+	width: 40%;
+	display: grid;
+	margin-left: 15px;
+}
+
+
+
+
+
+
+
+	#bloqueDesplegar
+	{
+		background: #FFF;
+		display: inline-block;
+		color: black;
+		width: 100%;
+	}
+
+	.bloqueOne {
+		text-align: right;
+		color: black;
+		float: left;
+		width: 47%;
+
+	}
+
+	.bloqueTwo {
+		text-align: left;
+		float: right;
+		width: 50%;
+	}
+
+	.bloqueOne {
+		margin-right: 10px;
+	}
+
+	.bloqueTwo p {
+		margin-left: 15px;
+		text-align: justify;
+		padding-right: 20%;
+	}
+
+	.alineacionCentral {
+		align-items: center;
+		width: 40%;
+		padding-left: 2%;
+		text-align: center;
+	}
+
+	.alineacionAlCentro {
+		align-items: center;
+		width: 30%;
+		padding-left: 2%;
+		text-align: center;
+	}
+
+
+	#bloqueForms
+	{
+		text-align: left;
+		color: rgba(0,0,0,0.83);
+		align-content: right;
+		margin: 0 auto;;
+		min-height: 900px;
+	}
+	#bloqueForms .formularios p label{
+		background: #FFF;
+		display: block;
+		float: left;
+		width: 48%;
+	}
+	#bloqueForms li {
+		text-align: center;
+		padding-right: 2%;
+		list-style: none;
+	}
+	#bloqueForms h2{
+		text-align: center;
+	}
+
+
+	#bloqueForms .formularios{
+		margin: 0 auto;
+		width: 400px;
+
+	}
+
+	#bloqueForms textarea {
+    background-color: ghostwhite;
+	}
+
+
+	.bloqueMitadIzq {
+		width: 49%;
+	}
+	.camposForms{
+		  margin-bottom: 15px;
+		  width: 100%;
+	}
+	.camposForms form{
+		width: 30%;
+		margin: 0 auto;
+	}
+	.camposForms form label, .camposForms form input, .camposForms form textarea, .camposForms form select, .camposForms form a{
+		width: 100%;
+		float: left;
+		display: block;
+		padding: 3px;
+		margin: 3px;
+	}
+
+
+	input[type="submit" i], button {
+		margin-left: 40%;
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+    background-color: buttonface;
+    box-sizing: border-box;
+    padding: 2px 6px 3px;
+		/*padding-right:  30px;*/
+    border: 2px outset buttonface;
+
+	}
+
+
+	.boton {
+    align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+    background-color: buttonface;
+    box-sizing: border-box;
+    padding: 4px 12px 6px;
+		/*padding-right:  30px;*/
+    border: 2px outset buttonface;
+
+	}
+
+	.camposForms form input[type="submit" i]{
+		width: 200px;
+		float: none;
+		margin: 10px auto;
+	}
+
+	element.style {
+		background-color: red;
+	}
+
+
+	/* Nuevo estilo para cuerpo   */
+
+	#cuerpo {
+		align-self: center;
+		background-color: red;
+		width: 80%;
+		height: auto;
+		min-height: 600px;
+		clear: both;
+	}
+
+
+
+	#BloqueInicio
+	{
+		text-align: left;
+		color: rgba(0,0,0,0.6);
+		align-content: right;
+		margin: 0 auto;
+		min-height: 300px;
+	}
+
+	#BloqueInicio .formularios p label{
+		background: #FFF;
+		display: block;
+		float: left;
+		width: 48%;
+	}
+	#BloqueInicio li {
+		text-align: center;
+		padding-right: 2%;
+		list-style: none;
+	}
+	#BloqueInicio h2{
+		text-align: center;
+	}
+
+
+	#BloqueInicio .formularios{
+		margin: 0 auto;
+		width: 400px;
+
+	}
+
+
+	#bloqueBusqueda {
+		align-items: center;
+		width: 60%;
+		padding-left: 2%;
+		text-align: center;
+	}
