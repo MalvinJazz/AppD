@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django.core.mail import send_mail
 
 from .forms import DenunciaForm
+from institucion.models import Correo
 
 # Create your views here.
 
@@ -13,6 +15,23 @@ def denunciar(request):
     }
 
     if form.is_valid():
-        form.save()
+        vForm = form.save()
+        motivo = vForm.motivo
+        vIn = motivo.institucion
+        vIn = Correo.objects.filter(institucion = vIn)
+
+        send_mail(
+            motivo.motivo,
+            vForm.descripcion,
+            'prueba',
+            vIn,
+        )
 
     return render(request,'denuncia.html',context)
+
+def home(request):
+
+    context = {
+        'titulo':'Inicio'
+    }
+    return render(request, 'inicio.html',context)

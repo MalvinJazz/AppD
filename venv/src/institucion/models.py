@@ -25,7 +25,7 @@ class Sede(models.Model):
 
 class Correo(models.Model):
     id = models.AutoField(primary_key=True)
-    correo = models.CharField(max_length=100)
+    correo = models.EmailField()
 
     institucion = models.ForeignKey('Institucion')
 
