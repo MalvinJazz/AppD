@@ -623,6 +623,18 @@
 /* Extra                                                                         */
 /*********************************************************************************/
 
+input[type="file"]{
+	color: #FFF;
+}
+
+input, select, textarea{
+	color: #000;
+}
+
+#bloqueForms:focus{
+	background-color: #C1C1C3;
+}
+
 #btnForm{
 	margin-left: 300px;
 	padding: .1em;

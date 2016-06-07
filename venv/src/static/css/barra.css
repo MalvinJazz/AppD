@@ -88,7 +88,20 @@
 
 #navbar .navhome a span, #navbar .navhome a:hover span{
 
-  color:#FFFFFF;
+  color: #636363;
+
+  /*background:url(img/span-bg.png) right top no-repeat;*/
+
+  height:36px;
+
+  line-height:36px;
+
+  /*background-color: #901e1e;*/
+}
+
+#navbar .navhome a span, #navbar .navhome a:focus span{
+
+  color:#FFF;
 
   /*background:url(img/span-bg.png) right top no-repeat;*/
 
@@ -111,6 +124,7 @@
 #navbar ul li a:hover span{
 
   /*background:url(img/spanhover-bg.png) right top no-repeat;*/
+  color: #636363;
 
   height:36px;
 
