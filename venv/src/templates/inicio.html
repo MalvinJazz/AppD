@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
-{% block content %}
-
+{% block head %}
+<div class="title">
   <h2>{{titulo}}</h2>
+</div>
+{% endblock %}
+
+{% block content %}
   <ul>
     <li><a href="/denunciar" accesskey="1" title="">Denunciar</a></li>
   </ul>

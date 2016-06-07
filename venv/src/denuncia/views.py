@@ -20,22 +20,23 @@ def denunciar(request):
         vIn = motivo.institucion
         vIn = Correo.objects.filter(institucion = vIn)
 
-        print vIn
-
-        send_mail(
-            motivo.motivo,
-            vForm.descripcion,
-            'prueba',
-            vIn,
-        )
+        try:
+            send_mail(
+                motivo.motivo,
+                vForm.descripcion,
+                'prueba',
+                vIn,
+                )
+        except gaierror:
+            pass
 
         #redirect('/denuncia')
 
     return render(request,'denuncia.html',context)
-
-def home(request):
-
-    context = {
-        'titulo':'Inicio'
-    }
-    return render(request, 'inicio.html',context)
+# 
+# def home(request):
+#
+#     context = {
+#         'titulo':'Inicio'
+#     }
+#     return render(request, 'inicio.html',context)

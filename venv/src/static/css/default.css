@@ -7,7 +7,7 @@
 	{
 		margin: 0px;
 		padding: 0px;
-		background: #181818;
+		background: #000;
 		font-family: 'Didact Gothic', sans-serif;
 		font-size: 12pt;
 		font-weight: 200;
@@ -17,8 +17,11 @@
 
 	h1, h2, h3
 	{
-		margin: 0;
-		padding: 0;
+		margin: 0px;
+		text-align: left;
+		font-family: Arial;
+		font-weight: bold;
+		color: #FFF;
 	}
 
 	p, ol, ul
@@ -292,7 +295,9 @@
 
 	.title
 	{
-		margin-bottom: 3em;
+		padding: .5em;
+		background-color: #629bcc;
+		margin: 0px;
 	}
 
 	.title h2
@@ -323,7 +328,8 @@
 			position: relative;
 			padding: 5em 0em 7em 0em;
 	    background-color:#FFF;
-
+			background: #FFF url(images/fondo.jpg) no-repeat center;
+			background-size: cover;
 	}
 
 /*********************************************************************************/
@@ -333,9 +339,8 @@
 	#header-wrapper
 	{
 		position: relative;
-		padding: 5em 0em 7em 0em;
-		background: #111111 url(images/fond.jpg) no-repeat center;
-		background-size: cover;
+		padding: 0em 0em 3em 0em;
+		background-color: #2D2D77;
 	}
 
 	#header
@@ -618,6 +623,12 @@
 /* Extra                                                                         */
 /*********************************************************************************/
 
+#btnForm{
+	margin-left: 300px;
+	padding: .1em;
+	margin-right: 300px;
+}
+
 #bloqueChartAzul
 {
 	position: absolute;
@@ -771,7 +782,14 @@
 	margin-left: 15px;
 }
 
+div {
+	margin: .4em 0;
+}
 
+div label {
+	width: 25%;
+	float: left;
+}
 
 
 
@@ -827,10 +845,11 @@
 	#bloqueForms
 	{
 		text-align: left;
-		color: rgba(0,0,0,0.83);
+		color: #FFF;
 		align-content: right;
-		margin: 0 auto;;
+		margin: 0px 300px;
 		min-height: 900px;
+
 	}
 	#bloqueForms .formularios p label{
 		background: #FFF;
@@ -855,7 +874,7 @@
 	}
 
 	#bloqueForms textarea {
-    background-color: ghostwhite;
+    background-color: whitesmoke;
 	}
 
 
