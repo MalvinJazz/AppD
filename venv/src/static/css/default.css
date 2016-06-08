@@ -1,4 +1,4 @@
-	html, body
+html, body
 	{
 		height: 100%;
 	}
@@ -19,9 +19,10 @@
 	{
 		margin: 0px;
 		text-align: left;
-		font-family: Arial;
+		font-family: Helvetica;
 		font-weight: bold;
 		color: #FFF;
+		font-size: larger;
 	}
 
 	p, ol, ul
@@ -61,8 +62,8 @@
 		width: 100%;
 	}
 
-	.paranga{
-		min-height: 600px;
+	.jocote{
+		min-height: 100px;
 		clear: both;
 	}
 
@@ -326,9 +327,9 @@
 	#section
 	{
 			position: relative;
-			padding: 5em 0em 7em 0em;
+			padding: 5em 0em 4em 0em;
 	    background-color:#FFF;
-			background: #FFF url(images/fondo.jpg) no-repeat center;
+			/*background: #FFF url(images/fondo.jpg) no-repeat center;*/
 			background-size: cover;
 	}
 
@@ -339,8 +340,8 @@
 	#header-wrapper
 	{
 		position: relative;
-		padding: 0em 0em 3em 0em;
-		background-color: #2D2D77;
+		padding: 0em 0em 2em 0em;
+		background-color: #1D4983;
 	}
 
 	#header
@@ -360,15 +361,17 @@
 
 	#logo
 	{
-		position: absolute;
-		top: 3.6em;
-		left: 0;
+		position: relative;;
+		top: 0em;
+		left: 1em;
+		float: left;
+		margin-top: 10px;
 	}
 
 	#logo h1
 	{
-		font-size: 2.6em;
-		color: #79C255;
+		font-size: 1em;
+		color: #080833;
 	}
 
 	#logo a
@@ -535,12 +538,23 @@
 
 	#finalPag p{
 
-		margin-left: 620px;
-		margin-right: 620px;
-		margin-top: 25px;
-		margin-bottom: 25px;
+		margin-left: 50%;
+		margin-right: 50%;
+		margin-top: 3%;
+		margin-bottom: 3%;
+		text-align: -moz-center;
 
 	}
+
+/*********************************************************************************/
+/* links en tabla                                                                */
+/*********************************************************************************/
+td > a{
+	color: #8a8a8a;
+	font-family: Helvetica, sans-serif;;
+
+}
+
 
 /*********************************************************************************/
 /* Copyright                                                                     */
@@ -638,7 +652,7 @@
 
 
 input[type="file"]{
-	color: #FFF;
+	color: #000;
 }
 
 input, select, textarea{
@@ -858,6 +872,7 @@ div label {
 		width: 40%;
 		padding-left: 2%;
 		text-align: center;
+		color: #000;
 	}
 
 	.alineacionAlCentro {
@@ -867,11 +882,18 @@ div label {
 		text-align: center;
 	}
 
+	.alineacionAlCentro h2{
+    color: #000;
+    text-align: -moz-center;
+		margin-left: 4%;
+		font-size: 1.5em;
+	}
+
 
 	#bloqueForms
 	{
 		text-align: left;
-		color: #FFF;
+		color: #000;
 		align-content: right;
 		margin: 0px 300px;
 		min-height: 900px;

@@ -9,6 +9,8 @@
   /*background:url(img/navbar-bg.png) left top repeat-x;*/
 
   text-align: right;
+
+  margin: 0.2px;
 }
 
 #navbar .inbar{
@@ -53,8 +55,8 @@
 #navbar ul li a{
 
   color: #C1C1C3;
-  font-size: large;
-  font-family: Arial;
+  font-size: smaller;
+  font-family: Helvetica;
   font-weight: bold;
 
   text-decoration:none;
