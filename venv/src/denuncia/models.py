@@ -7,15 +7,15 @@ from django.db import models
 class Denuncia(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255, blank=True, default = 'Anonimo')
-    dpi = models.CharField(max_length=13, blank=True)
-    direccion = models.CharField(max_length=255, blank=False)
+    dpi = models.CharField(max_length=13, blank=True, default = 'Anonimo')
     coordenadas = models.CharField(max_length=255,blank=True)
-    descripcion = models.TextField(blank=False)
-    solicitud = models.TextField(blank=True)
+    denuncia = models.TextField(blank=False)
+    #solicitud = models.TextField(blank=True)
     archivo = models.FileField(blank=True)
     fecha = models.DateTimeField(auto_now=True, auto_now_add=False, blank = False)
 
     motivo = models.ForeignKey('Motivo')
+    direccion = models.ForeignKey('localizaciones.Direccion')
 
     verbose_name = 'Denuncias'
 

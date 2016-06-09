@@ -667,6 +667,27 @@ input, select, textarea{
 	background-color: #C1C1C3;
 }
 
+.radioBtn {
+
+	padding: .1em;
+	margin-left: -3.8%;
+	width: 50%;
+	height: 50%;
+
+}
+
+.radioBtn > .bloqueTwo > input[type="radio"]{
+	margin-left: 25px;
+}
+
+.radioBtn > .bloqueOne > input[type="radio"]{
+	margin-left: 35px;
+}
+
+.radioBtn > .bloqueOne > label{
+	float: left;
+}
+
 #btnForm{
 	margin-left: 300px;
 	padding: .1em;
@@ -848,7 +869,7 @@ div label {
 	}
 
 	.bloqueOne {
-		text-align: right;
+		text-align: left;
 		color: black;
 		float: left;
 		width: 47%;
@@ -857,6 +878,7 @@ div label {
 
 	.bloqueTwo {
 		text-align: left;
+		color: black;
 		float: right;
 		width: 50%;
 	}
@@ -900,7 +922,7 @@ div label {
 		color: #000;
 		align-content: right;
 		margin: 0px 300px;
-		min-height: 900px;
+		min-height: 100px;
 
 	}
 	#bloqueForms .formularios p label{

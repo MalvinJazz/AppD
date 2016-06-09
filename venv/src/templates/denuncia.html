@@ -6,6 +6,18 @@
 
 {% block content %}
 <div id="section">
+  <div>
+    <div class = "radioBtn">
+      <div class="bloqueOne">
+        <input type="radio" name="tipo" value="anonimo">
+        <label>Anonimo: </label></br>
+      </div>
+      <div class="bloqueTwo">
+        <input type="radio" name="tipo" value="personal">
+        <label>Personal: </label> </br>
+      </div>
+    </div>
+  </div>
   <div id="bloqueForms">
     <form method="POST" action=''>
       {% csrf_token %}
@@ -23,22 +35,22 @@
           <label>Direccion: </label>
             {{form.direccion}} </br>
           </div>
-          <div>
-          <label>Motivo: </label>
-            {{form.motivo}} </br>
-          </div>
-          <div>
-          <label>Descripción: </label>
-            {{form.descripcion}} </br>
-          </div>
-          <div>
-          <label>Solicitud: </label>
-            {{form.solicitud}} </br>
-          </div>
-          <div>
           <label>Archivo: </label>
             {{form.archivo}} </br>
+          <div>
           </div>
+          <div>
+            <label>Motivo: </label>
+              {{form.motivo}} </br>
+          </div>
+          <div>
+          <label>Denuncia: </label>
+            {{form.denuncia}} </br>
+          </div>
+          <!-- <div>
+              <label>Solicitud: </label>
+            {{form.solicitud}} </br>
+          </div> -->
           <div id="btnForm">
             <input type="submit" class="btn btn-default" value='Enviar'>
           </div>

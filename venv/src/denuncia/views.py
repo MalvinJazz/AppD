@@ -28,12 +28,15 @@ def denunciar(request):
                 vIn,
                 )
         except gaierror:
-            pass
+            print "no funciono"
 
         #redirect('/denuncia')
 
     return render(request,'denuncia.html',context)
-# 
+
+def success(request):
+    render(request,'success.html',{})
+#
 # def home(request):
 #
 #     context = {

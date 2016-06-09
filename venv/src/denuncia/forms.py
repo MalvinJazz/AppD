@@ -11,8 +11,8 @@ class DenunciaForm(forms.ModelForm):
             'nombre',
             'dpi',
             'direccion',
-            'descripcion',
-            'solicitud',
+            'denuncia',
+            #'solicitud',
             'archivo',
             'motivo',
         ]
