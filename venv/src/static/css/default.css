@@ -555,6 +555,10 @@ td > a{
 
 }
 
+td > p{
+	font-family: Helvetica, serif;
+}
+
 
 /*********************************************************************************/
 /* Copyright                                                                     */
@@ -880,12 +884,12 @@ div label {
 		width: 30%;
 		padding-left: 2%;
 		text-align: center;
+		color: #000;
 	}
 
 	.alineacionAlCentro h2{
     color: #000;
     text-align: -moz-center;
-		margin-left: 4%;
 		font-size: 1.5em;
 	}
 

@@ -7,6 +7,7 @@ from django.db import models
 class Institucion(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255, blank = False)
+    telefono = models.CharField(max_length=8, blank = False)
 
     def __unicode__(self):
         return str(self.nombre)
