@@ -9,11 +9,11 @@
   <div>
     <div class = "radioBtn">
       <div class="bloqueOne">
-        <input type="radio" name="tipo" value="anonimo">
+        <input type="radio" name="tipo" value="anonimo" checked onClick="deshabilita()">
         <label>Anonimo: </label></br>
       </div>
       <div class="bloqueTwo">
-        <input type="radio" name="tipo" value="personal">
+        <input type="radio" name="tipo" value="personal" onClick="habilita()">
         <label>Personal: </label> </br>
       </div>
     </div>
@@ -23,13 +23,15 @@
       {% csrf_token %}
       <div class = "camposForms">
         <div class="form-group">
-          <div>
-          <label>Nombre: </label>
-            {{form.nombre}} </br>
-          </div>
-          <div>
-          <label>DPI: </label>
-            {{form.dpi}} </br>
+          <div id="ident" style="display: none;">
+            <div>
+              <label>Nombre: </label>
+                {{form.nombre}} </br>
+            </div>
+            <div>
+              <label>DPI: </label>
+                {{form.dpi}} </br>
+            </div>
           </div>
           <div>
           <label>Direccion: </label>
@@ -61,6 +63,23 @@
 </div>
 {% endblock %}
 
+{% block js %}
+
+<script>
+  function habilita(){
+    document.getElementById("id_nombre").disabled = false;
+    document.getElementById("id_dpi").disabled = false;
+    document.getElementById("ident").style.display = 'block'
+  }
+
+  function deshabilita(){
+    document.getElementById("id_nombre").disabled = true;
+    document.getElementById("id_dpi").disabled = true;
+    document.getElementById("ident").style.display = 'none'
+  }
+</script>
+
+{% endblock %}
 
 
 <!-- fields = [
