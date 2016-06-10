@@ -559,6 +559,9 @@ td > p{
 	font-family: Helvetica, serif;
 }
 
+h3 > i > a{
+	color: #14214e;
+}
 
 /*********************************************************************************/
 /* Copyright                                                                     */
@@ -913,6 +916,12 @@ div label {
     color: #000;
     text-align: -moz-center;
 		font-size: 1.5em;
+	}
+
+	.alineacionAlCentro h3{
+		color: #000;
+    text-align: -moz-center;
+		font-size: 1em;
 	}
 
 

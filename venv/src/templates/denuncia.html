@@ -10,7 +10,7 @@
     <div class = "radioBtn">
       <div class="bloqueOne">
         <input type="radio" name="tipo" value="anonimo" checked onClick="deshabilita()">
-        <label>Anonimo: </label></br>
+        <label>Anonima: </label></br>
       </div>
       <div class="bloqueTwo">
         <input type="radio" name="tipo" value="personal" onClick="habilita()">
@@ -19,7 +19,7 @@
     </div>
   </div>
   <div id="bloqueForms">
-    <form method="POST" action=''>
+    <form method="POST" action='' enctype=”multipart/form-data” >
       {% csrf_token %}
       <div class = "camposForms">
         <div class="form-group">
@@ -36,7 +36,7 @@
           <div>
             <label>Departamento: </label>
             <select id="dep" name="dep">
-              <option selected></option>
+              <option value="0" selected>------</option>
               {% for dato in departamentos %}
                 <option value="{{dato.id}}">{{dato.nombre}}</option>
               {% endfor %}
@@ -44,7 +44,7 @@
           </div>
           <div>
             <label>Municipio: </label>
-            <select id="muni" name="muni">
+            <select id="muni_id" name="muni">
               <option selected></option>
             </select>
           </div>
@@ -55,6 +55,15 @@
           <label>Archivo: </label>
             {{form.archivo}} </br>
           <div>
+          </div>
+          <div>
+            <label>Institucion: </label>
+            <select id="inst" name="inst">
+              <option selected>------</option>
+              {% for dato in instituciones %}
+                <option value="{{dato.id}}">{{dato.nombre}}</option>
+              {% endfor %}
+            </select>
           </div>
           <div>
             <label>Motivo: </label>
@@ -81,6 +90,15 @@
 {% block js %}
 
 <script type = "text/javascript">
+
+  $('#dep').on('change', busquedaMuni);
+  $('#muni_id').on('change', busquedaDir);
+  $('#inst').on('change', busquedaMot);
+
+  document.getElementById('muni_id').length = 0;
+  document.getElementById('id_direccion').length = 0;
+  document.getElementById('id_motivo').length = 0;
+
   function habilita(){
     document.getElementById("id_nombre").disabled = false;
     document.getElementById("id_dpi").disabled = false;
@@ -92,6 +110,116 @@
     document.getElementById("id_dpi").disabled = true;
     document.getElementById("ident").style.display = 'none'
   }
+
+  function busquedaMuni(){
+
+    var id = $(this).val();
+    $.ajax({
+
+      data: {'id': id},
+      url: '/busqM/muni',
+      type: 'get',
+      success: function(data){
+
+        var inner = document.getElementById('muni_id');
+
+        inner.innerHTML = "";
+        var p = document.createElement("option");
+
+        // console.log(data[i].fields.nombre)
+
+        p.value = "0";
+        p.innerHTML = "------";
+
+        inner.options.add(p);
+        for (var i = 0; i<data.length; i++){
+
+          var nuevo = document.createElement("option");
+
+          // console.log(data[i].fields.nombre)
+
+          nuevo.value = data[i].pk;
+          nuevo.innerHTML = data[i].fields.nombre;
+
+          inner.options.add(nuevo);
+
+        }
+
+      }
+
+    })
+
+  }
+
+  function busquedaDir(){
+
+    var id = $(this).val();
+    $.ajax({
+
+      data: {'id': id},
+      url: '/busqD/dirs',
+      type: 'get',
+      success: function(data){
+        document.getElementById('id_direccion').length = 0;
+
+        var inner = document.getElementById('id_direccion');
+        console.log(inner);
+
+        // console.log(data[i].fields.nombre)
+
+        for(var i = 0; i<data.length; i++){
+
+          var nuevo = document.createElement("option");
+
+          console.log(data[i].fields.direccion);
+
+          nuevo.value = data[i].pk;
+          nuevo.innerHTML = data[i].fields.direccion;
+
+          inner.options.add(nuevo);
+
+        }
+
+      }
+
+    })
+
+  }
+
+  function busquedaMot(){
+
+    var id = $(this).val();
+    $.ajax({
+
+      data: {'id': id},
+      url: '/busqMot/mots',
+      type: 'get',
+      success: function(data){
+
+        document.getElementById('id_motivo').length = 0;
+
+        var inner = document.getElementById('id_motivo');
+        console.log(inner);
+
+        for(var i = 0; i<data.length; i++){
+
+          var nuevo = document.createElement("option");
+
+          console.log(data[i].fields.motivo);
+
+          nuevo.value = data[i].pk;
+          nuevo.innerHTML = data[i].fields.motivo;
+
+          inner.options.add(nuevo);
+
+        }
+
+      }
+
+    })
+
+  }
+
 </script>
 
 {% endblock %}
