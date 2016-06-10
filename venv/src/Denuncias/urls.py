@@ -18,10 +18,13 @@ from django.conf.urls.static import static
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from localizaciones.views import busquedaM
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^instituciones/', include('institucion.urls', namespace="institucion")),
     url(r'^$','denuncia.views.denunciar',name='inicio'),
+    url(r'^busqM/',busquedaM, name='muni')
 ]
 
 if settings.DEBUG:

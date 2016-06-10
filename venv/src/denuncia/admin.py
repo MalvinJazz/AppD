@@ -2,7 +2,11 @@ from django.contrib import admin
 
 from .models import Denuncia, Motivo
 
-admin.site.register(Denuncia)
+
+class DenunciaAdmin(admin.ModelAdmin):
+    list_display = ['id', 'nombre', 'dpi', 'motivo', 'denuncia','direccion', 'fecha']
+
+admin.site.register(Denuncia, DenunciaAdmin)
 admin.site.register(Motivo)
 
 # Register your models here.

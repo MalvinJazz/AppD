@@ -31,4 +31,4 @@ class Motivo(models.Model):
     institucion = models.ForeignKey('institucion.Institucion')
 
     def __unicode__(self):
-        return str(self.motivo)
+        return str(self.motivo) + " -- " + str(self.institucion)

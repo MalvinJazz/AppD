@@ -34,6 +34,21 @@
             </div>
           </div>
           <div>
+            <label>Departamento: </label>
+            <select id="dep" name="dep">
+              <option selected></option>
+              {% for dato in departamentos %}
+                <option value="{{dato.id}}">{{dato.nombre}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div>
+            <label>Municipio: </label>
+            <select id="muni" name="muni">
+              <option selected></option>
+            </select>
+          </div>
+          <div>
           <label>Direccion: </label>
             {{form.direccion}} </br>
           </div>
@@ -65,7 +80,7 @@
 
 {% block js %}
 
-<script>
+<script type = "text/javascript">
   function habilita(){
     document.getElementById("id_nombre").disabled = false;
     document.getElementById("id_dpi").disabled = false;
