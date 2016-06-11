@@ -19,7 +19,7 @@
     </div>
   </div>
   <div id="bloqueForms">
-    <form method="POST" action='' enctype=”multipart/form-data” >
+    <form enctype=”multipart/form-data” method="POST" action=''>
       {% csrf_token %}
       <div class = "camposForms">
         <div class="form-group">
@@ -73,10 +73,6 @@
           <label>Denuncia: </label>
             {{form.denuncia}} </br>
           </div>
-          <!-- <div>
-              <label>Solicitud: </label>
-            {{form.solicitud}} </br>
-          </div> -->
           <div id="btnForm">
             <input type="submit" class="btn btn-default" value='Enviar'>
           </div>

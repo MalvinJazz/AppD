@@ -19,12 +19,13 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 from localizaciones.views import busquedaM, busquedaD
-from denuncia.views import busquedaMo, DenunciaCreate
+from denuncia.views import busquedaMo #, DenunciaCreate
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^instituciones/', include('institucion.urls', namespace="institucion")),
-    url(r'^$',DenunciaCreate.as_view(),name='inicio'),
+    # url(r'^$',DenunciaCreate.as_view(),name='inicio'),
+    url(r'^$','denuncia.views.denunciar',name='inicio'),
     url(r'^success/', 'denuncia.views.success', name = 'success'),
     url(r'^busqM/',busquedaM, name='muni'),
     url(r'^busqD/', busquedaD, name = 'dirs'),
