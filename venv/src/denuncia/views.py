@@ -22,19 +22,22 @@ def denunciar(request):
         if form.is_valid():
             clean = form.cleaned_data
 
-            print clean
-            print request.FILES
-            print request.POST
-
             is_valid = True
 
             denuncia = Denuncia()
 
+            print request.FILES
+            print request.POST
+
             denuncia.nombre = clean['nombre']
             denuncia.dpi = clean['dpi']
+            denuncia.telefono = clean['telefono']
             denuncia.direccion = clean['direccion']
             denuncia.denuncia = clean['denuncia']
-            denuncia.archivo = request.POST['archivo']
+            
+            if request.FILES:
+                denuncia.archivo = request.FILES['file']
+
             denuncia.motivo = clean['motivo']
 
             denuncia.save()
@@ -49,21 +52,10 @@ def denunciar(request):
                 vIn
                     )
 
-            email.attach_file(denuncia.archivo.path)
+            #email.attach_file(denuncia.archivo.path)
             email.send(fail_silently = False)
 
             return redirect('success')
-            # vForm = form.save(commit = False)
-            # vForm = form.save()
-            # vIn = motivo.institucion
-            # foto = request.FILES['archivo']
-            # foto = vForm.archivo
-            #
-            # print foto
-            #
-            # vForm.archivo = foto
-            #
-            # vForm.save()
 
         else:
             message = "no funciona"

@@ -19,7 +19,7 @@
     </div>
   </div>
   <div id="bloqueForms">
-    <form enctype=”multipart/form-data” method="POST" action=''>
+    <form method="POST" action='' enctype='multipart/form-data'>
       {% csrf_token %}
       <div class = "camposForms">
         <div class="form-group">
@@ -31,6 +31,10 @@
             <div>
               <label>DPI: </label>
                 {{form.dpi}} </br>
+            </div>
+            <div>
+              <label>Telefono: </label>
+                {{form.telefono}}</br>
             </div>
           </div>
           <div>
@@ -52,8 +56,8 @@
           <label>Direccion: </label>
             {{form.direccion}} </br>
           </div>
-          <label>Archivo: </label>
-            {{form.archivo}} </br>
+          <label>Foto/Video: </label>
+            <input type="file" id="file" name="file"></br>
           <div>
           </div>
           <div>

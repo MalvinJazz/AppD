@@ -10,6 +10,7 @@ class Denuncia(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255, blank=False, default = 'Anonimo')
     dpi = models.CharField(max_length=13, blank=False, default = 'Anonimo')
+    telefono = models.CharField(max_length=10, blank=True, null=True)
     coordenadas = models.CharField(max_length=255,blank=True)
     denuncia = models.TextField(blank=False)
     #solicitud = models.TextField(blank=True)
