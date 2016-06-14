@@ -7,10 +7,11 @@ from django.db import models
 class Departamento(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255)
+    codigo = models.CharField(max_length=6)
 
     def __unicode__(self):
-        return str(self.nombre)
-        
+        return str(self.codigo)
+
 class Municipio(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255)
