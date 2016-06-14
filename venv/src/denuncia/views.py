@@ -46,7 +46,7 @@ def denunciar(request):
 
             motivo = denuncia.motivo
             vIn = motivo.institucion
-            vIn = Correo.objects.filter(institucion = vIn)
+            vIn = Correo.objects.filter(institucion=vIn)
             print vIn
 
 
@@ -54,27 +54,24 @@ def denunciar(request):
             connection = mail.get_connection()
             connection.open()
 
-            email = EmailMessage(
+            correo = EmailMessage(
                 motivo,
                 denuncia.denuncia,
+                'denunciamovil@gmail.com',
                 vIn,
+                #['malvinjazz@live.com'],
                 connection=connection,
                 )
 
+            if request.FILES:
+                correo.attach(archivo.name,archivo.read(),archivo.content_type)
 
-            email.attach(archivo,archivo.content_type)
+            print correo.subject, correo.from_email, correo.to
 
-            email.send(fail_silently = False)
+            correo.send(fail_silently = False)
             connection.close()
             print 'conexion cerrada'
             #Cierre de conexion-------------------------------------------------
-
-            # send_mail(
-            #     denuncia.motivo,
-            #     denuncia.denuncia,
-            #     vIn,
-            #     False
-            #     )
 
             return redirect('success')
 
