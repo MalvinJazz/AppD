@@ -108,11 +108,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+FILE_UPLOAD_HANDLERS = [
+    'django.core.files.uploadhandler.MemoryFileUploadHandler',
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+]
+
+FILE_UPLOAD_TEMP_DIR = os.path.join(BASE_DIR, "tmp")
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'denunciamovil@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'denunciamovil@gmail.com'
-EMAIL_HOST_PASSWORD = 'xgpggyotdjauidlm'
+EMAIL_HOST_PASSWORD = 'wclahejszozluxav'
 EMAIL_USE_TLS = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 

@@ -14,7 +14,7 @@ class Denuncia(models.Model):
     coordenadas = models.CharField(max_length=255,blank=True)
     denuncia = models.TextField(blank=False)
     #solicitud = models.TextField(blank=True)
-    archivo = models.ImageField(blank=True, upload_to='uploads/%Y/%m/%d')
+    #archivo = models.FileField(blank=True, upload_to='uploads/%Y/%m/%d')
     fecha = models.DateTimeField(auto_now=True, auto_now_add=False, blank = False)
 
     motivo = models.ForeignKey('Motivo')

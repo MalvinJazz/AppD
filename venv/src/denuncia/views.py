@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
+from django.core import mail
 from django.core import serializers
 from django.core.mail import EmailMessage
 from django.views.generic.edit import CreateView
@@ -26,6 +27,7 @@ def denunciar(request):
 
             denuncia = Denuncia()
 
+            print clean
             print request.FILES
             print request.POST
 
@@ -34,9 +36,9 @@ def denunciar(request):
             denuncia.telefono = clean['telefono']
             denuncia.direccion = clean['direccion']
             denuncia.denuncia = clean['denuncia']
-            
+
             if request.FILES:
-                denuncia.archivo = request.FILES['file']
+                archivo = request.FILES['file']
 
             denuncia.motivo = clean['motivo']
 
@@ -45,20 +47,39 @@ def denunciar(request):
             motivo = denuncia.motivo
             vIn = motivo.institucion
             vIn = Correo.objects.filter(institucion = vIn)
+            print vIn
+
+
+            #Envio de correo----------------------------------------------------
+            connection = mail.get_connection()
+            connection.open()
 
             email = EmailMessage(
                 motivo,
                 denuncia.denuncia,
-                vIn
-                    )
+                vIn,
+                connection=connection,
+                )
 
-            #email.attach_file(denuncia.archivo.path)
+
+            email.attach(archivo,archivo.content_type)
+
             email.send(fail_silently = False)
+            connection.close()
+            print 'conexion cerrada'
+            #Cierre de conexion-------------------------------------------------
+
+            # send_mail(
+            #     denuncia.motivo,
+            #     denuncia.denuncia,
+            #     vIn,
+            #     False
+            #     )
 
             return redirect('success')
 
         else:
-            message = "no funciona"
+            print "no funciona"
 
     else:
         form = DenunciaForm()
