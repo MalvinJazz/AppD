@@ -885,6 +885,11 @@ clases de geoChart
 
 	}
 
+	#piechart{
+		width: 100%;
+		height: 100%;
+	}
+
 	.bloqueTwo {
 		text-align: left;
 		color: black;
