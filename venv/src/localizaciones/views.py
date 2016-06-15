@@ -3,6 +3,7 @@ from django.core import serializers
 from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Departamento, Municipio, Direccion
+from denuncia.models import Denuncia
 
 # Create your views here.
 def busquedaM(request):
@@ -18,3 +19,6 @@ def busquedaD(request):
     data = serializers.serialize('json', dirs, fields = ('direccion'))
 
     return HttpResponse(data, content_type='application/json')
+
+def estadisticas(request):
+    return render(request,'estadisticas.html', {})

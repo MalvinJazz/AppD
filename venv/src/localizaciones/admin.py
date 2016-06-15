@@ -13,9 +13,9 @@ class DireccionAdmin(admin.ModelAdmin):
         'id',
         'direccion',
         'municipio',
-        'municipio.departamento'
+#        'municipio.departamento'
         ]
 
-admin.site.register(Departamento)
-admin.site.register(Municipio)
-admin.site.register(Direccion)
+admin.site.register(Departamento, DepartamentoAdmin)
+admin.site.register(Municipio, MunicipioAdmin)
+admin.site.register(Direccion, DireccionAdmin)

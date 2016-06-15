@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^busqM/',busquedaM, name='muni'),
     url(r'^busqD/', busquedaD, name = 'dirs'),
     url(r'^busqMot/', busquedaMo, name='mots'),
+    url(r'^estadisticas/','localizaciones.views.estadisticas', name="estadisticas"),
 ]
 
 if settings.DEBUG:
