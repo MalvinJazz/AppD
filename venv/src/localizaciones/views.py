@@ -21,4 +21,14 @@ def busquedaD(request):
     return HttpResponse(data, content_type='application/json')
 
 def estadisticas(request):
-    return render(request,'estadisticas.html', {})
+
+    departamentos = Departamento.objects.all()
+
+    context = {
+        'departamentos': departamentos,
+    }
+
+    for dato in departamentos:
+        print str(dato.codigo)+"--"+str(dato.sumMunicipios())
+
+    return render(request,'estadisticas.html', context)

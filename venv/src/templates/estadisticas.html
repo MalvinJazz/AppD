@@ -6,7 +6,7 @@
 
 {% block content %}
 <div id='section'>
-  <div id="geochart" class="geoChart" ></div>
+  <div id="chart_div" class="geoChart" ></div>
 </div>
 {% endblock %}
 
@@ -19,23 +19,29 @@
   google.charts.load('current', {'packages': ['geochart']});
   google.charts.setOnLoadCallback(drawMarkersMap);
 
+  var deps = [
+      ['States','Departamento', 'Denuncias'],
+      {% for dato in departamentos %}
+        ['{{dato.codigo}}','{{dato.nombre}}',{{dato.sumMunicipios}}],
+      {% endfor %}
+    ];
+
+
   function drawMarkersMap() {
-    var data = google.visualization.arrayToDataTable([
-      ['States','Estado' ,   'Poblacion'],
-        ['GT-QZ', 'Quetzaltenango',      2761477,],
-    ]);
+    var data = google.visualization.arrayToDataTable(deps);
 
     var options = {
-       backgroundColor: '#2651a8',
-       datalessRegionColor: '#2651a8',
-       defaultColor: '#f5f5f5',
-       region: 'GT   ',
-       displayMode: 'markers',
+       backgroundColor: '#white',
+       datalessRegionColor: '#C0C0C0',
+       defaultColor: '#4D4D50',
+       region: 'GT',
+       //displayMode: 'markers',
        resolution: 'provinces',
-       colorAxis: {colors: ['blue', 'red']}
+       //FAE398
+       colorAxis: {colors: ['#FDF1CB','#FFC400','#DF0000']},
     };
 
-    var chart = new google.visualization.GeoChart(document.getElementById('geoChart'));
+    var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
     chart.draw(data, options);
   };
 
