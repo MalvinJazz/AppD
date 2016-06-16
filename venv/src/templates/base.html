@@ -10,30 +10,30 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </head>
 
-<header id="header-wrapper">
-  <div id="logo">
-    <h1>
-      LOGO
-    </h1>
-  </div>
-  <div id="navbar">
-    <span class="inbar">
-      <ul>
-        <li class="navhome"><a href="/"><span>Denuncia</span></a></li>
-        <li><a href={% url 'institucion:list' %}><span>Información</span></a></li>
-        <li><a href="#"><span>Compartir</span></a></li>
-        <li><a href="/estadisticas"><span>Estadisticas</span></a></li>
-      </ul>
-    </span>
-  </div>
-</header>
+<div id='header-static'>
+  <header id="header-wrapper">
+    <div id="logo">
+      <h1>
+        LOGO
+      </h1>
+    </div>
+    <div id="navbar">
+      <span class="inbar">
+        <ul>
+          <li class="navhome"><a href="/"><span>Denuncia</span></a></li>
+          <li><a href={% url 'institucion:list' %}><span>Información</span></a></li>
+          <li><a href="#"><span>Compartir</span></a></li>
+          <li><a href="/estadisticas"><span>Estadisticas</span></a></li>
+        </ul>
+      </span>
+    </div>
+  </header>
 
-<div class="title">
-  {% block head %}
-  {% endblock %}
+  <div class="title">
+    {% block head %}
+    {% endblock %}
+  </div>
 </div>
-
-</header>
 
 <div class="jocote" align="CENTER">
   <body>

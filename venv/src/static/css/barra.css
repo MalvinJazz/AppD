@@ -98,6 +98,8 @@
 
   line-height:36px;
 
+  /*border-bottom: medium solid #636363;*/
+
   /*background-color: #901e1e;*/
 }
 
@@ -126,9 +128,12 @@
 #navbar ul li a:hover span{
 
   /*background:url(img/spanhover-bg.png) right top no-repeat;*/
-  color: #636363;
+  color: #5197FF;
 
   height:36px;
 
   line-height:36px;
+
+  border-bottom: medium solid #071773;
+  border-top: medium solid #071773;
 }
