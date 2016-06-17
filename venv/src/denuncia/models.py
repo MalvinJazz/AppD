@@ -28,9 +28,9 @@ class Denuncia(models.Model):
     def get_absolute_url(self):
         return '/success'
 
-@receiver(post_delete, sender=Denuncia)
-def denuncia_delete(sender, instance, **kwargs):
-    instance.archivo.delete(False)
+# @receiver(post_delete, sender=Denuncia)
+# def denuncia_delete(sender, instance, **kwargs):
+#     instance.archivo.delete(False)
 
 class Motivo(models.Model):
     id = models.AutoField(primary_key=True)
@@ -42,3 +42,8 @@ class Motivo(models.Model):
 
     def __unicode__(self):
         return str(self.motivo)
+
+    def sumTotal(self):
+        denuncias = Denuncia.objects.filter(motivo=self)
+
+        return len(denuncias)

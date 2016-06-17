@@ -6,11 +6,13 @@
 
 {% block content %}
 <div id='section'>
+  <div id="sectionTitle">
+    <h1>Total de denuncias</h1>
+  </div>
   <div id="chart_div" class="geoChart" ></div>
-  <div>
-    <div class="bloqueOne">
-      <div id="piechart"></div>
-    </div>
+  <div class="total"><h3><i>Total: {{total}}</i></h3></div>
+  <div class="graficas">
+    <div id="piechart"></div>
   </div>
 </div>
 {% endblock %}
@@ -21,10 +23,12 @@
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
 
-  google.charts.load('current', {'packages': ['geochart','corechart']});
-  google.charts.setOnLoadCallback(drawMarkersMap, drawChart);
-  //google.charts.load('current', {'packages':['corechart']});
-  //google.charts.setOnLoadCallback(drawChart);
+  google.charts.load('visualization', '1', {'packages': ['geochart', 'corechart']});
+  google.charts.setOnLoadCallback(drawMarkersMap);
+  // google.charts.load('visualization', '1', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  // google.charts.load('current', {'packages':['corechart']});
+  // google.charts.setOnLoadCallback(drawChart);
 
   function drawMarkersMap() {
 
@@ -55,23 +59,22 @@
   function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['Motivo', 'Denuncias'],
+          {% for dato in motivos %}
+            ['{{dato.motivo}}',{{dato.sumTotal}}],
+          {% endfor %}
         ]);
 
         var options = {
-          title: 'My Daily Activities'
+          title: 'Motivos de Denuncias'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
         chart.draw(data, options);
-  }
+    };
 
 
 </script>
+
 {% endblock %}

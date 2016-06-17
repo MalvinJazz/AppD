@@ -3,7 +3,7 @@ from django.core import serializers
 from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Departamento, Municipio, Direccion
-from denuncia.models import Denuncia
+from denuncia.models import Denuncia, Motivo
 
 # Create your views here.
 def busquedaM(request):
@@ -23,9 +23,13 @@ def busquedaD(request):
 def estadisticas(request):
 
     departamentos = Departamento.objects.all()
+    total = Denuncia.objects.all()
+    motivos = Motivo.objects.all()
 
     context = {
         'departamentos': departamentos,
+        'total': len(total),
+        'motivos': motivos,
     }
 
     for dato in departamentos:
