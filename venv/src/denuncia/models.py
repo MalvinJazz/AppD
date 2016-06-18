@@ -13,8 +13,7 @@ class Denuncia(models.Model):
     telefono = models.CharField(max_length=10, blank=True, null=True)
     coordenadas = models.CharField(max_length=255,blank=True)
     denuncia = models.TextField(blank=False)
-    #solicitud = models.TextField(blank=True)
-    #archivo = models.FileField(blank=True, upload_to='uploads/%Y/%m/%d')
+    referencia = models.CharField(blank=True, max_length=140, default="")
     fecha = models.DateTimeField(auto_now=True, auto_now_add=False, blank = False)
 
     motivo = models.ForeignKey('Motivo')
@@ -35,6 +34,7 @@ class Denuncia(models.Model):
 class Motivo(models.Model):
     id = models.AutoField(primary_key=True)
     motivo = models.CharField(max_length=100)
+    cantidad = models.IntegerField(default=0)
 
     verbose_name = 'Motivos'
 
@@ -47,3 +47,6 @@ class Motivo(models.Model):
         denuncias = Denuncia.objects.filter(motivo=self)
 
         return len(denuncias)
+
+    class Meta:
+        ordering =['-cantidad']

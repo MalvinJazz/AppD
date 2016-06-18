@@ -35,6 +35,7 @@ def denunciar(request):
             denuncia.dpi = clean['dpi']
             denuncia.telefono = clean['telefono']
             denuncia.direccion = clean['direccion']
+            denuncia.referencia = clean['referencia']
             denuncia.denuncia = clean['denuncia']
 
             if request.FILES:
@@ -59,7 +60,6 @@ def denunciar(request):
                 denuncia.denuncia,
                 'denunciamovil@gmail.com',
                 vIn,
-                #['malvinjazz@live.com'],
                 connection=connection,
                 )
 
@@ -72,6 +72,10 @@ def denunciar(request):
             connection.close()
             print 'conexion cerrada'
             #Cierre de conexion-------------------------------------------------
+
+            #Trigger de sumatoria a motivo--------------------------------------
+            motivo.cantidad = motivo.cantidad + 1
+            motivo.save()
 
             return redirect('success')
 

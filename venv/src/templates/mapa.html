@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+  <h1>LOCALIZACIONES</h1>
+{% endblock %}
+
+{% block content %}
+<div id="sectionMap">
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+  var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('sectionMap'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 8
+    });
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPIn8C1d9dQLNNnv-Z2D0AKz6WESeZ8tI&callback=initMap"
+    async defer></script>
+{% endblock %}
+
+
+<!-- AIzaSyAPIn8C1d9dQLNNnv-Z2D0AKz6WESeZ8tI -->

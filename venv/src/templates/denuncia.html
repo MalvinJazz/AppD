@@ -10,13 +10,18 @@
     <div class = "radioBtn">
       <div class="bloqueOne">
         <input type="radio" name="tipo" value="anonimo" checked onClick="deshabilita()">
-        <label>Anonima: </label></br>
+        <label>Anonima</label></br>
       </div>
       <div class="bloqueTwo">
         <input type="radio" name="tipo" value="personal" onClick="habilita()">
-        <label>Personal: </label> </br>
+        <label>Personal</label> </br>
       </div>
     </div>
+    <!-- <span id="help2" class="help2">....</span>
+    <div id="cuadro2" class="help-text">
+      <p>Describa un punto de referencia </p>
+      <p> cercano a la direccion.</p>
+    </div> -->
   </div>
   <div id="bloqueForms">
     <form method="POST" action='' enctype='multipart/form-data'>
@@ -25,20 +30,20 @@
         <div class="form-group">
           <div id="ident" style="display: none;">
             <div>
-              <label>Nombre: </label>
+              <label>Nombre</label>
                 {{form.nombre}} </br>
             </div>
             <div>
-              <label>DPI: </label>
+              <label>DPI</label>
                 {{form.dpi}} </br>
             </div>
             <div>
-              <label>Telefono: </label>
+              <label>Telefono</label>
                 {{form.telefono}}</br>
             </div>
           </div>
           <div>
-            <label>Departamento: </label>
+            <label>Departamento</label>
             <select id="dep" name="dep">
               <option value="0" selected>------</option>
               {% for dato in departamentos %}
@@ -47,21 +52,29 @@
             </select>
           </div>
           <div>
-            <label>Municipio: </label>
+            <label>Municipio</label>
             <select id="muni_id" name="muni">
               <option selected></option>
             </select>
           </div>
           <div>
-          <label>Direccion: </label>
+          <label>Direccion</label>
             {{form.direccion}} </br>
           </div>
-          <label>Foto/Video: </label>
-            <input type="file" id="file" name="file"></br>
           <div>
+            <label>Referencia</label>
+              {{form.referencia}}<span id="help1" class="help">....</span>
+            <div id="cuadro1" class="help-text">
+              <p>Describa un punto de referencia </p>
+              <p> cercano a la direccion.</p>
+            </div> </br>
           </div>
           <div>
-            <label>Institucion: </label>
+          <label>Foto/Video</label>
+            <input type="file" id="file" name="file"></br>
+          </div>
+          <div>
+            <label>Institucion</label>
             <select id="inst" name="inst">
               <option selected>------</option>
               {% for dato in instituciones %}
@@ -70,11 +83,11 @@
             </select>
           </div>
           <div>
-            <label>Motivo: </label>
+            <label>Motivo</label>
               {{form.motivo}} </br>
           </div>
           <div>
-          <label>Denuncia: </label>
+          <label>Denuncia</label>
             {{form.denuncia}} </br>
           </div>
           <div id="btnForm">
@@ -94,10 +107,13 @@
   $('#dep').on('change', busquedaMuni);
   $('#muni_id').on('change', busquedaDir);
   $('#inst').on('change', busquedaMot);
+  $('#help1').on('mouseover', mostrar);
+  $('#help1').on('mouseout', quitar);
 
   document.getElementById('muni_id').length = 0;
   document.getElementById('id_direccion').length = 0;
   document.getElementById('id_motivo').length = 0;
+  document.getElementById('cuadro1').style.display = 'none';
 
   function habilita(){
     document.getElementById("id_nombre").disabled = false;
@@ -108,7 +124,7 @@
   function deshabilita(){
     document.getElementById("id_nombre").disabled = true;
     document.getElementById("id_dpi").disabled = true;
-    document.getElementById("ident").style.display = 'none'
+    document.getElementById("ident").style.display = 'none';
   }
 
   function busquedaMuni(){
@@ -220,6 +236,15 @@
 
   }
 
+  function mostrar(){
+    var div = document.getElementById('cuadro1');
+    div.style.display = 'block';
+  }
+
+  function quitar(){
+    var div = document.getElementById('cuadro1');
+    div.style.display = 'none';
+  }
 </script>
 
 {% endblock %}

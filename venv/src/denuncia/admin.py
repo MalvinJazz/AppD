@@ -4,10 +4,10 @@ from .models import Denuncia, Motivo
 
 
 class DenunciaAdmin(admin.ModelAdmin):
-    list_display = ['id', 'nombre', 'dpi', 'telefono', 'motivo', 'denuncia','direccion', 'fecha']
+    list_display = ['id', 'nombre', 'dpi', 'telefono', 'motivo', 'denuncia','direccion','referencia', 'fecha']
 
 class MotivoAdmin(admin.ModelAdmin):
-    list_display = ['motivo','institucion']
+    list_display = ['motivo','institucion','cantidad']
 
 admin.site.register(Denuncia, DenunciaAdmin)
 admin.site.register(Motivo, MotivoAdmin)

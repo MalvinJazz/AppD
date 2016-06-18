@@ -36,3 +36,6 @@ def estadisticas(request):
         print str(dato.codigo)+"--"+str(dato.sumMunicipios())
 
     return render(request,'estadisticas.html', context)
+
+def mapa(request):
+    return render(request,'mapa.html',{})

@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^busqD/', busquedaD, name = 'dirs'),
     url(r'^busqMot/', busquedaMo, name='mots'),
     url(r'^estadisticas/','localizaciones.views.estadisticas', name="estadisticas"),
+    url(r'^mapa/','localizaciones.views.mapa',name="mapa"),
 ]
 
 if settings.DEBUG:
