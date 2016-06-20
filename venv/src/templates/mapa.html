@@ -6,6 +6,7 @@
 
 {% block content %}
 <div id="sectionMap">
+  <div id="map"></div>
 </div>
 {% endblock %}
 
@@ -13,7 +14,7 @@
 <script type="text/javascript">
   var map;
   function initMap() {
-    map = new google.maps.Map(document.getElementById('sectionMap'), {
+    map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: -34.397, lng: 150.644},
       zoom: 8
     });

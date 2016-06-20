@@ -245,17 +245,52 @@
     var div = document.getElementById('cuadro1');
     div.style.display = 'none';
   }
+
+  // if (navigator.geolocation) {
+  //   navigator.geolocation.getCurrentPosition(function(position) {
+  //   var lat = position.coords.latitude;
+  //   var lng = position.coords.longitude;
+  //   var options = { position: new google.maps.LatLng(lat, lng) }
+  //   var marker = new google.maps.Marker(options);
+  //   marker.setMap(map);
+  //   });
+  // }
+  //
+  // var map = null;
+	// var marker = new google.maps.Marker();
+	//
+	// function load_map() {
+	//     var myLatlng = new google.maps.LatLng(20.68009, -101.35403);
+	//     var myOptions = {
+	//         zoom: 4,
+	//         center: myLatlng,
+	//         mapTypeId: google.maps.MapTypeId.ROADMAP
+	//     };
+	//     map = new google.maps.Map($("#map_canvas").get(0), myOptions);
+	// }
+	//
+	// function getGeolocation() {
+	// 	if (navigator.geolocation) {
+	// 	    navigator.geolocation.getCurrentPosition(showPosition);
+	// 	} else {
+	// 		alert("Ups!! No hay Geolocalización para ti, intenta con un navegador más actualizado.");
+	// 	}
+	// }
+	//
+	// function showPosition(position) {
+	// 	$('#latitude').text(position.coords.latitude);
+	// 	$('#longitude').text(position.coords.longitude);
+	// 	var current_position = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+	// 	map.setZoom(15);
+	// 	map.setCenter(current_position);
+	// 	marker.setPosition(current_position);
+	// 	marker.setMap(map);
+	// }
+	//
+	// $(document).ready(function(){
+	// 	load_map();
+  //   gmaps_ads();
+	// });
 </script>
 
 {% endblock %}
-
-
-<!-- fields = [
-        'nombre',
-        'dpi',
-        'direccion',
-        'descripcion',
-        'solicitud',
-        'archivo',
-        'motivo',
-    ] -->
