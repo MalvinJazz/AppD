@@ -37,6 +37,8 @@ def denunciar(request):
             denuncia.direccion = clean['direccion']
             denuncia.referencia = clean['referencia']
             denuncia.denuncia = clean['denuncia']
+            denuncia.latitud = request.POST['lat']
+            denuncia.longitud = request.POST['lon']
 
             if request.FILES:
                 archivo = request.FILES['file']

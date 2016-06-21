@@ -13,12 +13,54 @@
 {% block js %}
 <script type="text/javascript">
   var map;
+
   function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: -34.397, lng: 150.644},
-      zoom: 8
+    if (navigator.geolocation) {
+		    navigator.geolocation.getCurrentPosition(function(position){
+
+          var lt = position.coords.latitude;
+          var lon = position.coords.longitude;
+
+          var myLatlng = new google.maps.LatLng(lt,lon);
+
+          console.log(lt);
+          console.log(lon);
+
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: myLatlng,
+            zoom: 15
+          });
+
+          {% for dato in denuncias %}
+            loc = {lat: {{dato.latitud}}, lng: {{dato.longitud}}};
+            addMarker(loc, map, '{{dato.motivo}}');
+          {% endfor %}
+
+          // var marker = new google.maps.Marker({
+          //   position: myLatlng,
+          //   map: map,
+          //   title: 'Hello World!'
+          // });
+
+        });
+
+
+
+
+
+		} else {
+			alert("Para utilizar la geolocalización necesitas actualizar tu navegador.");
+		}
+  }
+
+  function addMarker(loc, map, title){
+    var marker = new google.maps.Marker({
+    position: loc,
+    title: title,
+    map: map
     });
   }
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPIn8C1d9dQLNNnv-Z2D0AKz6WESeZ8tI&callback=initMap"
     async defer></script>

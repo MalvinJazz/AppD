@@ -24,7 +24,7 @@
     </div> -->
   </div>
   <div id="bloqueForms">
-    <form method="POST" action='' enctype='multipart/form-data'>
+    <form id="form1" method="POST" action='' enctype='multipart/form-data'>
       {% csrf_token %}
       <div class = "camposForms">
         <div class="form-group">
@@ -93,6 +93,10 @@
           <div id="btnForm">
             <input type="submit" class="btn btn-default" value='Enviar'>
           </div>
+          <div id="coord" style="display: none;">
+            <input id="lat" type="text" name="lat">
+            <input id="lon" type="text" name="lon">
+          </div>
         </div>
       </div>
     </form>
@@ -109,6 +113,7 @@
   $('#inst').on('change', busquedaMot);
   $('#help1').on('mouseover', mostrar);
   $('#help1').on('mouseout', quitar);
+  $('#document').ready(getGeolocation);
 
   document.getElementById('muni_id').length = 0;
   document.getElementById('id_direccion').length = 0;
@@ -258,7 +263,7 @@
   //
   // var map = null;
 	// var marker = new google.maps.Marker();
-	//
+
 	// function load_map() {
 	//     var myLatlng = new google.maps.LatLng(20.68009, -101.35403);
 	//     var myOptions = {
@@ -268,16 +273,25 @@
 	//     };
 	//     map = new google.maps.Map($("#map_canvas").get(0), myOptions);
 	// }
-	//
-	// function getGeolocation() {
-	// 	if (navigator.geolocation) {
-	// 	    navigator.geolocation.getCurrentPosition(showPosition);
-	// 	} else {
-	// 		alert("Ups!! No hay Geolocalización para ti, intenta con un navegador más actualizado.");
-	// 	}
-	// }
-	//
-	// function showPosition(position) {
+
+	function getGeolocation() {
+		if (navigator.geolocation) {
+		    navigator.geolocation.getCurrentPosition(function(position){
+
+          var lat = position.coords.latitude;
+          var lon = position.coords.longitude;
+
+          document.getElementById('lat').value = lat;
+          document.getElementById('lon').value = lon;
+
+
+        });
+		} else {
+			alert("Para utilizar la geolocalización necesitas actualizar tu navegador.");
+		}
+	}
+
+	// function sendPosition(position) {
 	// 	$('#latitude').text(position.coords.latitude);
 	// 	$('#longitude').text(position.coords.longitude);
 	// 	var current_position = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
@@ -286,7 +300,7 @@
 	// 	marker.setPosition(current_position);
 	// 	marker.setMap(map);
 	// }
-	//
+
 	// $(document).ready(function(){
 	// 	load_map();
   //   gmaps_ads();

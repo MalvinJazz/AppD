@@ -38,4 +38,7 @@ def estadisticas(request):
     return render(request,'estadisticas.html', context)
 
 def mapa(request):
-    return render(request,'mapa.html',{})
+    denuncias = Denuncia.objects.exclude(longitud=None,latitud=None)
+    print denuncias
+
+    return render(request,'mapa.html',{'denuncias': denuncias})
