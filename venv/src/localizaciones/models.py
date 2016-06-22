@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
+from itertools import chain
 
 from django.db import models
+from django.db.models import Q
 
 from denuncia.models import Denuncia
 
@@ -23,6 +25,9 @@ class Departamento(models.Model):
 
         return suma
 
+    def getMunicipios(self):
+        return Municipio.objects.filter(departamento=self)
+
     class Meta:
         ordering = ["codigo"]
 
@@ -42,6 +47,18 @@ class Municipio(models.Model):
             suma = suma + dato.sumDenuncias()
 
         return suma
+
+    def getDenuncias(self):
+        direcciones = Direccion.objects.filter(municipio=self)
+
+        denuncias = Q()
+
+        for dato in direcciones:
+            tmp = Denuncia.objects.filter(direccion=dato)
+            denuncias = chain(denuncias,tmp)
+
+        return denuncias
+
 
 class Direccion(models.Model):
     id = models.AutoField(primary_key=True)

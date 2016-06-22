@@ -18,7 +18,6 @@ from django.conf.urls.static import static
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from localizaciones.views import busquedaM, busquedaD
 from denuncia.views import busquedaMo #, DenunciaCreate
 
 urlpatterns = [
@@ -27,9 +26,8 @@ urlpatterns = [
     # url(r'^$',DenunciaCreate.as_view(),name='inicio'),
     url(r'^$','denuncia.views.denunciar',name='inicio'),
     url(r'^success/', 'denuncia.views.success', name = 'success'),
-    url(r'^busqM/',busquedaM, name='muni'),
-    url(r'^busqD/', busquedaD, name = 'dirs'),
     url(r'^busqMot/', busquedaMo, name='mots'),
+    url(r'^local/', include('localizaciones.urls', namespace="local")),
     url(r'^estadisticas/','localizaciones.views.estadisticas', name="estadisticas"),
     url(r'^mapa/','localizaciones.views.mapa',name="mapa"),
 ]

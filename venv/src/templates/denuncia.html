@@ -138,7 +138,7 @@
     $.ajax({
 
       data: {'id': id},
-      url: '/busqM/muni',
+      url: "{% url 'local:muni' %}",
       type: 'get',
       success: function(data){
 
@@ -178,7 +178,7 @@
     $.ajax({
 
       data: {'id': id},
-      url: '/busqD/dirs',
+      url: "{% url 'local:dirs' %}",
       type: 'get',
       success: function(data){
         document.getElementById('id_direccion').length = 0;

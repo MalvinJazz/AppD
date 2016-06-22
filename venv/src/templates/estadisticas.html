@@ -13,6 +13,7 @@
   <div class="total"><h3><i>Total: {{total}}</i></h3></div>
   <div class="graficas">
     <div id="piechart"></div>
+    <div id="columnchart"></div>
   </div>
 </div>
 {% endblock %}
@@ -39,7 +40,7 @@
         {% endfor %}
       ];
 
-    var data = google.visualization.arrayToDataTable(deps);
+    var datos = google.visualization.arrayToDataTable(deps);
 
     var options = {
        backgroundColor: '#white',
@@ -53,7 +54,47 @@
     };
 
     var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
+    chart.draw(datos, options);
+
+    google.visualization.events.addListener(chart, 'select', function() {
+      var seleccion = chart.getSelection();
+      var code = datos.getValue(seleccion[0].row, 0);
+      var dep = datos.getValue(seleccion[0].row, 1);
+      console.log(code);
+
+      $.ajax({
+
+        data: {'code': code},
+        url: "{% url 'local:dens' %}",
+        type: 'get',
+        success: function(data){
+
+          // var tabla = new google.visualization.DataTable();
+          // data.addColumn('string', 'Municipio');
+          // {% for dato in motivos %}
+          //   data.addColumn('number', '{{dato.motivo}}');
+          // {% endfor %}
+          for(var i=0; i<data.length;i++){
+            console.log(data[i].fields);
+          }
+
+          // var options = {
+          //   title: dep,
+          //   legend: { position: 'top', maxLines: 4 },
+          //   bar: { groupWidth: '75%' },
+          //   isStacked: true,
+          // };
+          //
+          // var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'));
+          //
+          // chart.draw(tabla, options);
+
+        }
+
+      })
+
+
+    });
   };
 
   function drawChart() {
