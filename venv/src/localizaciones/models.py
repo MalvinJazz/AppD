@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.db.models import Q
 
-from denuncia.models import Denuncia
+from denuncia.models import Denuncia, Motivo
 
 # Create your models here.
 
@@ -47,16 +47,31 @@ class Municipio(models.Model):
 
         return suma
 
-    # def getDenuncias(self):
-    #     direcciones = Direccion.objects.filter(municipio=self)
-    #
-    #     denuncias = []
-    #
-    #     for dato in direcciones:
-    #         tmp = list(Denuncia.objects.filter(direccion=dato).order_by('motivo'))
-    #         denuncias.extend(tmp)
-    #
-    #     return denuncias
+    def getDenuncias(self):
+        direcciones = Direccion.objects.filter(municipio=self)
+
+        motivos = Motivo.objects.all()
+
+        dic = {}
+
+        for mot in motivos:
+            x = len(Denuncia.objects.filter(
+                direccion__municipio=self,
+                motivo = mot
+                ))
+            dic.update({
+                mot.motivo: x,
+            })
+
+        return dic
+
+        # denuncias = []
+        #
+        # for dato in direcciones:
+        #     tmp = list(Denuncia.objects.filter(direccion=dato).order_by('motivo'))
+        #     denuncias.extend(tmp)
+        #
+        # return denuncias
 
 
 class Direccion(models.Model):

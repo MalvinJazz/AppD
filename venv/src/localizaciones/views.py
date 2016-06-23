@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.core import serializers
 from django.core.serializers.json import Serializer
 from django.http import HttpResponse, HttpResponseRedirect
-from django.utils.encoding import smart_text, is_protected_type
+#from django.utils.encoding import smart_text, is_protected_type
 
 from .models import Departamento, Municipio, Direccion
 from denuncia.models import Denuncia, Motivo
@@ -14,7 +14,8 @@ class MuniSerializer(Serializer):
     def get_dump_object(self, obj):
         dic = super(MuniSerializer, self).get_dump_object(obj)
         dic.update({
-            'cant': obj.sumDirecciones()
+            'cant': obj.sumDirecciones(),
+            'mots': obj.getDenuncias(),
         })
         return dic
 
