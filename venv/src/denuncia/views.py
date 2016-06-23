@@ -76,7 +76,7 @@ def denunciar(request):
             #Cierre de conexion-------------------------------------------------
 
             #Trigger de sumatoria a motivo--------------------------------------
-            motivo.cantidad = motivo.cantidad + 1
+            motivo.cantidad = len(Denuncia.objects.filter(motivo=motivo))
             motivo.save()
 
             return redirect('success')

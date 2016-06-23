@@ -1006,6 +1006,14 @@ clases de Chart
 	margin-right: 50%;
 }
 
+#columnchart{
+	height: 100%;
+	text-align: left;
+	color: black;
+	width: 100%;
+	position: static;
+}
+
 .graficas{
 	margin: 10px;
 	align-items: center;

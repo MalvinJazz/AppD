@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-from itertools import chain
 
 from django.db import models
 from django.db.models import Q
@@ -34,6 +33,7 @@ class Departamento(models.Model):
 class Municipio(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255)
+    cantidad = models.IntegerField(default=0)
 
     departamento = models.ForeignKey('Departamento')
 
@@ -48,16 +48,16 @@ class Municipio(models.Model):
 
         return suma
 
-    def getDenuncias(self):
-        direcciones = Direccion.objects.filter(municipio=self)
-
-        denuncias = Q()
-
-        for dato in direcciones:
-            tmp = Denuncia.objects.filter(direccion=dato)
-            denuncias = chain(denuncias,tmp)
-
-        return denuncias
+    # def getDenuncias(self):
+    #     direcciones = Direccion.objects.filter(municipio=self)
+    #
+    #     denuncias = []
+    #
+    #     for dato in direcciones:
+    #         tmp = list(Denuncia.objects.filter(direccion=dato).order_by('motivo'))
+    #         denuncias.extend(tmp)
+    #
+    #     return denuncias
 
 
 class Direccion(models.Model):

@@ -23,8 +23,8 @@ def busquedaD(request):
 def obtenerD(request):
     codigo = request.GET['code']
     dep = Departamento.objects.get(codigo=codigo)
-    print dep
     dens = Municipio.objects.filter(departamento=dep)
+
     data = serializers.serialize('json', dens)
 
     return HttpResponse(data, content_type='application/json')
