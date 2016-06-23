@@ -1,11 +1,31 @@
 from django.shortcuts import render
 from django.core import serializers
+from django.core.serializers.json import Serializer
 from django.http import HttpResponse, HttpResponseRedirect
+from django.utils.encoding import smart_text, is_protected_type
 
 from .models import Departamento, Municipio, Direccion
 from denuncia.models import Denuncia, Motivo
 
-# Create your views here.
+#--------------------------------------------------------
+#Serializador de json------------------------------------
+class MuniSerializer(Serializer):
+
+    def get_dump_object(self, obj):
+        dic = super(MuniSerializer, self).get_dump_object(obj)
+        dic.update({
+            'cant': obj.sumDirecciones()
+        })
+        return dic
+
+
+    def end_object(self, obj):
+        super(MuniSerializer, self).end_object(obj)
+
+
+
+#--------------------------------------------------------
+
 def busquedaM(request):
     vID = request.GET['id']
     municipios = Municipio.objects.filter(departamento = vID)
@@ -25,7 +45,11 @@ def obtenerD(request):
     dep = Departamento.objects.get(codigo=codigo)
     dens = Municipio.objects.filter(departamento=dep)
 
-    data = serializers.serialize('json', dens)
+    serial = MuniSerializer()
+
+    data = serial.serialize(dens)
+
+    print data
 
     return HttpResponse(data, content_type='application/json')
 

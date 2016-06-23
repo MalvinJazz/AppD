@@ -75,11 +75,13 @@
         type: 'get',
         success: function(data){
 
+          console.log("funciona");
+
           var lista = [['Municipio', 'Denuncias']];
 
 
          for(var i=0; i<data.length;i++){
-           lista.push([data[i].fields.nombre, (i+10)*10]);
+           lista.push([data[i].fields.nombre, data[i].cant]);
          }
 
           var tabla = new google.visualization.arrayToDataTable(lista);
