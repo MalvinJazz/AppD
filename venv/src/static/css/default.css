@@ -1007,7 +1007,7 @@ clases de Chart
 }
 
 #columnchart{
-	height: 100%;
+	height: 500px;
 	text-align: left;
 	color: black;
 	width: 100%;
