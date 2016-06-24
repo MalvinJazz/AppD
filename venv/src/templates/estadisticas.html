@@ -30,6 +30,7 @@
   google.charts.setOnLoadCallback(drawChart);
   // google.charts.load('current', {'packages':['corechart']});
   // google.charts.setOnLoadCallback(drawChart);
+  $("#columnchart").hide();
 
   function drawMarkersMap() {
 
@@ -67,7 +68,7 @@
       window.scrollTo(pos.left, pos.top-200);
 
       document.getElementById("columnchart").style.display = 'block';
-
+      $("#columnchart").show();
       console.log(pos);
 
       $.ajax({
