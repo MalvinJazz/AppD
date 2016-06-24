@@ -17,11 +17,6 @@
         <label>Personal</label> </br>
       </div>
     </div>
-    <!-- <span id="help2" class="help2">....</span>
-    <div id="cuadro2" class="help-text">
-      <p>Describa un punto de referencia </p>
-      <p> cercano a la direccion.</p>
-    </div> -->
   </div>
   <div id="bloqueForms">
     <form id="form1" method="POST" action='' enctype='multipart/form-data'>
@@ -68,6 +63,7 @@
               <p> cercano a la direccion.</p>
             </div> </br>
           </div>
+          <!-- <div id="map_canvas" style="height: 200px; width: 300px"></div> -->
           <div>
           <label>Foto/Video</label>
             <input type="file" id="file" name="file"></br>
@@ -287,20 +283,21 @@
 		}
 	}
 
-	// function sendPosition(position) {
-	// 	$('#latitude').text(position.coords.latitude);
-	// 	$('#longitude').text(position.coords.longitude);
-	// 	var current_position = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-	// 	map.setZoom(15);
-	// 	map.setCenter(current_position);
-	// 	marker.setPosition(current_position);
-	// 	marker.setMap(map);
-	// }
-
 	// $(document).ready(function(){
-	// 	load_map();
-  //   gmaps_ads();
+  //   getGeolocation();
 	// });
+
+  // var map;
+  // function initMap() {
+  //   getGeolocation(lat, lon);
+  //   map = new google.maps.Map(document.getElementById('map_canvas'), {
+  //     center: {lat: lat, lng: lon},
+  //     zoom: 15
+  //   });
+  // }
 </script>
+
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPIn8C1d9dQLNNnv-Z2D0AKz6WESeZ8tI&callback=initMap"
+    async defer></script> -->
 
 {% endblock %}

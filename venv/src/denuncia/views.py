@@ -10,7 +10,6 @@ from .forms import DenunciaForm
 from institucion.models import Correo, Institucion
 from localizaciones.models import Departamento, Municipio, Direccion
 from .models import Motivo, Denuncia
-# Create your views here.
 
 def denunciar(request):
 
@@ -39,8 +38,6 @@ def denunciar(request):
             denuncia.denuncia = clean['denuncia']
             denuncia.latitud = request.POST['lat']
             denuncia.longitud = request.POST['lon']
-
-            print denuncia.latitud, denuncia.longitud
 
             if request.FILES:
                 archivo = request.FILES['file']
