@@ -40,6 +40,8 @@ def denunciar(request):
             denuncia.latitud = request.POST['lat']
             denuncia.longitud = request.POST['lon']
 
+            print denuncia.latitud, denuncia.longitud
+
             if request.FILES:
                 archivo = request.FILES['file']
 

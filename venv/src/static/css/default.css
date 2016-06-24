@@ -69,7 +69,7 @@ html, body
 	.jocote{
 		min-height: 100px;
 		clear: both;
-		padding-top: 72px;
+		padding-top: 5.5%;
 		margin: 0px;
 	}
 
@@ -336,6 +336,7 @@ html, body
 			padding: 3em 0em 4em 0em;
 	    background-color:#FFF;
 			height: 100%;
+			width: 100%;
 			/*background: #FFF url(images/fondo.jpg) no-repeat center;*/
 			background-size: cover;
 	}
@@ -349,7 +350,7 @@ html, body
 	div .help-text{
 		float: right;
 		font-size: smaller;
-		margin-right: 14%;
+		margin-right: 28%;
 		background-color: black;
 		color: white;
 		margin-top: -.5%;
@@ -661,7 +662,8 @@ html, body
 		margin-right: 45%;
 		margin-top: 3%;
 		margin-bottom: 3%;
-		text-align: -moz-center;
+		text-align: center;
+		font-size: 70%;
 
 	}
 
@@ -801,29 +803,25 @@ input, select, textarea{
 
 .radioBtn {
 
-	padding: .1em;
-	margin-left: -3.8%;
-	width: 50%;
+	padding: .5%;
+	margin-left: : 2.3%;
+	width: 48%;
 	height: 50%;
 
 }
 
 .radioBtn > .bloqueTwo > input[type="radio"]{
-	margin-left: 25px;
+	margin: 0% 3%;
 }
 
 .radioBtn > .bloqueOne > input[type="radio"]{
-	margin-left: 35px;
-}
-
-.radioBtn > .bloqueOne > label{
-	float: left;
+	margin: 0% 3%;
 }
 
 #btnForm{
-	margin-left: 300px;
+	margin-left: 40%;
 	padding: .1em;
-	margin-right: 300px;
+	margin-right: 40%;
 }
 
 #bloqueChartAzul
@@ -1137,8 +1135,10 @@ clases de Chart
 		text-align: left;
 		color: #000;
 		align-content: right;
-		margin: 0px 300px;
+		/*margin: 0% 23.2%;*/
+		margin-left: 23.2%;
 		min-height: 100px;
+		width: 70%;
 
 	}
 	#bloqueForms .formularios p label{

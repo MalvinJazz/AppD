@@ -26,7 +26,6 @@
   <div id="bloqueForms">
     <form id="form1" method="POST" action='' enctype='multipart/form-data'>
       {% csrf_token %}
-      <div class = "camposForms">
         <div class="form-group">
           <div id="ident" style="display: none;">
             <div>
@@ -94,11 +93,10 @@
             <input type="submit" class="btn btn-default" value='Enviar'>
           </div>
           <div id="coord" style="display: none;">
-            <input id="lat" type="text" name="lat">
-            <input id="lon" type="text" name="lon">
+            <input id="lat" type="text" name="lat" value=0>
+            <input id="lon" type="text" name="lon" value=0>
           </div>
         </div>
-      </div>
     </form>
   </div>
 </div>
@@ -283,8 +281,6 @@
 
           document.getElementById('lat').value = lat;
           document.getElementById('lon').value = lon;
-
-
         });
 		} else {
 			alert("Para utilizar la geolocalización necesitas actualizar tu navegador.");
