@@ -77,12 +77,22 @@
 
           console.log("funciona");
 
-          var lista = [['Municipio', 'Denuncias']];
+          var lista = [[
+            'Municipio',
+            {% for dato in motivos %}
+              '{{dato.motivo}}',
+            {% endfor %}
+          ]];
 
 
          for(var i=0; i<data.length;i++){
            console.log(data[i].mots);
-           lista.push([data[i].fields.nombre, data[i].cant]);
+           lista.push([
+             data[i].fields.nombre,
+             {% for dato in motivos %}
+             data[i].mots.{{dato.motivo}},
+             {% endfor %}
+           ]);
          }
 
           var tabla = new google.visualization.arrayToDataTable(lista);
@@ -90,7 +100,8 @@
           var options1 = {
             title: dep,
             legend: { position: 'top', maxLines: 4 },
-            //bar: { groupWidth: '75%' },
+            bar: { groupWidth: '75%' },
+            isStacked: true,
           };
 
           var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'));
