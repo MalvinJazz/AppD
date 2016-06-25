@@ -21,11 +21,10 @@ google.charts.setOnLoadCallback(draw);
 function draw() {
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable([
-          ["Element", "Density"],
-          ["Copper", 8.94],
-          ["Silver", 10.49],
-          ["Gold", 19.30],
-          ["Platinum", 21.45]
+          ["Zona", "Denuncias"],
+          {% for dato in dirs %}
+            ['{{dato.direccion}}',{{dato.sumDenuncias}}],
+          {% endfor %}
         ]);
 
     var options = {
