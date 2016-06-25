@@ -57,11 +57,7 @@
           </div>
           <div>
             <label>Referencia</label>
-              {{form.referencia}}<span id="help1" class="help">....</span>
-            <div id="cuadro1" class="help-text">
-              <p>Describa un punto de referencia </p>
-              <p> cercano a la direccion.</p>
-            </div> </br>
+              {{form.referencia}}</br><span id="help1" class="help">....</span></br>
           </div>
           <!-- <div id="map_canvas" style="height: 200px; width: 300px"></div> -->
           <div>
@@ -105,14 +101,12 @@
   $('#dep').on('change', busquedaMuni);
   $('#muni_id').on('change', busquedaDir);
   $('#inst').on('change', busquedaMot);
-  $('#help1').on('mouseover', mostrar);
-  $('#help1').on('mouseout', quitar);
+  $('#help1').on('click', mostrar);
   $('#document').ready(getGeolocation);
 
   document.getElementById('muni_id').length = 0;
   document.getElementById('id_direccion').length = 0;
   document.getElementById('id_motivo').length = 0;
-  document.getElementById('cuadro1').style.display = 'none';
 
   function habilita(){
     document.getElementById("id_nombre").disabled = false;
@@ -236,14 +230,9 @@
   }
 
   function mostrar(){
-    var div = document.getElementById('cuadro1');
-    div.style.display = 'block';
+    alert('Escribe un lugar de referencia a la direccion.')
   }
 
-  function quitar(){
-    var div = document.getElementById('cuadro1');
-    div.style.display = 'none';
-  }
 
   // if (navigator.geolocation) {
   //   navigator.geolocation.getCurrentPosition(function(position) {

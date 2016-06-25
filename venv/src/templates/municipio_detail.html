@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block head %}
+  <h1>{{municipio.nombre}}, {{municipio.departamento}}</h1>
+{% endblock %}
+
+{% block content %}
+<div id="section">
+  <div id="chart"></div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+
+google.charts.load('visualization', '1', {'packages': ['corechart']});
+google.charts.setOnLoadCallback(draw);
+
+function draw() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable([
+          ["Element", "Density"],
+          ["Copper", 8.94],
+          ["Silver", 10.49],
+          ["Gold", 19.30],
+          ["Platinum", 21.45]
+        ]);
+
+    var options = {
+      title : 'Denuncias del Municipio',
+      hAxis: {title: 'Denuncias'},
+      vAxis: {title: 'Zona'},
+      bar: {groupWidth: "75%"},
+      legend: { position: "none" },
+    };
+
+    var chart = new google.visualization.BarChart(document.getElementById('chart'));
+    chart.draw(data, options);
+  }
+
+</script>
+{% endblock %}

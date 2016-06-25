@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.core import serializers
 from django.core.serializers.json import Serializer
 from django.http import HttpResponse, HttpResponseRedirect
+# from django.views.generic.detail import DetailView
 #from django.utils.encoding import smart_text, is_protected_type
 
 from .models import Departamento, Municipio, Direccion
@@ -76,3 +77,35 @@ def mapa(request):
     print denuncias
 
     return render(request,'mapa.html',{'denuncias': denuncias})
+
+def municipioDetail(request, dep, muni):
+    splt = dep.split('_')
+    splt1 = muni.split('_')
+
+    print splt, splt1
+    tmp = splt[0]
+    i = 1
+    while i<len(splt):
+        tmp = tmp + ' ' + splt[i]
+        i += 1
+
+    tmp1 = splt1[0]
+
+    i = 1
+    while i<len(splt1):
+        tmp1 = tmp1 + ' ' + splt1[i]
+        i += 1
+
+    ms = Municipio.objects.filter(departamento__nombre=tmp)
+    m = ms.get(nombre=tmp1)
+    dirs = Direccion.objects.filter(municipio=m)
+
+    print ms, m
+
+    context = {
+        'municipio': m,
+        'motivos': Motivo.objects.all(),
+        'dirs': dirs,
+    }
+
+    return render(request, 'municipio_detail.html', context)

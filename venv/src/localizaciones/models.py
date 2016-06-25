@@ -13,7 +13,7 @@ class Departamento(models.Model):
     codigo = models.CharField(max_length=6, blank = False, null = False)
 
     def __unicode__(self):
-        return str(self.codigo)
+        return str(self.nombre)
 
     def sumMunicipios(self):
         denuncias = Municipio.objects.filter(departamento=self)

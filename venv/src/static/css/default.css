@@ -342,9 +342,26 @@ html, body
 	}
 
 	.help{
-		background: #FFF url(images/129-20.png) no-repeat center;
-		/*float: right;*/
+		background: #FFF url(images/266-question.png) no-repeat center;
 		cursor: pointer;
+		text-indent: -9999px;
+		display: block;
+		position: relative;
+		width: 3%;
+		float: right;
+		margin-top: -2.4%;
+		margin-right: 47%;
+	}
+
+	h1 > .help{
+		background: #FFF url(images/266-question.png) no-repeat center;
+		cursor: pointer;
+		text-indent: -9999px;
+		display: block;
+		position: relative;
+		width: 3%;
+		float: right;
+		margin-right: 35%;
 	}
 
 	div .help-text{
@@ -1007,6 +1024,14 @@ clases de Chart
 #columnchart{
 	height: 500px;
 	text-align: left;
+	color: black;
+	width: 100%;
+	position: static;
+}
+
+#chart{
+	height: 100%;
+	text-align: center;;
 	color: black;
 	width: 100%;
 	position: static;

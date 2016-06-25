@@ -27,8 +27,7 @@ urlpatterns = [
     url(r'^$','denuncia.views.denunciar',name='inicio'),
     url(r'^success/', 'denuncia.views.success', name = 'success'),
     url(r'^busqMot/', busquedaMo, name='mots'),
-    url(r'^local/', include('localizaciones.urls', namespace="local")),
-    url(r'^estadisticas/','localizaciones.views.estadisticas', name="estadisticas"),
+    url(r'^estadisticas/', include('localizaciones.urls', namespace="local")),
     url(r'^mapa/','localizaciones.views.mapa',name="mapa"),
 ]
 
