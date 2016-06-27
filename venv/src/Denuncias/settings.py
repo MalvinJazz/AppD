@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'DenunciaMovil',
         'USER': 'meljua',
         'PASSWORD':'superroot',
-        'HOST':'',
+        'HOST':'localhost',
         'PORT':'',
     }
 }
@@ -122,9 +122,8 @@ FILE_UPLOAD_HANDLERS = [
     'django.core.files.uploadhandler.TemporaryFileUploadHandler',
 ]
 
-FILE_UPLOAD_TEMP_DIR = os.path.join(BASE_DIR, "tmp")
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+MEDIA_ROOT = os.path.join(BASE_DIR, "static/media/")
 MEDIA_URL = '/media/'
 
 # Internationalization
