@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}
+{{municipio.nombre}}
+{% endblock %}
+
 {% block head %}
   <h1>{{municipio.nombre}}, {{municipio.departamento}}</h1>
 {% endblock %}

@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}
+  Mapa
+{% endblock %}
+
 {% block head %}
   <h1>LOCALIZACIONES</h1>
 {% endblock %}
@@ -46,7 +50,7 @@
       url: '/static/images/marcadores.png',
       size: new google.maps.Size(36,46),
       origin: new google.maps.Point(sprite,0),
-      anchor: new google.maps.Point(0,46)
+      anchor: new google.maps.Point(0,17)
     };
 
     var marker = new google.maps.Marker({

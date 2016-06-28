@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block title %}
+  Estadisticas
+{% endblock %}
+
 {% block head %}
 <h1>ESTADISTICAS</h1>
 {% endblock %}
@@ -73,13 +77,12 @@
       var dep = datos.getValue(seleccion[0].row, 1);
       console.log(code);
 
-      var pos = $('#columnchart').offset();
-
-      window.scrollTo(pos.left, pos.top-120);
 
       document.getElementById("columnchart").style.display = 'block';
       $("#columnchart").show();
-      console.log(pos);
+
+      var pos = $('#columnchart').offset();
+      window.scrollTo(pos.left, pos.top-100);
 
       $.ajax({
 
@@ -87,8 +90,6 @@
         url: "{% url 'local:dens' %}",
         type: 'get',
         success: function(data){
-
-          console.log("funciona");
 
           var lista = [[
             'Municipio',
@@ -99,7 +100,6 @@
 
 
          for(var i=0; i<data.length;i++){
-           console.log(data[i].mots);
            lista.push([
              data[i].fields.nombre,
              {% for dato in motivos %}
@@ -127,23 +127,29 @@
           chart1.draw(tabla, options1);
 
           google.visualization.events.addListener(chart1, 'select', function(){
-            var sel = chart1.getSelection();
-            var x = tabla.getValue(sel[0].row, 0);
 
-            var splt = dep.split(" ");
-            var splt1 = x.split(" ");
+            try{
+              var sel = chart1.getSelection();
 
-            var tmp = splt[0];
-            for(var i=1;i<splt.length;i++){
-              tmp = tmp + '_' + splt[i];
+              var x = tabla.getValue(sel[0].row, 0);
+
+              var splt = dep.split(" ");
+              var splt1 = x.split(" ");
+
+              var tmp = splt[0];
+              for(var i=1;i<splt.length;i++){
+                tmp = tmp + '_' + splt[i];
+              }
+
+              var tmp1 = splt1[0];
+              for(var i=1;i<splt1.length;i++){
+                tmp1 = tmp1 + '_' + splt1[i];
+              }
+
+              location.href = location.href +tmp+'/'+tmp1;
+            }catch(err){
+              //alert(err);
             }
-
-            var tmp1 = splt1[0];
-            for(var i=1;i<splt1.length;i++){
-              tmp1 = tmp1 + '_' + splt1[i];
-            }
-
-            location.href = location.href +tmp+'/'+tmp1;
           });
 
         }
