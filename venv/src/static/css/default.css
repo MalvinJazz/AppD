@@ -1015,6 +1015,8 @@ div {
 div label {
 	width: 25%;
 	float: left;
+	font-size: 100%;
+	font-size-adjust: .55;
 }
 
 /*-------------------------------------------------------

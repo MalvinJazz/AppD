@@ -3,11 +3,13 @@
 <html>
 <head>
   <title>Denuncias</title>
-    <meta name="viewport" content="initial-scale=1.0">
+    <!-- <meta name="viewport" content="initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
     <link href='{% static "css/default.css" %}' rel="stylesheet" type="text/css" media="all" />
     <link href='{% static "css/barra.css" %}' rel="stylesheet" type="text/css" media="all" />
+    <link href='{% static "css/input.css" %}' rel="stylesheet" type="text/css" media="all" />
     <!-- <link rel="stylesheet" type="text/css" href='{% static "css/responsiveform.css" %}'>
     <link rel="stylesheet" media="screen and (max-width: 1200px) and (min-width: 601px)" href='{% static "css/responsiveform1.css" %}' />
     <link rel="stylesheet" media="screen and (max-width: 600px) and (min-width: 351px)" href='{% static "css/responsiveform2.css" %}' />
@@ -29,7 +31,6 @@
         <ul>
           <li class="navhome"><a href="/"><span>Denuncia</span></a></li>
           <li><a href="/estadisticas"><span>Estadisticas</span></a></li>
-          <li><a href={% url 'institucion:list' %}><span>Información</span></a></li>
           <li><a href="/mapa"><span>Mapa</span></a></li>
         </ul>
       </span>

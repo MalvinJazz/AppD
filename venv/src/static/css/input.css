@@ -1,0 +1,36 @@
+input, select{
+  color: #000;
+  min-width: 25px;
+  max-width: 400px;
+  max-height: 300px;
+  min-height: 5px;
+  width: 25%;
+  height: 100%;
+}
+
+textarea{
+  min-width: 25px;
+  max-width: 400px;
+  max-height: 300px;
+  min-height: 5px;
+  width: 35%;
+  height: 150px;
+}
+
+input[type='file']{
+  width: 50%;
+  height: 100%;
+  font-size-adjust: .45;
+}
+
+input[type='submit']{
+  min-width: 10px;
+  max-width: 400px;
+  width: 35%;
+  height: 100%;
+  font-size-adjust: .5;
+}
+
+input[type=text]:focus,textarea:focus {
+	border-color: #144777;
+}
