@@ -51,8 +51,6 @@ def obtenerD(request):
 
     data = serial.serialize(dens)
 
-    print data
-
     return HttpResponse(data, content_type='application/json')
 
 def estadisticas(request):
@@ -67,22 +65,22 @@ def estadisticas(request):
         'motivos': motivos,
     }
 
-    for dato in departamentos:
-        print str(dato.codigo)+"--"+str(dato.sumMunicipios())
-
     return render(request,'estadisticas.html', context)
 
 def mapa(request):
-    denuncias = Denuncia.objects.exclude(longitud=None,latitud=None)
-    print denuncias
+    denuncias = Denuncia.objects.exclude(longitud = None,latitud = None)
 
-    return render(request,'mapa.html',{'denuncias': denuncias})
+    context = {
+        'denuncias': denuncias.exclude(longitud = 0, latitud = 0),
+        'motivos': Motivo.objects.all(),
+    }
+
+    return render(request,'mapa.html',context)
 
 def municipioDetail(request, dep, muni):
     splt = dep.split('_')
     splt1 = muni.split('_')
 
-    print splt, splt1
     tmp = splt[0]
     i = 1
     while i<len(splt):
@@ -100,7 +98,6 @@ def municipioDetail(request, dep, muni):
     m = ms.get(nombre=tmp1)
     dirs = Direccion.objects.filter(municipio=m)
 
-    print ms, m
 
     context = {
         'municipio': m,

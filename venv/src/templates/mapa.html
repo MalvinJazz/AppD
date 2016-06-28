@@ -23,9 +23,6 @@
 
           var myLatlng = new google.maps.LatLng(lt,lon);
 
-          console.log(lt);
-          console.log(lon);
-
           map = new google.maps.Map(document.getElementById('map'), {
             center: myLatlng,
             zoom: 15
@@ -33,14 +30,8 @@
 
           {% for dato in denuncias %}
             loc = {lat: {{dato.latitud}}, lng: {{dato.longitud}}};
-            addMarker(loc, map, '{{dato.motivo}}');
+            addMarker(loc, map, '{{dato.motivo}}', {{dato.getSprite}});
           {% endfor %}
-
-          // var marker = new google.maps.Marker({
-          //   position: myLatlng,
-          //   map: map,
-          //   title: 'Hello World!'
-          // });
 
         });
 
@@ -53,11 +44,20 @@
 		}
   }
 
-  function addMarker(loc, map, title){
+  function addMarker(loc, map, title, sprite){
+
+    var image = {
+      url: '/static/images/marcadores.png',
+      size: new google.maps.Size(36,46),
+      origin: new google.maps.Point(sprite,0),
+      anchor: new google.maps.Point(0,46)
+    };
+
     var marker = new google.maps.Marker({
     position: loc,
     title: title,
-    map: map
+    map: map,
+    icon: image
     });
   }
 

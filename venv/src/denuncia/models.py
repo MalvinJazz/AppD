@@ -28,6 +28,9 @@ class Denuncia(models.Model):
     def get_absolute_url(self):
         return '/success'
 
+    def getSprite(self):
+        return self.motivo.sprite()
+
 # @receiver(post_delete, sender=Denuncia)
 # def denuncia_delete(sender, instance, **kwargs):
 #     instance.archivo.delete(False)
@@ -48,6 +51,9 @@ class Motivo(models.Model):
         denuncias = Denuncia.objects.filter(motivo=self)
 
         return len(denuncias)
+
+    def sprite(self):
+        return (self.id - 1) * 36
 
     class Meta:
         ordering =['-cantidad']

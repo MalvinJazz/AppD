@@ -123,8 +123,8 @@ FILE_UPLOAD_HANDLERS = [
 ]
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "static/media/")
-MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, "static/media")
+# MEDIA_URL = '/media/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/

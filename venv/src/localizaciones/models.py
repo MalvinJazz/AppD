@@ -65,13 +65,6 @@ class Municipio(models.Model):
 
         return dic
 
-        # denuncias = []
-        #
-        # for dato in direcciones:
-        #     tmp = list(Denuncia.objects.filter(direccion=dato).order_by('motivo'))
-        #     denuncias.extend(tmp)
-        #
-        # return denuncias
 
 
 class Direccion(models.Model):
