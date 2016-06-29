@@ -10,16 +10,14 @@
 
 {% block content %}
 <div id="section">
-  <div>
-    <div class = "radioBtn">
-      <div class="bloqueOne">
-        <input type="radio" name="tipo" value="anonimo" checked onClick="deshabilita()">
-        <label>Anonima</label></br>
-      </div>
-      <div class="bloqueTwo">
-        <input type="radio" name="tipo" value="personal" onClick="habilita()">
-        <label>Personal</label> </br>
-      </div>
+  <div class = "radioBtn">
+    <div class="bloqueOne">
+      <input type="radio" name="tipo" value="anonimo" checked onClick="deshabilita()">
+      <label>Anonima</label>
+    </div>
+    <div class="bloqueTwo">
+      <input type="radio" name="tipo" value="personal" onClick="habilita()">
+      <label>Personal</label>
     </div>
   </div>
   <div id="bloqueForms">
@@ -28,24 +26,24 @@
         <div class="form-group">
           <div id="ident" style="display: none;">
             <div>
-              <label>Nombre</label>
+              <label>Nombre</label></br>
                 {{form.nombre}} </br>
             </div>
             <div>
-              <label>DPI</label>
+              <label>DPI</label></br>
                 {{form.dpi}} </br>
             </div>
             <div>
-              <label>Telefono</label>
+              <label>Telefono</label></br>
                 {{form.telefono}}</br>
             </div>
           </div>
           <div>
-          <label>Denuncia</label>
+          <label>Denuncia</label></br>
             {{form.denuncia}} </br>
           </div>
           <div>
-            <label>Departamento</label>
+            <label>Departamento</label></br>
             <select id="dep" name="dep">
               <option value="0" selected>------</option>
               {% for dato in departamentos %}
@@ -54,26 +52,26 @@
             </select>
           </div>
           <div>
-            <label>Municipio</label>
+            <label>Municipio</label></br>
             <select id="muni_id" name="muni">
               <option selected></option>
             </select>
           </div>
           <div>
-          <label>Direccion</label>
+          <label>Direccion</label></br>
             {{form.direccion}} </br>
           </div>
           <div>
-            <label>Referencia</label>
+            <label>Referencia</label></br>
               {{form.referencia}}</br><span id="help1" class="help">....</span></br>
           </div>
           <!-- <div id="map_canvas" style="height: 200px; width: 300px"></div> -->
           <div>
-          <label>Foto/Video</label>
+          <label>Foto/Video</label></br>
             <input type="file" id="file" name="file"></br>
           </div>
           <div>
-            <label>Institucion</label>
+            <label>Institucion</label></br>
             <select id="inst" name="inst">
               <option selected>------</option>
               {% for dato in instituciones %}
@@ -82,11 +80,13 @@
             </select>
           </div>
           <div>
-            <label>Motivo</label>
+            <label>Motivo</label></br>
               {{form.motivo}} </br>
           </div>
           <div id="btnForm">
+          </br>
             <input type="submit" class="btn btn-default" value='Enviar'>
+          </br>
           </div>
           <div id="coord" style="display: none;">
             <input id="lat" type="text" name="lat" value=0>
