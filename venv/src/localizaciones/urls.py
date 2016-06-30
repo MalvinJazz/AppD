@@ -6,6 +6,7 @@ from .views import (
         obtenerD,
         estadisticas,
         municipioDetail,
+        detalleZona,
         )
 
 urlpatterns = [
@@ -14,6 +15,7 @@ urlpatterns = [
     url(r'^busqD/', busquedaD, name = 'dirs'),
     url(r'^obtD/', obtenerD, name='dens'),
     url(r'^$',estadisticas, name="estadisticas"),
+    url(r'^detalleZona/', detalleZona, name='detalleZona'),
     url(r'^(?P<dep>\w+)/(?P<muni>\w+)$',municipioDetail,name='mDetail'),
 
 ]

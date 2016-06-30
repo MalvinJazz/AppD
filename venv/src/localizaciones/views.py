@@ -24,7 +24,18 @@ class MuniSerializer(Serializer):
     def end_object(self, obj):
         super(MuniSerializer, self).end_object(obj)
 
+class DirSerializer(Serializer):
 
+    def get_dump_object(self, obj):
+        dic = super(DirSerializer, self).get_dump_object(obj)
+        dic.update({
+            'mots': obj.getDenuncias(),
+        })
+        return dic
+
+
+    def end_object(self, obj):
+        super(DirSerializer, self).end_object(obj)
 
 #--------------------------------------------------------
 
@@ -52,6 +63,17 @@ def obtenerD(request):
     data = serial.serialize(dens)
 
     return HttpResponse(data, content_type='application/json')
+
+def detalleZona(request):
+    vZona = request.GET['zona']
+    zona = Direccion.objects.filter(direccion=vZona)
+
+    serial = DirSerializer()
+
+    data = serial.serialize(zona)
+
+    return HttpResponse(data, content_type='application/json')
+
 
 def estadisticas(request):
 

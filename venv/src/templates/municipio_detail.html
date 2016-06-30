@@ -11,6 +11,7 @@
 {% block content %}
 <div id="section">
   <div id="chart"></div>
+  <div id = "piechart"></div>
 </div>
 {% endblock %}
 
@@ -21,6 +22,7 @@
 
 google.charts.load('visualization', '1', {'packages': ['corechart']});
 google.charts.setOnLoadCallback(draw);
+$('#piechart').hide();
 
 function draw() {
         // Some raw data (not necessarily accurate)
@@ -46,6 +48,47 @@ function draw() {
 
     var chart = new google.visualization.BarChart(document.getElementById('chart'));
     chart.draw(data, options);
+
+    google.visualization.events.addListener(chart, 'select', function(){
+
+      try{
+        var seleccion = chart.getSelection();
+        var zona = data.getValue(seleccion[0].row, 0);
+
+        $("#piechart").show();
+
+        var pos = $('#piechart').offset();
+        window.scrollTo(pos.left, pos.top-80);
+
+        $.ajax({
+
+          data: {'zona': zona},
+          url: "{% url 'local:detalleZona' %}",
+          type: 'get',
+          success: function(data) {
+
+            var datos = google.visualization.arrayToDataTable([
+              ['Motivo', 'Denuncias'],
+              {% for motivo in motivos %}
+                ['{{motivo}}', data[0].mots.{{motivo}}],
+              {% endfor %}
+            ]);
+
+            var opciones = {
+              title: data[0].fields.direccion,
+              pieHole: 0.35
+            }
+
+            var grafica = new google.visualization.PieChart(document.getElementById('piechart'));
+            grafica.draw(datos, opciones);
+
+          }
+
+        });
+      }catch(err){
+
+      }
+    });
   }
 
 </script>

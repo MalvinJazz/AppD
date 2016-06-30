@@ -79,3 +79,20 @@ class Direccion(models.Model):
     def sumDenuncias(self):
         denuncias = Denuncia.objects.filter(direccion=self)
         return len(denuncias)
+
+    def getDenuncias(self):
+
+        motivos = Motivo.objects.all()
+
+        dic = {}
+
+        for mot in motivos:
+            x = len(Denuncia.objects.filter(
+                direccion = self,
+                motivo = mot
+                ))
+            dic.update({
+                mot.motivo: x,
+            })
+
+        return dic
