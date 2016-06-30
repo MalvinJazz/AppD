@@ -37,6 +37,11 @@ function draw() {
       vAxis: {title: 'Zona'},
       bar: {groupWidth: "75%"},
       legend: { position: "none" },
+      animation:{
+          duration: 1500,
+          easing: 'out',
+          startup: true,
+      },
     };
 
     var chart = new google.visualization.BarChart(document.getElementById('chart'));

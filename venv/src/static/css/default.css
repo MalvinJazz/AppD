@@ -446,10 +446,9 @@ html, body
 
 	#map{
 		height: 100%;
-		position: relative;
-		padding: 2em 0em 4em 0em;
-		background-color:#FFF;
 		min-height: 600px;
+		margin: 0% 5% 10% 5%;
+		clear: both;
 	}
 
 	#sectionMap{
