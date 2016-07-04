@@ -28,10 +28,54 @@
 
           var myLatlng = new google.maps.LatLng(lt,lon);
 
+          var styleArray = [
+            {
+              featureType: "all",
+              stylers: [
+                { saturation: -90 }
+              ]
+            },{
+              featureType: "road.arterial",
+              elementType: "geometry",
+              stylers: [
+                // { hue: "#0e1450 " },
+                { hue: "#034c86" },
+                { saturation: 50 }
+              ]
+            },{
+              featureType: "road.local",
+              elementType: "geometry",
+              stylers: [
+                // { hue: "#263238" },
+                { hue: "#0e1450" },
+                { saturation: 50 },
+                { lightness: 5 }
+              ]
+            },{
+              featureType: "road.highway",
+              elementType: "geometry",
+              stylers: [
+                // { hue: "#034c86" },
+                { hue: "#263238" },
+                { saturation: 30 },
+                { lightness: 0 }
+              ]
+            },{
+              featureType: "water",
+              elementType: "geometry",
+              stylers: [
+                { hue: "#0d47a1" },
+                { saturation: 100 }
+              ]
+            }
+          ];
+
           map = new google.maps.Map(document.getElementById('map'), {
             center: myLatlng,
-            zoom: 13
+            zoom: 15
           });
+
+          map.setOptions({styles: styleArray});
 
           {% for dato in denuncias %}
             loc = {lat: {{dato.latitud}}, lng: {{dato.longitud}}};
