@@ -1043,11 +1043,11 @@ clases de Chart
 }
 
 #piechart{
-	height: 400px;
+	height: 500px;
 	text-align: left;
 	align-content: center;
 	color: black;
-	width: 47%;
+	width: 70%;
 	/*position: static;*/
 	/*margin-right: 50%;*/
 }

@@ -38,6 +38,21 @@
             addMarker(loc, map, '{{dato.motivo}}', {{dato.getSprite}});
           {% endfor %}
 
+          var image = {
+            url: '/static/images/user.png',
+            size: new google.maps.Size(36,46),
+            origin: new google.maps.Point(0,0),
+            anchor: new google.maps.Point(0,17)
+          };
+
+          var marker = new google.maps.Marker({
+            position: {lat: lt, lng: lon},
+            title: 'Usuario',
+            map: map,
+            icon: image,
+            animation: google.maps.Animation.DROP
+          });
+
         });
 
 		} else {

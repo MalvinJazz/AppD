@@ -44,6 +44,7 @@ function draw() {
           easing: 'out',
           startup: true,
       },
+      colors: ['#0d47a1'],
     };
 
     var chart = new google.visualization.BarChart(document.getElementById('chart'));
@@ -76,7 +77,7 @@ function draw() {
 
             var opciones = {
               title: data[0].fields.direccion,
-              pieHole: 0.35
+              pieHole: 0.35,
             }
 
             var grafica = new google.visualization.PieChart(document.getElementById('piechart'));
