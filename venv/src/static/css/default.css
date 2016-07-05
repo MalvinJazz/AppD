@@ -445,18 +445,19 @@ html, body
 	/*-------------------------------------------------------------*/
 
 	#map{
-		height: 100%;
-		min-height: 600px;
+		height: 80%;
+		min-height: 550px;
+		width: 90%;
 		margin: 0% 5% 10% 5%;
 		clear: both;
 	}
 
 	#sectionMap{
 		position: relative;
-		padding: 2em 0em 4em 0em;
+		padding: 2em .3em 1em .3em;
 		background-color:#FFF;
 		height: 100%;
-		min-height: 600px;
+		min-height: 550px;
 	}
 
 
