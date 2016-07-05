@@ -40,10 +40,6 @@
   });
   google.charts.load('visualization', '1', {'packages': ['geochart', 'corechart']});
   google.charts.setOnLoadCallback(drawMarkersMap);
-  // google.charts.load('visualization', '1', {'packages':['corechart']});
-  // google.charts.setOnLoadCallback(drawChart);
-  // google.charts.load('current', {'packages':['corechart']});
-  // google.charts.setOnLoadCallback(drawChart);
   $("#columnchart").hide();
 
   function drawMarkersMap() {
@@ -70,6 +66,18 @@
 
     var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
     chart.draw(datos, options);
+
+    google.visualization.events.addListener(chart, 'ready', function () {
+      var print = document.createElement('a');
+      var span = document.createElement('span');
+      var text = document.createTextNode('Imprimir');
+      print.id = 'print';
+      print.href = chart.getImageURI();
+      span.id = 'normal';
+      span.appendChild(text);
+      print.appendChild(span);
+      document.getElementById("chart_div").appendChild(print);
+    });
 
     google.visualization.events.addListener(chart, 'select', function() {
       var seleccion = chart.getSelection();
@@ -123,6 +131,18 @@
           };
 
           var chart1 = new google.visualization.ColumnChart(document.getElementById('columnchart'));
+
+          google.visualization.events.addListener(chart1, 'ready', function () {
+            var print = document.createElement('a');
+            var span = document.createElement('span');
+            var text = document.createTextNode('Imprimir');
+            print.id = 'print';
+            print.href = chart1.getImageURI();
+            span.id = 'normal';
+            span.appendChild(text);
+            print.appendChild(span);
+            document.getElementById("columnchart").appendChild(print);
+          });
 
           chart1.draw(tabla, options1);
 

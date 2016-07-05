@@ -57,8 +57,8 @@
               stylers: [
                 // { hue: "#034c86" },
                 { hue: "#263238" },
-                { saturation: -10 },
-                { lightness: 0 }
+                { saturation: 10 },
+                { lightness: 10 }
               ]
             },{
               featureType: "water",
@@ -90,7 +90,7 @@
           {% endfor %}
 
           var image = {
-            url: '/static/images/user.png',
+            url: '/static/images/marcadores.png',
             size: new google.maps.Size(36,46),
             origin: new google.maps.Point(0,0),
             anchor: new google.maps.Point(0,17)

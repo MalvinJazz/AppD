@@ -48,6 +48,19 @@ function draw() {
     };
 
     var chart = new google.visualization.BarChart(document.getElementById('chart'));
+
+    google.visualization.events.addListener(chart, 'ready', function () {
+      var print = document.createElement('a');
+      var span = document.createElement('span');
+      var text = document.createTextNode('Imprimir');
+      print.id = 'print';
+      print.href = chart.getImageURI();
+      span.id = 'normal';
+      span.appendChild(text);
+      print.appendChild(span);
+      document.getElementById("chart").appendChild(print);
+    });
+
     chart.draw(data, options);
 
     google.visualization.events.addListener(chart, 'select', function(){
@@ -81,6 +94,19 @@ function draw() {
             }
 
             var grafica = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            google.visualization.events.addListener(grafica, 'ready', function () {
+              var print = document.createElement('a');
+              var span = document.createElement('span');
+              var text = document.createTextNode('Imprimir');
+              print.id = 'print';
+              print.href = grafica.getImageURI();
+              span.id = 'normal';
+              span.appendChild(text);
+              print.appendChild(span);
+              document.getElementById('piechart').appendChild(print);
+            });
+
             grafica.draw(datos, opciones);
 
           }

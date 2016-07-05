@@ -53,7 +53,7 @@ class Motivo(models.Model):
         return len(denuncias)
 
     def sprite(self):
-        return (self.id - 1) * 36
+        return self.id * 36
 
     class Meta:
         ordering =['-cantidad']

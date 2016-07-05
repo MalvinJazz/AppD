@@ -440,6 +440,38 @@ html, body
 		background: url(images/social-hover.png) no-repeat -32px -64px;
 }
 
+
+
+/*--------------------------------------------*/
+/*PRINT CHARTS*/
+/*--------------------------------------------*/
+
+#print{
+		float: left;
+		width: 16px;
+		height: 16px;
+		position: relative;
+}
+
+#print span {
+    display: block;
+    text-indent: -9999px;
+    width: 16px;
+    height: 16px;
+    position: relative;
+}
+
+#print #normal{
+		background: url(images/print-hover16.png) no-repeat 0 0;
+}
+
+#print #normal:hover{
+		background: url(images/print-hover16.png) no-repeat -16px 0;
+}
+
+
+/*-----------------------------------------------*/
+
 	/*-------------------------------------------------------------*/
 	/*--MAPA DE DENUNCIAS------------------------------------------*/
 	/*-------------------------------------------------------------*/
