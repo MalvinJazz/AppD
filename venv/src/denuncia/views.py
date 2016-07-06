@@ -64,15 +64,14 @@ def denunciar(request):
             html_content = '<!DOCTYPE html><html><body><h1>' + str(motivo) + '''</h1></br>
                                 <h3> Nombre: ''' + str(denuncia.nombre) + '''<br>
                                 DPI: ''' + str(denuncia.dpi) + '''<br>
-                                Telefono: ''' + str(denuncia.telefono) + '''<br>
-                                </h3></br>
+                                Telefono: ''' + str(denuncia.telefono) + '''</h3></br>
                                 <h4>Direccion: ''' + str(denuncia.direccion) + ''',
                                 ''' + str(municipio) + ', ' + str(departamento) +'''.
                                 <i>(Con referencia en: '''+str(denuncia.referencia)+''')</i> </h4>
                                 </br> <h5> Denuncio: </h5></br> <p>
                                 ''' + str(denuncia.denuncia) + '''</p></body>
                                 <footer><i>Los archivos quedan a cargo de la
-                                 entidad indicada.</i></br>
+                                 entidad indicada.</i><br>
                                 <i>Todos los datos de este correo son
                                  confidenciales y no deben ser difundidos
                                 a nadie más que las entidades interesadas
