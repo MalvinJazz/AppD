@@ -72,6 +72,7 @@
       var span = document.createElement('span');
       var text = document.createTextNode('Imprimir');
       print.id = 'print';
+      print.title = 'Version para imprimir.'
       print.href = chart.getImageURI();
       print.target = '_blank';
       span.id = 'normal';
@@ -144,6 +145,7 @@
             var span = document.createElement('span');
             var text = document.createTextNode('Imprimir');
             print.id = 'print';
+            print.title = 'Version para imprimir.'
             print.href = chart1.getImageURI();
             print.target = '_blank';
             span.id = 'normal';
@@ -187,25 +189,6 @@
 
     });
   };
-
-  // function drawChart() {
-  //
-  //       var data = google.visualization.arrayToDataTable([
-  //         ['Motivo', 'Denuncias'],
-  //         {% for dato in motivos %}
-  //           ['{{dato.motivo}}',{{dato.sumTotal}}],
-  //         {% endfor %}
-  //       ]);
-  //
-  //       var options = {
-  //         title: 'Motivos de Denuncias'
-  //       };
-  //
-  //       var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-  //
-  //       chart.draw(data, options);
-  //   };
-
 
 </script>
 

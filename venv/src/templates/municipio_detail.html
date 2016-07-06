@@ -58,6 +58,7 @@ function draw() {
       var span = document.createElement('span');
       var text = document.createTextNode('Imprimir');
       print.id = 'print';
+      print.title = 'Version para imprimir.'
       print.href = chart.getImageURI();
       print.target = '_blank';
       span.id = 'normal';
@@ -105,6 +106,7 @@ function draw() {
               var span = document.createElement('span');
               var text = document.createTextNode('Imprimir');
               print.id = 'print';
+              print.title = 'Version para imprimir.'
               print.href = grafica.getImageURI();
               print.target = '_blank';
               span.id = 'normal';
