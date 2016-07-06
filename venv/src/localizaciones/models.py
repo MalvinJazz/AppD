@@ -74,7 +74,7 @@ class Direccion(models.Model):
     municipio = models.ForeignKey('Municipio')
 
     def __unicode__(self):
-        return str(self.direccion)+"--"+str(self.municipio.departamento)
+        return str(self.direccion)
 
     def sumDenuncias(self):
         denuncias = Denuncia.objects.filter(direccion=self)
