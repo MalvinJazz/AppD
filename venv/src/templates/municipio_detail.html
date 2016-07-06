@@ -27,9 +27,9 @@ $('#piechart').hide();
 function draw() {
         // Some raw data (not necessarily accurate)
         var data = google.visualization.arrayToDataTable([
-          ["Zona", "Denuncias"],
+          ["Zona", "Denuncias", {role: 'annotation'}],
           {% for dato in dirs %}
-            ['{{dato.direccion}}',{{dato.sumDenuncias}}],
+            ['{{dato.direccion}}',{{dato.sumDenuncias}}, '{{dato.sumDenuncias}}'],
           {% endfor %}
         ]);
 
@@ -45,6 +45,10 @@ function draw() {
           startup: true,
       },
       colors: ['#0d47a1'],
+      hAxis:{
+        format: 'decimal',
+        minValue: 0,
+      },
     };
 
     var chart = new google.visualization.BarChart(document.getElementById('chart'));
@@ -55,6 +59,7 @@ function draw() {
       var text = document.createTextNode('Imprimir');
       print.id = 'print';
       print.href = chart.getImageURI();
+      print.target = '_blank';
       span.id = 'normal';
       span.appendChild(text);
       print.appendChild(span);
@@ -101,6 +106,7 @@ function draw() {
               var text = document.createTextNode('Imprimir');
               print.id = 'print';
               print.href = grafica.getImageURI();
+              print.target = '_blank';
               span.id = 'normal';
               span.appendChild(text);
               print.appendChild(span);

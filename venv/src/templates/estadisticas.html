@@ -73,6 +73,7 @@
       var text = document.createTextNode('Imprimir');
       print.id = 'print';
       print.href = chart.getImageURI();
+      print.target = '_blank';
       span.id = 'normal';
       span.appendChild(text);
       print.appendChild(span);
@@ -122,11 +123,17 @@
             title: dep,
             legend: { position: 'top', maxLines: 4 },
             bar: { groupWidth: '75%' },
+            // isStacked: 'percent',
             isStacked: true,
             animation:{
                 duration: 1500,
                 easing: 'out',
                 startup: true,
+            },
+            vAxis:{
+              format: 'decimal',
+              minValue: 0,
+              // ticks: [0, .3, .6, .9, 1]
             },
           };
 
@@ -138,6 +145,7 @@
             var text = document.createTextNode('Imprimir');
             print.id = 'print';
             print.href = chart1.getImageURI();
+            print.target = '_blank';
             span.id = 'normal';
             span.appendChild(text);
             print.appendChild(span);

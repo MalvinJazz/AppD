@@ -451,6 +451,8 @@ html, body
 		width: 16px;
 		height: 16px;
 		position: relative;
+		/*overflow: hidden;
+    transition: all 1s;*/
 }
 
 #print span {
