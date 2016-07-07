@@ -41,6 +41,9 @@ class Tipo_Usuario(models.Model):
     id = models.AutoField(primary_key=True)
     tipo = models.CharField(max_length=45)
 
+    def __unicode__(self):
+        return self.tipo
+
 class Usuario(AbstractBaseUser):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=55)
