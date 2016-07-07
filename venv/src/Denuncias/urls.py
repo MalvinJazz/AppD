@@ -22,7 +22,8 @@ from denuncia.views import busquedaMo #, DenunciaCreate
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    # url(r'^instituciones/', include('institucion.urls', namespace="institucion")),
+    url(r'^logout/', 'usuario.views.cerrar', name='logout'),
+    url(r'^usuario/', include('usuario.urls', namespace='usuario')),
     url(r'^$', 'usuario.views.inicio',name='inicio'),
     url(r'^denunciar/','denuncia.views.denunciar',name='inicio'),
     url(r'^success/', 'denuncia.views.success', name = 'success'),

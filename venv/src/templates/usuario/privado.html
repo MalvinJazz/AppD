@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {{user.get_full_name}}
+{% endblock %}
+
+{% block head %}
+  <h1>¡Bienvenido {{user}}!</h1>
+{% endblock %}
+
+{% block content %}
+<div id="section">
+  <div class = "tablaCentro">
+    <table class="table">
+      <tr>
+          <td>Nombre de usuario</td>
+          <td><i>{{user}}</i></td>
+      </tr>
+      <tr>
+          <td>Correo</td>
+          <td><i>{{user.correo}}</i></td>
+      </tr>
+      <tr>
+          <td>Institucion</td>
+          <td><i>{{user.institucion}}</i></td>
+      </tr>
+      <tr>
+          <td>Ultima conexion</td>
+          <td><i>{{user.ultima_conexion}}</i></td>
+      </tr>
+      <tr>
+          <td>Tipo de Usuario</td>
+          <td><i>{{user.tipo}}</i></td>
+      </tr>
+    </table>
+  </div>
+</div>
+{% endblock %}

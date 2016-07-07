@@ -1207,6 +1207,14 @@ clases de Chart
 		color: #000;
 	}
 
+	.tablaCentro {
+		align-items: center;
+		width: 30%;
+		padding: 1%;
+		text-align: center;
+		color: #000;
+	}
+
 	.alineacionAlCentro h2{
     color: #000;
     text-align: -moz-center;

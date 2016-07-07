@@ -56,7 +56,7 @@ def inicio(request):
                         if request.GET['next'] != '/logout':
                             return HttpResponseRedirect(request.GET['next'])
 
-                    return redirect('/admin')
+                    return redirect('usuario:privado')
 
                 else:
                     return HttpResponseRedirect('/admin')
@@ -77,3 +77,7 @@ def inicio(request):
 def cerrar(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+@login_required(login_url='inicio')
+def privado(request):
+    return render(request, 'usuario/privado.html', {})

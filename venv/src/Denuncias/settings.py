@@ -111,6 +111,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = 'usuario.Usuario'
 
+LOGIN_URL =  '/'
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'denunciamovil@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'

@@ -35,6 +35,8 @@
           <li><a href="/mapa"><span>Mapa</span></a></li>
           {% if not user.is_authenticated %}
           <li><a href="/"><span>Iniciar Sesión</span></a></li>
+          {% else %}
+          <li><a href="/logout"><span>Cerrar Sesión</span></a></li>
           {% endif %}
         </ul>
       </span>
