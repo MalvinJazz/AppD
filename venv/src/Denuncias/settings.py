@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'denuncia',
     'localizaciones',
     'institucion',
+    'usuario',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -107,6 +108,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'usuario.Usuario'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'denunciamovil@gmail.com'
