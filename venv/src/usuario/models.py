@@ -52,8 +52,8 @@ class Usuario(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
 
     tipo = models.ForeignKey('Tipo_Usuario', default=1)
-    institucion = models.ForeignKey('institucion.Institucion')
-    zona = models.ForeignKey('localizaciones.Direccion')
+    institucion = models.ForeignKey('institucion.Institucion', default = 1)
+    zona = models.ForeignKey('localizaciones.Direccion', default = 1)
 
     objects = UsuarioManager()
 
