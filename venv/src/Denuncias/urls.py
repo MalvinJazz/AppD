@@ -23,8 +23,8 @@ from denuncia.views import busquedaMo #, DenunciaCreate
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url(r'^instituciones/', include('institucion.urls', namespace="institucion")),
-    # url(r'^$',DenunciaCreate.as_view(),name='inicio'),
-    url(r'^$','denuncia.views.denunciar',name='inicio'),
+    url(r'^$', 'usuario.views.inicio',name='inicio'),
+    url(r'^denunciar/','denuncia.views.denunciar',name='inicio'),
     url(r'^success/', 'denuncia.views.success', name = 'success'),
     url(r'^busqMot/', busquedaMo, name='mots'),
     url(r'^estadisticas/', include('localizaciones.urls', namespace="local")),

@@ -1,1 +1,34 @@
 {% extends 'base.html' %}
+
+{% block title %}
+Inicio de Sesión
+{% endblock %}
+
+
+{% block head %}
+<h1>Iniciar Sesión</h1>
+{% endblock %}
+
+
+{% block content %}
+<div id="section">
+  <div id="bloqueForms">
+    <form method="post" action="">
+      {% csrf_token %}
+      <div class="form-group">
+        <div>
+          <label>Usuario</label></br>
+          {{form.username}}</br>
+        </div>
+        <div>
+          <label>Contraseña</label><br>
+          {{form.password}}</br>
+        </div>
+        <div id="btnForm">
+          <input type="submit" class="btn btn-default" value="Iniciar Sesión"></br>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

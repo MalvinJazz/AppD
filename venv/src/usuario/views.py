@@ -1,4 +1,6 @@
-from django.shortcuts import render
+# -*- coding: utf-8 -*-
+
+from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -29,7 +31,7 @@ def registro(request):
 def inicio(request):
     if request.user.is_authenticated():
 
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/denunciar')
 
     if request.POST:
 
@@ -44,7 +46,7 @@ def inicio(request):
 
             if usuario is not None:
                 if usuario.is_active:
-                    login(request.user)
+                    login(request, usuario)
 
                     context = {
                         "form": form
@@ -54,16 +56,16 @@ def inicio(request):
                         if request.GET['next'] != '/logout':
                             return HttpResponseRedirect(request.GET['next'])
 
-                        return redirect('/')
+                    return redirect('/admin')
 
-                    else:
-                        return HttpResponseRedirect('/')
                 else:
-                    return HttpResponseRedirect('/')
+                    return HttpResponseRedirect('/admin')
+            else:
+                return HttpResponseRedirect('/admin')
 
-        else:
+    else:
 
-            form = InicioForm()
+        form = InicioForm()
 
         context = {
             "form": form
