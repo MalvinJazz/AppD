@@ -167,3 +167,20 @@ class DenunciaDetail(LoginRequiredMixin,DetailView):
             return HttpResponse('No puedes ver esto.')
 
         return handler
+
+    def get_context_data(self, **kwargs):
+        context = super(DenunciaDetail, self).get_context_data(**kwargs)
+
+        objeto = self.get_object(self.get_queryset())
+        geo = False
+        if objeto.latitud is not None and objeto.longitud is not None:
+            if objeto.latitud != 0 and objeto.longitud != 0:
+                geo = True
+
+        context.update({
+            "geo": geo,
+            "label": objeto.motivo.motivo[0]
+        })
+
+
+        return context

@@ -45,8 +45,8 @@ Denuncia No. {{denuncia.id}}
       </tr>
       {% if geo %}
       <tr>
-        <th>Nombre</th>
-        <td>{{denuncia.nombre}}</td>
+        <th>Ubicación</th>
+        <td><img src="https://maps.googleapis.com/maps/api/staticmap?center={{denuncia.latitud}},{{denuncia.longitud}}&markers=color:0x3067B0%7Clabel:{{label}}%7C{{denuncia.latitud}},{{denuncia.longitud}}&zoom=17&size=400x200&key=AIzaSyAPIn8C1d9dQLNNnv-Z2D0AKz6WESeZ8tI" alt="Ubicación" /></td>
       </tr>
       {% endif %}
   </table>

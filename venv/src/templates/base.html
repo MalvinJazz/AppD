@@ -38,8 +38,8 @@
           {% else %}
           <li class="paranga"><a href={% url 'usuario:privado' %}><span>{{user}}</span></a>
             <ul id="usuario">
-              <li><a href="/logout"><span>Cerrar Sesión</span></a></li>
               <li><a href={% url 'usuario:lista' %}><span>Denuncias</span></a></li>
+              <li><a href="/logout"><span>Cerrar Sesión</span></a></li>
             </ul>
           </li>
           {% endif %}
