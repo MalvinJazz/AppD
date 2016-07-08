@@ -38,7 +38,7 @@
           {% else %}
           <li><a href={% url 'usuario:privado' %}><span>{{user}}</span></a>
             <ul>
-              <li><a href="/logout"><span>Cerrar Sesión</span></a></li>
+              <li id='usuario'><a href="/logout"><span>Cerrar Sesión</span></a></li>
             </ul>
           </li>
           {% endif %}

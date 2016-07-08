@@ -22,20 +22,31 @@
   /*background:url(img/right-round.png) right top no-repeat;*/
 }
 
+/*Barra desplegable---------------------------------*/
+
 .inbar li ul {
   display:none;
-	position:absolute;;
+	/*position:absolute;*/
 	min-width:100px;
+  float: left;
 }
 
 .inbar li:hover > ul {
   display:block;
   background-color: #1A57A7;
+  float: left;
 }
 
 .nav li ul li {
-  position:relative;
+  /*position:relative;*/
+  float: left;
 }
+
+.inbar #usuario a span{
+  width: 145px;
+}
+
+/*---------------------------------------------------*/
 
 #navbar ul, #navbar ul li{
 
