@@ -164,7 +164,8 @@ class DenunciaDetail(LoginRequiredMixin,DetailView):
         objeto = self.get_object(self.get_queryset())
 
         if objeto.direccion != request.user.zona:
-            return HttpResponse('No puedes ver esto.')
+            if objeto.direccion.municipio != request.user.zona.municipio:
+                return HttpResponse('No puedes ver esto.')
 
         return handler
 
