@@ -10,6 +10,8 @@ from .forms import UserCreationForm, InicioForm
 from .models import Usuario
 from localizaciones.models import Departamento
 
+
+@login_required(login_url="inicio")
 def registro(request):
 
     form = UserCreationForm(request.POST or None)

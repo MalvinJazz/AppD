@@ -47,6 +47,21 @@ Crear Usuario
           {{form.institucion}}</br>
         </div>
         <div>
+          <label>Departamento</label></br>
+          <select id="deps" class="" name="deps1">
+            <option value="0" selected>------</option>
+            {% for departamento in departamentos %}
+            <option value="{{departamento.id}}">{{departamento}}</option>
+            {% endfor %}
+          </select></br>
+        </div>
+        <div>
+          <label>Municipio</label></br>
+          <select id="muni" class="" name="muni1">
+            <option value="0" selected>------</option>
+          </select></br>
+        </div>
+        <div>
           <label>Zona</label></br>
           {{form.zona}}</br>
         </div>
@@ -57,4 +72,85 @@ Crear Usuario
     </form>
   </div>
 </div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+
+  $('#deps').on('change', busquedaMuni);
+  $('#muni').on('change', busquedaDir);
+
+  document.getElementById('id_zona').length = 0;
+
+  function busquedaMuni(){
+
+    var id = $(this).val();
+    $.ajax({
+
+      data: {'id': id},
+      url: "{% url 'local:muni' %}",
+      type: 'get',
+      success: function(data){
+
+        var inner = document.getElementById('muni');
+
+        inner.innerHTML = "";
+        var p = document.createElement("option");
+
+        // console.log(data[i].fields.nombre)
+
+        p.value = "0";
+        p.innerHTML = "------";
+
+        inner.options.add(p);
+        for (var i = 0; i<data.length; i++){
+
+          var nuevo = document.createElement("option");
+
+          // console.log(data[i].fields.nombre)
+
+          nuevo.value = data[i].pk;
+          nuevo.innerHTML = data[i].fields.nombre;
+
+          inner.options.add(nuevo);
+
+        }
+
+      }
+
+    })
+
+  }
+
+  function busquedaDir(){
+
+    var id = $(this).val();
+    $.ajax({
+
+      data: {'id': id},
+      url: "{% url 'local:dirs' %}",
+      type: 'get',
+      success: function(data){
+        document.getElementById('id_zona').length = 0;
+
+        var inner = document.getElementById('id_zona');
+
+        for(var i = 0; i<data.length; i++){
+
+          var nuevo = document.createElement("option");
+
+          nuevo.value = data[i].pk;
+          nuevo.innerHTML = data[i].fields.direccion;
+
+          inner.options.add(nuevo);
+
+        }
+
+      }
+
+    })
+
+  }
+
+</script>
 {% endblock %}
