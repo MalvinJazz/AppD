@@ -22,6 +22,21 @@
   /*background:url(img/right-round.png) right top no-repeat;*/
 }
 
+.inbar li ul {
+  display:none;
+	position:absolute;;
+	min-width:100px;
+}
+
+.inbar li:hover > ul {
+  display:block;
+  background-color: #1A57A7;
+}
+
+.nav li ul li {
+  position:relative;
+}
+
 #navbar ul, #navbar ul li{
 
   border:0px;
