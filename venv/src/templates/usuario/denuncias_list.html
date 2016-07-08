@@ -10,6 +10,15 @@
 
 {% block content %}
 <div id='section'>
+  <div id="linkbar">
+    <span class="inlinkbar">
+      <ul>
+        <li><a href={% url 'usuario:privado' %}><span>Perfil</span></a></li>
+        <li><span style="color: black;"><i>/</i></span></li>
+        <li><a href=""><span>Denuncias</span></a></li>
+      </ul>
+    </span>
+  </div>
   <table class="table" style="color: black;">
     <tr>
       <th>ID</th>

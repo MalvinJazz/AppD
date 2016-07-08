@@ -4,9 +4,7 @@
 
   height:36px;
 
-  float: right;;
-
-  /*background:url(img/navbar-bg.png) left top repeat-x;*/
+  float: right;
 
   text-align: right;
 
@@ -19,14 +17,12 @@
 
   height:36px;
 
-  /*background:url(img/right-round.png) right top no-repeat;*/
 }
 
 /*Barra desplegable---------------------------------*/
 
 .inbar li ul {
   display:none;
-	/*position:absolute;*/
 	min-width:110px;
   float: left;
   background-color: #1A57A7;
@@ -39,7 +35,6 @@
 }
 
 .nav li ul li {
-  /*position:relative;*/
   float: left;
   background-color: #1A57A7;
   width: 110px;
@@ -68,12 +63,6 @@
   height:36px;
 
   line-height:36px;
-}
-
-#navbar ul{
-
-  /*background:url(img/left-round.png) left top no-repeat;*/
-
 }
 
 #navbar ul li{
@@ -120,7 +109,6 @@
 
 #navbar .navhome a, #navbar .navhome a:hover{
 
-  /*background:url(img/a-bg.png) left top no-repeat;*/
 
   height:36px;
 
@@ -131,33 +119,26 @@
 
   color: #5197FF;
 
-  /*background:url(img/span-bg.png) right top no-repeat;*/
 
   height:36px;
 
   line-height:36px;
 
-  /*border-bottom: medium solid #636363;*/
-
-  /*background-color: #901e1e;*/
 }
 
 #navbar .navhome a span, #navbar .navhome a:focus span{
 
   color:#FFF;
 
-  /*background:url(img/span-bg.png) right top no-repeat;*/
 
   height:36px;
 
   line-height:36px;
 
-  /*background-color: #901e1e;*/
 }
 
 #navbar ul li a:hover{
 
-  /*background:url(img/ahover-bg.png) left top no-repeat;*/
 
   height:36px;
 
@@ -166,7 +147,6 @@
 
 #navbar ul li a:hover span{
 
-  /*background:url(img/spanhover-bg.png) right top no-repeat;*/
   color: #5197FF;
 
   height:36px;
@@ -175,4 +155,95 @@
 
   border-bottom: medium solid #071773;
   border-top: medium solid #071773;
+}
+
+/*Barra de navegación en listas---------------------------------*/
+#linkbar{
+
+  width:auto;
+
+  height:36px;
+
+  float: left;
+
+  text-align: left;
+
+  margin: 1%;
+
+  padding-bottom: 5%;
+}
+
+#linkbar .inlinkbar{
+
+  display:block;
+
+  height:36px;
+
+}
+
+#linkbar ul, #linkbar ul li{
+
+  border:0px;
+
+  margin:0px;
+
+  padding:0px;
+
+  list-style:none;
+
+  height:36px;
+
+  line-height:36px;
+}
+
+#linkbar ul li{
+
+  float:left;
+
+  display:block;
+
+  line-height:36px;
+}
+
+
+#linkbar ul li a{
+
+  color: #1A57A7;
+  font-size: smaller;
+  font-family: Helvetica;
+  font-weight: bold;
+
+  text-decoration:none;
+
+  display:block;
+}
+
+#linkbar ul li a span{
+
+  padding:0 10px;
+
+  height:36px;
+
+  line-height:36px;
+
+  display:block;
+
+  margin-left: 0px;
+}
+
+#linkbar ul li a:hover{
+
+  height:36px;
+
+  line-height:36px;
+}
+
+#linkbar ul li a:hover span{
+
+  color: #5197FF;
+
+  height:36px;
+
+  line-height:36px;
+
 }

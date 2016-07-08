@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Crear Usuario
+{% endblock %}
+
+{% block head %}
+<h1>CREAR USUARIO</h1>
+{% endblock %}
+
+{% block content %}
+<div id="section">
+  <div id="bloqueForms">
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <div>
+          <label>Nombre</label></br>
+          {{form.nombre}}</br>
+        </div>
+        <div>
+          <label>Apellidos</label></br>
+          {{form.apellidos}}</br>
+        </div>
+        <div>
+          <label>Nombre de Usuario</label></br>
+          {{form.username}}</br>
+        </div>
+        <div>
+          <label>Correo</label></br>
+          {{form.correo}}</br>
+        </div>
+        <!-- <div>
+          <label>Contraseña</label></br>
+          {{form.password}}</br>
+        </div>
+        <div>
+          <label>Confirmar Contraseña</label></br>
+          {{form.password1}}</br>
+        </div> -->
+        <div>
+          <label>Tipo</label></br>
+          {{form.tipo}}</br>
+        </div>
+        <div>
+          <label>Institucion</label></br>
+          {{form.institucion}}</br>
+        </div>
+        <div>
+          <label>Zona</label></br>
+          {{form.zona}}</br>
+        </div>
+        <div id="btnForm">
+          <input type="submit" class="btn btn-default" value="Registrar">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

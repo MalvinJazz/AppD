@@ -11,23 +11,21 @@ from .models import Usuario
 from localizaciones.models import Departamento
 
 def registro(request):
-    if not reques.user.is_authenticated():
 
-        form = UserCreationForm(request.POST or None)
+    form = UserCreationForm(request.POST or None)
 
-        context = {
-            "form": form,
-            "departamentos": Departamento.objects.all()
-        }
+    context = {
+        "form": form,
+        "departamentos": Departamento.objects.all()
+    }
 
-        if form.is_valid():
-            form.save()
+    if form.is_valid():
+        form.save()
 
-            return HttpResponseRedirect('/inicio')
+        return HttpResponseRedirect('/')
 
-        return render(request, 'usuario/registro.html', context)
+    return render(request, 'usuario/registro.html', context)
 
-    return HttpResponseRedirect('/')
 
 def inicio(request):
     if request.user.is_authenticated():

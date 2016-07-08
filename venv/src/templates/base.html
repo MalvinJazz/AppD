@@ -39,6 +39,9 @@
           <li class="paranga"><a href={% url 'usuario:privado' %}><span>{{user}}</span></a>
             <ul id="usuario">
               <li><a href={% url 'usuario:lista' %}><span>Denuncias</span></a></li>
+              {% if user.is_staff %}
+              <li><a href={% url 'usuario:registro' %}><span>Crear Usuario</span></a></li>
+              {% endif %}
               <li><a href="/logout"><span>Cerrar Sesión</span></a></li>
             </ul>
           </li>
