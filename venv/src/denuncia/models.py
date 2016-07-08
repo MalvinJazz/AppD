@@ -7,6 +7,19 @@ from django.dispatch import receiver
 from django.db import models
 
 class Denuncia(models.Model):
+
+    CRIMINAL = 'CR'
+    MUNICIPAL = 'MU'
+    MEDIO_AMBIENTE = 'MA'
+    DERECHOS_HUMANOS = 'DH'
+
+    TIPO_CHOICES = (
+        (CRIMINAL, 'Criminal'),
+        (MUNICIPAL, 'Municipal'),
+        (MEDIO_AMBIENTE, 'Medio Ambiente'),
+        (DERECHOS_HUMANOS, 'Derechos Humanos')
+    )
+
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255, blank=False, default = 'Anonimo')
     dpi = models.CharField(max_length=13, blank=False, default = 'Anonimo')
@@ -16,6 +29,7 @@ class Denuncia(models.Model):
     denuncia = models.TextField(blank=False)
     referencia = models.CharField(blank=True, max_length=140, default="")
     fecha = models.DateTimeField(auto_now=True, auto_now_add=False, blank = False)
+    tipo = models.CharField(max_length=2, choices=TIPO_CHOICES, default=CRIMINAL)
 
     motivo = models.ForeignKey('Motivo')
     direccion = models.ForeignKey('localizaciones.Direccion')
