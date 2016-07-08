@@ -125,7 +125,7 @@ def denunciar(request):
 
     context = {
         'form':form,
-        'instituciones': instituciones,
+        # 'instituciones': instituciones,
         'departamentos': departamentos,
         }
 
@@ -137,7 +137,7 @@ def success(request):
 
 def busquedaMo(request):
     vID = request.GET['id']
-    mots = Motivo.objects.filter(institucion = vID)
+    mots = Motivo.objects.filter(institucion__tipo = vID)
     data = serializers.serialize('json', mots, fields = ('motivo'))
 
     return HttpResponse(data, content_type='application/json')

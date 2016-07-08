@@ -71,14 +71,14 @@
             <input type="file" id="file" name="file"></br>
           </div>
           <div>
-            <label>Institucion</label></br>
+            <!-- <label>Institucion</label></br>
             <select id="inst" name="inst">
               <option selected>------</option>
               {% for dato in instituciones %}
                 <option value="{{dato.id}}">{{dato.nombre}}</option>
               {% endfor %}
             </select>
-          </div>
+          </div> -->
           <div>
             <label>Tipo</label></br>
               {{form.tipo}} </br>
@@ -108,7 +108,7 @@
 
   $('#dep').on('change', busquedaMuni);
   $('#muni_id').on('change', busquedaDir);
-  $('#inst').on('change', busquedaMot);
+  $('#id_tipo').on('change', busquedaMot);
   $('#help1').on('click', mostrar);
   $('#document').ready(getGeolocation);
 
