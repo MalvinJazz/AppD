@@ -20,6 +20,7 @@ class DenunciaForm(forms.ModelForm):
             'referencia',
             'denuncia',
             'motivo',
+            'tipo'
         ]
 
         # widgets = {

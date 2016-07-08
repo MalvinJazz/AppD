@@ -5,9 +5,23 @@ from django.db import models
 # Create your models here.
 
 class Institucion(models.Model):
+    CRIMINAL = 'CR'
+    MUNICIPAL = 'MU'
+    MEDIO_AMBIENTE = 'MA'
+    DERECHOS_HUMANOS = 'DH'
+
+    TIPO_CHOICES = (
+        (CRIMINAL, 'Criminal'),
+        (MUNICIPAL, 'Municipal'),
+        (MEDIO_AMBIENTE, 'Medio Ambiente'),
+        (DERECHOS_HUMANOS, 'Derechos Humanos')
+    )
+
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255, blank = False)
     telefono = models.CharField(max_length=8, blank = False)
+    tipo = models.CharField(max_length=2, choices=TIPO_CHOICES, default=CRIMINAL)
+
 
     def __unicode__(self):
         return str(self.nombre)
