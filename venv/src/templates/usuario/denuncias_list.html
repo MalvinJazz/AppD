@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{user.zona}}
+{% endblock %}
+
+{% block head %}
+<h1>Denuncias de {{user.zona}}</h1>
+{% endblock %}
+
+{% block content %}
+<div id='section'>
+  <table class="table" style="color: black;">
+    <tr>
+      <th>ID</th>
+      <th>Institucion</th>
+      <th>Motivo</th>
+      <th>Fecha</th>
+    </tr>
+    {% for denuncia in denuncias %}
+    <tr>
+      <td>{{denuncia.id}}</td>
+      <td>{{denuncia.motivo.institucion}}</td>
+      <td>{{denuncia.motivo}}</td>
+      <td>{{denuncia.fecha}}</td>
+      <td><a href={% url 'usuario:detalles' denuncia.id %}>Ver</a>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

@@ -3,10 +3,12 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
+from django.contrib.auth.decorators import login_required
 from django.core import mail
 from django.core import serializers
 from django.core.mail import EmailMessage
-from django.views.generic.edit import CreateView
+from django.views.generic.detail import DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseRedirect
 
 from .forms import DenunciaForm
@@ -129,35 +131,6 @@ def denunciar(request):
 
     return render(request,'denuncia.html',context)
 
-# class DenunciaCreate(CreateView):
-#     model = Denuncia
-#     template_name = 'denuncia.html'
-#     # succes_url = 'institucion:list'
-#     fields = [
-#         'nombre',
-#         'dpi',
-#         'direccion',
-#         'denuncia',
-#         'archivo',
-#         'motivo',
-#     ]
-#
-#     def get_context_data(self, **kwargs):
-#         context = super(DenunciaCreate,self).get_context_data(**kwargs)
-#         departamentos = Departamento.objects.all()
-#         instituciones = Institucion.objects.all()
-#
-#         context.update({
-#
-#             "departamentos": departamentos,
-#             "instituciones": instituciones,
-#
-#             })
-#
-#         return context
-#
-#     def form_valid(self, form):
-#         self.object = form.save()
 
 def success(request):
     return render(request,'success.html',{})
@@ -168,3 +141,29 @@ def busquedaMo(request):
     data = serializers.serialize('json', mots, fields = ('motivo'))
 
     return HttpResponse(data, content_type='application/json')
+
+@login_required(login_url='inicio')
+def denunciasList(request):
+    zona = request.user.zona
+    denuncias = Denuncia.objects.filter(direccion=zona)
+
+    context = {
+        "denuncias": denuncias,
+    }
+
+    return render(request,'usuario/denuncias_list.html', context)
+
+class DenunciaDetail(LoginRequiredMixin,DetailView):
+    model = Denuncia
+    login_url = 'inicio'
+    template_name = 'usuario/denuncia_detail.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        handler = super(DenunciaDetail, self).dispatch(request, *args, **kwargs)
+
+        objeto = self.get_object(self.get_queryset())
+
+        if objeto.direccion != request.user.zona:
+            return HttpResponse('No puedes ver esto.')
+
+        return handler

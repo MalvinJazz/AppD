@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.utils import timezone
 
 from .forms import UserCreationForm, InicioForm
 from .models import Usuario
@@ -31,7 +32,7 @@ def registro(request):
 def inicio(request):
     if request.user.is_authenticated():
 
-        return HttpResponseRedirect('/denunciar')
+        return HttpResponseRedirect('/usuario')
 
     if request.POST:
 
@@ -59,9 +60,9 @@ def inicio(request):
                     return redirect('usuario:privado')
 
                 else:
-                    return HttpResponseRedirect('/admin')
+                    return HttpResponseRedirect('/')
             else:
-                return HttpResponseRedirect('/admin')
+                return HttpResponseRedirect('/')
 
     else:
 
@@ -75,6 +76,9 @@ def inicio(request):
 
 @login_required(login_url='inicio')
 def cerrar(request):
+    request.user.ultima_conexion = timezone.now()
+    request.user.save()
+
     logout(request)
     return HttpResponseRedirect('/')
 

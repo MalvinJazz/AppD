@@ -27,8 +27,9 @@
 .inbar li ul {
   display:none;
 	/*position:absolute;*/
-	min-width:100px;
+	min-width:110px;
   float: left;
+  background-color: #1A57A7;
 }
 
 .inbar li:hover > ul {
@@ -40,10 +41,16 @@
 .nav li ul li {
   /*position:relative;*/
   float: left;
+  background-color: #1A57A7;
+  width: 110px;
 }
 
-.inbar #usuario a span{
-  width: 145px;
+.nav li ul li a span {
+  width: 110px;
+}
+
+.inbar #usuario li a span{
+  width: 110px;
 }
 
 /*---------------------------------------------------*/
@@ -78,6 +85,12 @@
   line-height:36px;
 }
 
+#navbar ul .paranga{
+  width: 110px;
+  align-content: center;
+  text-align: center;
+}
+
 #navbar ul li a{
 
   color: #C1C1C3;
@@ -102,7 +115,7 @@
 
   margin-left: 0px;
 
-  /*background-color: black;*/
+  background-color: #1A57A7;
 }
 
 #navbar .navhome a, #navbar .navhome a:hover{

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Denuncia No. {{denuncia.id}}
+{% endblock %}
+
+{% block head %}
+<h1>Denuncia No. {{denuncia.id}}, <i>{{denuncia.motivo.institucion}}</i></h1>
+{% endblock %}
+
+{% block content %}
+<div id='section'>
+  <table class="table" style="color: black;">
+      <tr>
+        <th>ID</th>
+        <td>{{denuncia.id}}</td>
+      </tr>
+      <tr>
+        <th>Nombre</th>
+        <td>{{denuncia.nombre}}</td>
+      </tr>
+      <tr>
+        <th>DPI</th>
+        <td>{{denuncia.dpi}}</td>
+      </tr>
+      <tr>
+        <th>Telefono</th>
+        <td>{{denuncia.telefono}}</td>
+      </tr>
+      <tr>
+        <th>Referencia</th>
+        <td>{{denuncia.referencia}}</td>
+      </tr>
+      <tr>
+        <th>Fecha</th>
+        <td>{{denuncia.fecha}}</td>
+      </tr>
+      <tr>
+        <th>Motivo</th>
+        <td>{{denuncia.motivo}}</td>
+      </tr>
+      <tr>
+        <th>Denuncia</th>
+        <td><p><i>{{denuncia.denuncia}}</i></p></td>
+      </tr>
+      {% if geo %}
+      <tr>
+        <th>Nombre</th>
+        <td>{{denuncia.nombre}}</td>
+      </tr>
+      {% endif %}
+  </table>
+</div>
+{% endblock %}
