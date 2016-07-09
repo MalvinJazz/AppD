@@ -9,12 +9,14 @@ class Institucion(models.Model):
     MUNICIPAL = 'MU'
     MEDIO_AMBIENTE = 'MA'
     DERECHOS_HUMANOS = 'DH'
+    NINGUNO = 'NG'
 
     TIPO_CHOICES = (
         (CRIMINAL, 'Criminal'),
         (MUNICIPAL, 'Municipal'),
         (MEDIO_AMBIENTE, 'Medio Ambiente'),
-        (DERECHOS_HUMANOS, 'Derechos Humanos')
+        (DERECHOS_HUMANOS, 'Derechos Humanos'),
+        (NINGUNO, 'Ninguno')
     )
 
     id = models.AutoField(primary_key=True)

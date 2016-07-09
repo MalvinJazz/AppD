@@ -145,7 +145,14 @@ def busquedaMo(request):
 @login_required(login_url='inicio')
 def denunciasList(request):
     zona = request.user.zona
-    denuncias = Denuncia.objects.filter(direccion=zona)
+    tipo = request.user.institucion.tipo
+
+    if tipo == 'NG':
+        denuncias = Denuncia.objects.filter(direccion=zona)
+    else:
+        denuncias = Denuncia.objects.filter(
+            direccion=zona, motivo__institucion__tipo=tipo
+        )
 
     context = {
         "denuncias": denuncias,
