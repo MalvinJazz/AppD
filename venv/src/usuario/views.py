@@ -3,8 +3,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.utils import timezone
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import UserCreationForm, InicioForm
 from .models import Usuario
@@ -85,3 +89,48 @@ def cerrar(request):
 @login_required(login_url='inicio')
 def privado(request):
     return render(request, 'usuario/privado.html', {})
+
+@login_required(login_url='inicio')
+def usuarioList(request):
+
+    if not request.user.is_staff:
+        return HttpResponse('No puedes ver esto.')
+
+    context = {
+        'usuarios': Usuario.objects.all()
+    }
+
+    return render(request, 'usuario/usuarios_list.html', context)
+
+class UsuarioDetail(LoginRequiredMixin, DetailView):
+    model = Usuario
+    login_url = 'inicio'
+    template_name = 'usuario/usuario_detail.html'
+
+class UsuarioEdit(LoginRequiredMixin, UpdateView):
+    model = Usuario
+    login_url = 'inicio'
+    template_name = 'usuario/usuario_edit.html'
+    success_url = reverse_lazy('usuario:lista_u')
+
+    fields = [
+        'nombre',
+        'apellidos',
+        'correo',
+        'is_staff',
+        'is_active',
+        'tipo',
+        'institucion',
+        'zona'
+    ]
+
+    def get_context_data(self, **kwargs):
+
+    	context = super(UsuarioEdit, self).get_context_data(**kwargs)
+    	Departamentos = Departamento.objects.all()
+
+    	context.update({
+    		"departamentos":Departamentos,
+    		})
+
+    	return context
