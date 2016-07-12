@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^logout/', 'usuario.views.cerrar', name='logout'),
     url(r'^usuario/', include('usuario.urls', namespace='usuario')),
+    url(r'^institucion/', include('institucion.urls', namespace='institucion')),
     url(r'^$', 'usuario.views.inicio',name='inicio'),
     url(r'^denunciar/','denuncia.views.denunciar',name='denunciar'),
     url(r'^success/', 'denuncia.views.success', name = 'success'),
