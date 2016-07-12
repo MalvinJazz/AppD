@@ -73,7 +73,7 @@ class Usuario(AbstractBaseUser):
         return self.username
 
     def has_module_perms(self, perm_list):
-        return True
+        return super(Usuario, self).has_module_perms(perm_list)
 
     def has_perm(self, perm):
-        return True
+        return super(Usuario, self).has_perm(perm)
