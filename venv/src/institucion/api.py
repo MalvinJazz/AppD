@@ -9,9 +9,12 @@ class InstitucionResource(ModelResource):
         queryset = Institucion.objects.all()
         filtering = {
             'id': ALL,
+            'tipo': ALL
         }
         resource_name = 'institucion'
-        allowed_methods = ['get']
+        allowed_methods = ['get', 'post']
+        include_resource_uri = False
+        authorization = Authorization()
 
 class CorreoResource(ModelResource):
 

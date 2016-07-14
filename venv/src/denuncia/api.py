@@ -54,3 +54,4 @@ class DenunciaResource(ModelResource):
         }
         allowed_methods = ['get', 'post']
         resource_name = 'denuncia'
+        authorization = Authorization()
