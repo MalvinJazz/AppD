@@ -92,19 +92,19 @@ class DenunciaResource(ModelResource):
         msg = EmailMultiAlternatives(motivo, text_content, from_email, to)
         msg.attach_alternative(html_content, "text/html")
 
-        # if imgData:
-        #
-        #     missing_padding = 4 - len(imgData) % 4
-        #     if missing_padding:
-        #         imgData += b'='* missing_padding
-        #
-        #     fh = open("imageToSave.jpeg", "wb")
-        #     fh.write(imgData.decode('base64'))
-        #     fh.close()
-        #
-        #     print fh
-        #
-        #     msg.attach(imgData)
+        if imgData:
+
+            quitar = "data:image/jpeg;base64,"
+
+            quitar, imgData = imgData.split("data:", 1)
+            mime, imgData = imgData.split(";base64,")
+            quitar, tipo = mime.split('/')
+
+            missing_padding = 4 - len(imgData) % 4
+            if missing_padding:
+                imgData += b'='* missing_padding
+
+            msg.attach('denuncia.' + tipo ,imgData.decode('base64'), mime)
 
 
         msg.send()

@@ -68,7 +68,7 @@
           <!-- <div id="map_canvas" style="height: 200px; width: 300px"></div> -->
           <div>
           <label>Foto/Video</label></br>
-            <input type="file" id="file" name="file"></br>
+            <input type="file" id="file" name="file" accept="image/*, video/*"></br>
           </div>
           <div>
             <!-- <label>Institucion</label></br>
@@ -93,8 +93,8 @@
           </br>
           </div>
           <div id="coord" style="display: none;">
-            <input id="lat" type="text" name="lat" value=0>
-            <input id="lon" type="text" name="lon" value=0>
+            <input id="lat" type="hidden" name="lat" value=0>
+            <input id="lon" type="hidden" name="lon" value=0>
           </div>
         </div>
     </form>

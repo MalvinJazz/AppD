@@ -379,6 +379,49 @@ html, body
 		margin-bottom: -1%;
 	}
 
+
+
+/*********************************************************************************/
+/*Paginador                                                                      */
+/*********************************************************************************/
+
+.pag_num{
+
+	color: #1A57A7;
+	border-style: groove;
+}
+
+/*.pag_num:hover{
+
+	color: #5197FF;
+	border-style: inset;;
+	cursor: pointer;
+
+}*/
+
+.pag_btn{
+
+	color: #1A57A7;
+	/*border-style: groove;*/
+	/*border-radius: 12px;*/
+
+
+}
+
+.pag_btn:hover{
+
+	color: #5197FF;
+	/*border-style: inset;;*/
+	cursor: pointer;
+
+}
+
+.tope{
+	color: #C1C1C3;
+	cursor: no-drop;
+}
+
+
 /*--------------------------------------------------*/
 /*Barra de compartir en redes---------------------*/
 /*-------------------------------------------------*/

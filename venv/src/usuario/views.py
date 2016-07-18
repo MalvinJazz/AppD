@@ -9,6 +9,7 @@ from django.utils import timezone
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 
 from .forms import UserCreationForm, InicioForm
 from .models import Usuario
@@ -64,9 +65,14 @@ def inicio(request):
                     return redirect('usuario:privado')
 
                 else:
+                    messages.error(request, 'Usuario inactivo')
                     return HttpResponseRedirect('/')
             else:
+                messages.error(request, 'La contraseña o el usuario no coinciden.')
                 return HttpResponseRedirect('/')
+
+        else:
+            messages.error(request, 'Datos invalidos.')
 
     else:
 

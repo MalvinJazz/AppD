@@ -5,7 +5,13 @@
 {% endblock %}
 
 {% block head %}
-<h1>Denuncias de {{user.zona}}</h1>
+<h1>
+  {% if user.is_staff %}
+  DENUNCIAS
+  {% else %}
+  Denuncias de {{user.zona}}
+  {% endif %}
+</h1>
 {% endblock %}
 
 {% block content %}
@@ -19,22 +25,35 @@
       </ul>
     </span>
   </div>
-  <table class="table" style="color: black;">
-    <tr>
-      <th>ID</th>
-      <th>Institucion</th>
-      <th>Motivo</th>
-      <th>Fecha</th>
-    </tr>
-    {% for denuncia in denuncias %}
-    <tr>
-      <td>{{denuncia.id}}</td>
-      <td>{{denuncia.motivo.institucion}}</td>
-      <td>{{denuncia.motivo}}</td>
-      <td>{{denuncia.fecha}}</td>
-      <td><a href={% url 'usuario:detalles' denuncia.id %}>Ver</a>
-    </tr>
-    {% endfor %}
-  </table>
+  <div id="paginador">
+    <table id="tblDatos" class="table" style="color: black;">
+      <tr>
+        <th>ID</th>
+        <th>Institucion</th>
+        <th>Motivo</th>
+        <th>Fecha</th>
+      </tr>
+      {% for denuncia in denuncias %}
+      <tr>
+        <td>{{denuncia.id}}</td>
+        <td>{{denuncia.motivo.institucion}}</td>
+        <td>{{denuncia.motivo}}</td>
+        <td>{{denuncia.fecha}}</td>
+        <td><a href={% url 'usuario:detalles' denuncia.id %}>Ver</a>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
 </div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+var p = new Paginador(
+  document.getElementById('paginador'),
+  document.getElementById('tblDatos'),
+  8
+);
+p.Mostrar();
+</script>
 {% endblock %}

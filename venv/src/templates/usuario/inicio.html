@@ -32,3 +32,16 @@ Inicio de Sesión
   </div>
 </div>
 {% endblock %}
+
+{% if messages %}
+{% block js %}
+<script type="text/javascript">
+    {% for message in messages %}
+    alert('{{ message }}');
+    var pass = document.getElementById('id_password').value = '';
+    //pass.value = '';
+    // pass.style.border = 'solid red';
+    {% endfor %}
+</script>
+{% endblock %}
+{% endif %}

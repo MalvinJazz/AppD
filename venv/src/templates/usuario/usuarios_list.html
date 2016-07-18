@@ -19,7 +19,7 @@ USUARIOS
       </ul>
     </span>
   </div>
-  <table class="table" style="color: black;">
+  <table id='tblDatos' class="table" style="color: black;">
     <tr>
       <th>ID</th>
       <th>Nombre y Apellidos</th>
@@ -59,14 +59,21 @@ USUARIOS
     </tr>
     {% endfor %}
   </table>
+  <div id="paginador"></div>
 </div>
 {% endblock %}
 
 
-<!-- {% block js %}
+{% block js %}
 <script type="text/javascript">
   // $('#deactivate').on('click',function(){
   //   alert('funciona');
   // })
+  var p = new Paginador(
+    document.getElementById('paginador'),
+    document.getElementById('tblDatos'),
+    8
+  );
+  p.Mostrar();
 </script>
-{% endblock %} -->
+{% endblock %}

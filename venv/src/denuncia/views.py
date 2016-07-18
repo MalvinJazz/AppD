@@ -147,12 +147,15 @@ def denunciasList(request):
     zona = request.user.zona
     tipo = request.user.institucion.tipo
 
-    if tipo == 'NG':
-        denuncias = Denuncia.objects.filter(direccion=zona)
+    if request.user.is_staff:
+        denuncias = Denuncia.objects.all().order_by('-fecha')
     else:
-        denuncias = Denuncia.objects.filter(
-            direccion=zona, motivo__institucion__tipo=tipo
-        )
+        if tipo == 'NG':
+            denuncias = Denuncia.objects.filter(direccion=zona).order_by('-fecha')
+        else:
+            denuncias = Denuncia.objects.filter(
+                direccion=zona, motivo__institucion__tipo=tipo
+                ).order_by('-fecha')
 
     context = {
         "denuncias": denuncias,
@@ -170,9 +173,10 @@ class DenunciaDetail(LoginRequiredMixin,DetailView):
 
         objeto = self.get_object(self.get_queryset())
 
-        if objeto.direccion != request.user.zona:
-            if objeto.direccion.municipio != request.user.zona.municipio:
-                return HttpResponse('No puedes ver esto.')
+        if not request.user.is_staff:
+            if objeto.direccion != request.user.zona:
+                if objeto.direccion.municipio != request.user.zona.municipio:
+                    return HttpResponse('No puedes ver esto.')
 
         return handler
 
