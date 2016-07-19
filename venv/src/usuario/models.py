@@ -52,6 +52,10 @@ class Usuario(AbstractBaseUser):
     correo = models.EmailField(unique=True)
     ultima_conexion = models.DateTimeField(auto_now_add=False, auto_now=True)
     is_staff = models.BooleanField(default=False)
+    is_analytics = models.BooleanField(default=False)
+    is_info = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False)
+
     is_active = models.BooleanField(default=True)
 
     tipo = models.ForeignKey('Tipo_Usuario', default=1)
