@@ -65,7 +65,7 @@ def inicio(request):
                     return redirect('usuario:privado')
 
                 else:
-                    messages.error(request, 'Usuario inactivo')
+                    messages.error(request, 'Usuario inactivo, comunicate con tu administrador.')
                     return HttpResponseRedirect('/')
             else:
                 messages.error(request, 'La contraseña o el usuario no coinciden.')

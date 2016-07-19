@@ -39,10 +39,6 @@ Denuncia No. {{denuncia.id}}
         <td>{{denuncia.telefono}}</td>
       </tr>
       <tr>
-        <th>Referencia</th>
-        <td>{{denuncia.referencia}}</td>
-      </tr>
-      <tr>
         <th>Fecha</th>
         <td>{{denuncia.fecha}}</td>
       </tr>
@@ -53,6 +49,14 @@ Denuncia No. {{denuncia.id}}
       <tr>
         <th>Denuncia</th>
         <td><p><i>{{denuncia.denuncia}}</i></p></td>
+      </tr>
+      <tr>
+        <th>Direccion</th>
+        <td>{{denuncia.direccion}},  <i>{{denuncia.direccion.municipio}}, {{denuncia.direccion.municipio.departamento}}</i></td>
+      </tr>
+      <tr>
+        <th>Referencia</th>
+        <td>{{denuncia.referencia}}</td>
       </tr>
       {% if geo %}
       <tr>

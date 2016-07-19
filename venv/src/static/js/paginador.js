@@ -18,7 +18,7 @@ Paginador = function(divPaginador, tabla, tamPagina){
           return;
 
         this.pagActual = num;
-        document.getElementById('pag_num_id').innerHTML = num;
+        document.getElementById('pag_num_id').innerHTML = num + ' de ' + this.paginas;
         var min = 1 + (this.pagActual - 1) * this.tamPagina;
         var max = min + this.tamPagina - 1;
 
@@ -35,7 +35,7 @@ Paginador = function(divPaginador, tabla, tamPagina){
     this.Mostrar = function(){
         //Crear la tabla
         var tblPaginador = document.createElement('table');
-        tblPaginador.style.width = '18%';
+        tblPaginador.style.width = '20%';
 
         //Agregar una fila a la tabla
         var fil = tblPaginador.insertRow(tblPaginador.rows.length);
@@ -56,7 +56,7 @@ Paginador = function(divPaginador, tabla, tamPagina){
         }
 
         var num = fil.insertCell(fil.cells.length);
-        num.innerHTML = self.pagActual; //en rigor, aún no se el número de la página
+        num.innerHTML = self.pagActual + ' de ' + self.paginas; //en rigor, aún no se el número de la página
         num.id = 'pag_num_id';
         num.align = 'center';
         num.className = 'pag_num';
