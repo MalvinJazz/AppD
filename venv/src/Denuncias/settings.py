@@ -112,6 +112,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = 'usuario.Usuario'
 
+SESSION_COOKIE_AGE = 1800
+
 LOGIN_URL =  '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
