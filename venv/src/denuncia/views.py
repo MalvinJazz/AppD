@@ -176,7 +176,7 @@ class DenunciaDetail(LoginRequiredMixin,DetailView):
         if not request.user.is_staff:
             if objeto.direccion != request.user.zona:
                 if objeto.direccion.municipio != request.user.zona.municipio:
-                    return HttpResponse('No puedes ver esto.')
+                    return render(request, 'error/permisos.html', {})
 
         return handler
 

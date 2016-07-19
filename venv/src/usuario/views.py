@@ -90,7 +90,7 @@ def cerrar(request):
     request.user.save()
 
     logout(request)
-    return HttpResponseRedirect('/')
+    return redirect('inicio')
 
 @login_required(login_url='inicio')
 def privado(request):
@@ -100,10 +100,10 @@ def privado(request):
 def usuarioList(request):
 
     if not request.user.is_staff:
-        return HttpResponse('No puedes ver esto.')
+        return render(request, 'error/permisos.html', {})
 
     context = {
-        'usuarios': Usuario.objects.all()
+        'usuarios': Usuario.objects.exclude(id=request.user.id)
     }
 
     return render(request, 'usuario/usuarios_list.html', context)
@@ -112,11 +112,25 @@ class UsuarioDetail(LoginRequiredMixin, DetailView):
     model = Usuario
     login_url = 'inicio'
     template_name = 'usuario/usuario_detail.html'
+    slug_field = 'username'
+
+    def dispatch(self, request, *args, **kwargs):
+        handler = super(UsuarioDetail, self).dispatch(request, *args, **kwargs)
+
+        if not request.user.is_staff:
+            return render(request, 'error/permisos.html', {})
+
+        if self.get_object(self.queryset) == request.user:
+            return redirect('usuario:privado')
+
+        return handler
+
 
 class UsuarioEdit(LoginRequiredMixin, UpdateView):
     model = Usuario
     login_url = 'inicio'
     template_name = 'usuario/usuario_edit.html'
+    slug_field = 'username'
     success_url = reverse_lazy('usuario:lista_u')
 
     fields = [
@@ -129,6 +143,18 @@ class UsuarioEdit(LoginRequiredMixin, UpdateView):
         'institucion',
         'zona'
     ]
+
+    def dispatch(self, request, *args, **kwargs):
+
+        handler = super(UsuarioEdit, self).dispatch(request, *args, **kwargs)
+
+        if not request.user.is_staff:
+            return render(request, 'error/permisos.html', {})
+
+        if self.get_object(self.queryset) == request.user:
+            return redirect('usuario:privado')
+
+        return handler
 
     def get_context_data(self, **kwargs):
 

@@ -338,6 +338,7 @@ html, body
 			height: 100%;
 			width: 100%;
 			background-size: cover;
+			min-height: 450px;
 	}
 
 	.help{
@@ -379,6 +380,17 @@ html, body
 		margin-bottom: -1%;
 	}
 
+.error{
+	float: right;
+	/*margin-top: 25%;	*/
+}
+
+.error h1{
+	font-size: 16px;
+	font-style: italic;
+	font-family: sans-serif;
+	color: black;
+}
 
 
 /*********************************************************************************/

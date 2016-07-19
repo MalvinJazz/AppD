@@ -52,7 +52,7 @@ USUARIOS
         {% endif %}
       </td>
       <td>
-        <a href={% url 'usuario:detalles_u' usuario.id %}>Ver</a>
+        <a href={% url 'usuario:detalles_u' usuario.username %}>Ver</a>
          |
         <a href={% url 'usuario:editar_u' usuario.id %}>Editar</a>
       </td>
