@@ -65,20 +65,10 @@
             <label>Referencia</label></br>
               {{form.referencia}}</br><span id="help1" class="help">....</span></br>
           </div>
-          <!-- <div id="map_canvas" style="height: 200px; width: 300px"></div> -->
           <div>
           <label>Foto/Video</label></br>
             <input type="file" id="file" name="file" accept="image/*, video/*"></br>
           </div>
-          <div>
-            <!-- <label>Institucion</label></br>
-            <select id="inst" name="inst">
-              <option selected>------</option>
-              {% for dato in instituciones %}
-                <option value="{{dato.id}}">{{dato.nombre}}</option>
-              {% endfor %}
-            </select>
-          </div> -->
           <div>
             <label>Tipo</label></br>
               {{form.tipo}} </br>
@@ -143,8 +133,6 @@
         inner.innerHTML = "";
         var p = document.createElement("option");
 
-        // console.log(data[i].fields.nombre)
-
         p.value = "0";
         p.innerHTML = "------";
 
@@ -152,8 +140,6 @@
         for (var i = 0; i<data.length; i++){
 
           var nuevo = document.createElement("option");
-
-          // console.log(data[i].fields.nombre)
 
           nuevo.value = data[i].pk;
           nuevo.innerHTML = data[i].fields.nombre;
@@ -181,8 +167,6 @@
 
         var inner = document.getElementById('id_direccion');
         console.log(inner);
-
-        // console.log(data[i].fields.nombre)
 
         for(var i = 0; i<data.length; i++){
 
@@ -241,30 +225,6 @@
     alert('Escribe un lugar de referencia a la direccion.')
   }
 
-
-  // if (navigator.geolocation) {
-  //   navigator.geolocation.getCurrentPosition(function(position) {
-  //   var lat = position.coords.latitude;
-  //   var lng = position.coords.longitude;
-  //   var options = { position: new google.maps.LatLng(lat, lng) }
-  //   var marker = new google.maps.Marker(options);
-  //   marker.setMap(map);
-  //   });
-  // }
-  //
-  // var map = null;
-	// var marker = new google.maps.Marker();
-
-	// function load_map() {
-	//     var myLatlng = new google.maps.LatLng(20.68009, -101.35403);
-	//     var myOptions = {
-	//         zoom: 4,
-	//         center: myLatlng,
-	//         mapTypeId: google.maps.MapTypeId.ROADMAP
-	//     };
-	//     map = new google.maps.Map($("#map_canvas").get(0), myOptions);
-	// }
-
 	function getGeolocation() {
 		if (navigator.geolocation) {
 		    navigator.geolocation.getCurrentPosition(function(position){
@@ -280,21 +240,6 @@
 		}
 	}
 
-	// $(document).ready(function(){
-  //   getGeolocation();
-	// });
-
-  // var map;
-  // function initMap() {
-  //   getGeolocation(lat, lon);
-  //   map = new google.maps.Map(document.getElementById('map_canvas'), {
-  //     center: {lat: lat, lng: lon},
-  //     zoom: 15
-  //   });
-  // }
 </script>
-
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPIn8C1d9dQLNNnv-Z2D0AKz6WESeZ8tI&callback=initMap"
-    async defer></script> -->
 
 {% endblock %}
