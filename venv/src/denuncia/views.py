@@ -109,11 +109,7 @@ def denunciar(request):
             # print 'conexion cerrada'
 
             #Cierre de conexion-------------------------------------------------
-
-            #Trigger de sumatoria a motivo--------------------------------------
-            motivo.cantidad = len(Denuncia.objects.filter(motivo=motivo))
-            motivo.save()
-
+            
             return redirect('success')
 
         else:

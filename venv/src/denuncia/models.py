@@ -2,7 +2,7 @@
 
 from __future__ import unicode_literals
 
-# from django.db.models.signals import post_delete
+from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.db import models
 
@@ -39,15 +39,18 @@ class Denuncia(models.Model):
     def __unicode__(self):
         return str(self.nombre)
 
-    def get_absolute_url(self):
-        return '/success'
-
     def getSprite(self):
         return self.motivo.sprite()
 
-# @receiver(post_delete, sender=Denuncia)
-# def denuncia_delete(sender, instance, **kwargs):
-#     instance.archivo.delete(False)
+@receiver(post_delete, sender=Denuncia)
+def denuncia_delete(sender, instance, **kwargs):
+    instance.motivo.cantidad -= 1
+    instance.motivo.save()
+
+@receiver(post_save, sender=Denuncia)
+def denuncia_save(sender, instance, **kwargs):
+    instance.motivo.cantidad += 1
+    instance.motivo.save()
 
 class Motivo(models.Model):
     id = models.AutoField(primary_key=True)
