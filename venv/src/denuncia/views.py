@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.core import mail
 from django.core import serializers
 from django.core.mail import EmailMessage
@@ -164,11 +165,12 @@ def denunciasList(request):
 
     return render(request,'usuario/denuncias_list.html', context)
 
-class DenunciaDetail(LoginRequiredMixin,DetailView):
+class DenunciaDetail(DetailView):
     model = Denuncia
     login_url = 'inicio'
     template_name = 'usuario/denuncia_detail.html'
 
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         handler = super(DenunciaDetail, self).dispatch(request, *args, **kwargs)
 

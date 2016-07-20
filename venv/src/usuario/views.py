@@ -3,6 +3,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.utils import timezone
@@ -121,12 +122,13 @@ def usuarioList(request):
 
     return render(request, 'usuario/usuarios_list.html', context)
 
-class UsuarioDetail(LoginRequiredMixin, DetailView):
+class UsuarioDetail(DetailView):
     model = Usuario
     login_url = 'inicio'
     template_name = 'usuario/usuario_detail.html'
     slug_field = 'username'
 
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         handler = super(UsuarioDetail, self).dispatch(request, *args, **kwargs)
 
@@ -139,7 +141,7 @@ class UsuarioDetail(LoginRequiredMixin, DetailView):
         return handler
 
 
-class UsuarioEdit(LoginRequiredMixin, UpdateView):
+class UsuarioEdit(UpdateView):
     model = Usuario
     login_url = 'inicio'
     template_name = 'usuario/usuario_edit.html'
@@ -157,6 +159,7 @@ class UsuarioEdit(LoginRequiredMixin, UpdateView):
         'zona'
     ]
 
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
 
         handler = super(UsuarioEdit, self).dispatch(request, *args, **kwargs)
