@@ -154,7 +154,8 @@ def denunciasList(request):
             denuncias = Denuncia.objects.filter(direccion=zona).order_by('-fecha')
         else:
             denuncias = Denuncia.objects.filter(
-                direccion=zona, motivo__institucion__tipo=tipo
+                direccion=zona,
+                motivo__institucion__tipo=tipo
                 ).order_by('-fecha')
 
     context = {

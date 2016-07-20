@@ -16,6 +16,12 @@ USUARIOS
         <li><a href={% url 'usuario:privado' %}><span>Perfil</span></a></li>
         <li><span style="color: black;"><i>/</i></span></li>
         <li><a href=""><span>Usuarios</span></a></li>
+        <!-- <li><span style="color: black;"><i>////</i></span></li>
+        <li>
+          <select>
+            <option selected>------</option>
+          </select>
+        </li> -->
       </ul>
     </span>
   </div>
@@ -32,7 +38,7 @@ USUARIOS
       <td>{{usuario.id}}</td>
       <td>{{usuario.get_full_name}}</td>
       <td>{{usuario.username}}</td>
-      <td>{{usuario.institucion}}</td>
+      <td><a href={% url 'usuario:lista_u_i' usuario.institucion %}>{{usuario.institucion}}</a></td>
       <!-- <td id='active'>
         <a id='{{usuario.id}}' class='activate' href="#">
           <span>
@@ -54,7 +60,7 @@ USUARIOS
       <td>
         <a href={% url 'usuario:detalles_u' usuario.username %}>Ver</a>
          |
-        <a href={% url 'usuario:editar_u' usuario.id %}>Editar</a>
+        <a href={% url 'usuario:editar_u' usuario.username %}>Editar</a>
       </td>
     </tr>
     {% endfor %}

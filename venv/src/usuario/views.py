@@ -96,6 +96,19 @@ def cerrar(request):
 def privado(request):
     return render(request, 'usuario/privado.html', {})
 
+
+@login_required(login_url='inicio')
+def usuariosInst(request, institucion):
+
+    if not request.user.is_staff:
+        return render(request, 'error/permisos.html', {})
+
+    context = {
+        'usuarios': Usuario.objects.filter(institucion__nombre=institucion)
+    }
+
+    return render(request, 'usuario/usuarios_list.html', context)
+
 @login_required(login_url='inicio')
 def usuarioList(request):
 

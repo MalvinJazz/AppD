@@ -59,7 +59,7 @@
       {% endif %}
       <tr>
         <th>Institucion</th>
-        <td><p><i>{{usuario.institucion}}</i></p></td>
+        <td><a href={% url 'usuario:lista_u_i' usuario.institucion %}>{{usuario.institucion}}</a></td>
       </tr>
       <tr>
         <th>Tipo</th>
