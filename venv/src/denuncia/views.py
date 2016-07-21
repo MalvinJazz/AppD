@@ -11,6 +11,7 @@ from django.core.mail import EmailMessage
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
 
 from .forms import DenunciaForm
 from institucion.models import Correo, Institucion
@@ -170,6 +171,13 @@ def denunciasList(request):
             denuncias = denuncias.filter(fecha__day=request.GET['dia'])
         except:
             pass
+        try:
+            denuncias = denuncias.filter(nombre=request.GET['nombre'])
+        except:
+            pass
+
+    if len(denuncias) == 0:
+        messages.error(request, 'No se ha encontrado nada con esos datos.')
 
     context = {
         "denuncias": denuncias,

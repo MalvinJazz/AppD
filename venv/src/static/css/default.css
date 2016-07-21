@@ -414,8 +414,6 @@ html, body
 .pag_btn{
 
 	color: #1A57A7;
-	/*border-style: groove;*/
-	/*border-radius: 12px;*/
 
 
 }
@@ -423,7 +421,6 @@ html, body
 .pag_btn:hover{
 
 	color: #5197FF;
-	/*border-style: inset;;*/
 	cursor: pointer;
 
 }
@@ -751,43 +748,83 @@ html, body
 /* Filtros                                                                        */
 /*********************************************************************************/
 
-	.filtro{
-		float: right;
+	.filtroF, .filtroN{
+		/*float: right;*/
 		width: 30%;
+		display: none;
+		position: relative;
+		left: 0;
 	}
 
-	.filtro select{
+	.filtroF select, input{
 
-		min-width: 10%;
+		min-width: 100%;
 		width: 25%;
 		margin-left: 0;
 
 	}
 
-	.filtro #mes{
+	.filtroF #mes{
 
 		width: auto;
 
 	}
 
-	.filtro h6{
-		color: black;
+	.filtroF h6, label{
+		color: white;
 	}
 
 	.filtro_estatico{
-		/*position: fixed;*/
-		float: right;
+		/*float: right;*/
+		position: absolute;
+		right: 0;
 		width: 40px;
 		height: 45px;
 		background-color: #174E97;
-		transition: width .6s;
+		transition: height 1.13s, width 1s;
+		opacity: .9;
+		align-items: center;
+		align-content: center;
 	}
 
 .filtro_estatico:hover{
-	width: 70px;
+	width: 100%;
+	height: 500px;
+	/*right: 97.1%;*/
+	/*left: 0;*/
 }
 
-.filtro_estatico #lupa:hover{
+.filtro_estatico:hover .filtroF, .filtro_estatico:hover .filtroN{
+	transition: display 1s, width .5s;
+	display:inline-table;
+}
+
+/*.filtro_estatico #lupa ul {
+  display:none;
+	min-width:300px;
+  float: left
+  background-color: #629bcc;
+	width: 300px;
+  align-content: center;
+  text-align: center;
+}
+
+.filtro_estatico:hover #lupa > ul{
+	display: block;
+	float: left;
+	background-color: #629bcc;
+}
+
+.filtro_estatico #lupa ul li {
+  background-color: #629bcc;
+  width: 300px;
+}
+
+.filtro_estatico #lupa ul li span{
+  width: 300px;
+}*/
+
+.filtro_estatico:hover #lupa{
 	background: url(images/social-hover.png) no-repeat -32px -96px;
 	cursor: pointer;
 }
@@ -801,6 +838,32 @@ html, body
 		position: relative;
 		background: url(images/social-hover.png) no-repeat 0 -96px;
 	}
+
+/*********************************************************************************/
+/* Mensajes                                                                     */
+/*********************************************************************************/
+
+.messages{
+	margin-bottom: 20px;
+}
+
+.messages table tr th{
+	color: red;
+	font-size: 20px;
+}
+
+.messages table tr th .error{
+	margin-top: -5px;
+	margin-right: 15px;
+	display: block;
+	text-indent: -9999px;
+	width: 32px;
+	height: 32px;
+	position: relative;
+	background: url(images/social-hover.png) no-repeat 0 -128px;
+	float: left;
+}
+
 
 /*********************************************************************************/
 /* Content                                                                       */
