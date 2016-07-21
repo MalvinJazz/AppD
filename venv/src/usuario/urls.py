@@ -6,7 +6,6 @@ from .views import (
                     usuarioList,
                     UsuarioDetail,
                     UsuarioEdit,
-                    usuariosInst
                     )
 from denuncia.views import denunciasList, DenunciaDetail
 
@@ -16,7 +15,6 @@ urlpatterns = [
     url(r'^denuncias/(?P<pk>\d+)/detalles/', DenunciaDetail.as_view(), name='detalles'),
     url(r'^usuarios/crear/$', registro, name="registro"),
     url(r'^usuarios/$', usuarioList, name="lista_u"),
-    url(r'^usuarios/(?P<institucion>\w+)$', usuariosInst, name="lista_u_i"),
     url(r'^usuarios/(?P<slug>\w+)/detalles/$', UsuarioDetail.as_view(), name="detalles_u"),
     url(r'^usuarios/(?P<slug>\w+)/editar/$', UsuarioEdit.as_view(), name="editar_u"),
 

@@ -99,25 +99,20 @@ def privado(request):
 
 
 @login_required(login_url='inicio')
-def usuariosInst(request, institucion):
-
-    if not request.user.is_staff:
-        return render(request, 'error/permisos.html', {})
-
-    context = {
-        'usuarios': Usuario.objects.filter(institucion__nombre=institucion)
-    }
-
-    return render(request, 'usuario/usuarios_list.html', context)
-
-@login_required(login_url='inicio')
 def usuarioList(request):
 
     if not request.user.is_staff:
         return render(request, 'error/permisos.html', {})
 
+    usuarios = Usuario.objects.exclude(id=request.user.id)
+
+    if request.GET:
+        if request.GET['institucion']:
+            usuarios = usuarios.filter(institucion__nombre=request.GET['institucion'])
+
+
     context = {
-        'usuarios': Usuario.objects.exclude(id=request.user.id)
+        'usuarios': usuarios
     }
 
     return render(request, 'usuario/usuarios_list.html', context)

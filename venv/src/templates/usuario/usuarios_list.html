@@ -38,7 +38,7 @@ USUARIOS
       <td>{{usuario.id}}</td>
       <td>{{usuario.get_full_name}}</td>
       <td>{{usuario.username}}</td>
-      <td><a href={% url 'usuario:lista_u_i' usuario.institucion %}>{{usuario.institucion}}</a></td>
+      <td><a href='?institucion={{usuario.institucion}}'>{{usuario.institucion}}</a></td>
       <!-- <td id='active'>
         <a id='{{usuario.id}}' class='activate' href="#">
           <span>

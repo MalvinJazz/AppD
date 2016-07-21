@@ -109,7 +109,7 @@ def denunciar(request):
             # print 'conexion cerrada'
 
             #Cierre de conexion-------------------------------------------------
-            
+
             return redirect('success')
 
         else:
@@ -154,6 +154,22 @@ def denunciasList(request):
                 direccion=zona,
                 motivo__institucion__tipo=tipo
                 ).order_by('-fecha')
+
+    if request.GET:
+        try:
+            denuncias = denuncias.filter(fecha__year=request.GET['año'])
+        except:
+            pass
+
+        try:
+            denuncias = denuncias.filter(fecha__month=request.GET['mes'])
+        except:
+            pass
+
+        try:
+            denuncias = denuncias.filter(fecha__day=request.GET['dia'])
+        except:
+            pass
 
     context = {
         "denuncias": denuncias,
