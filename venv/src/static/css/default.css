@@ -806,7 +806,7 @@ html, body
 		right: 0;
 		width: 40px;
 		height: 45px;
-		min-width: 500px;
+		/*min-width: 500px;*/
 		background-color: #174E97;
 		transition: height 1.13s, width 1s;
 		opacity: .9;
