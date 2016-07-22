@@ -135,7 +135,14 @@ def success(request):
 
 def busquedaMo(request):
     vID = request.GET['id']
-    mots = Motivo.objects.filter(institucion__tipo = vID)
+
+    try:
+        if request.GET['tipo']:
+            mots = Motivo.objects.filter(institucion__id=vID)
+
+    except:
+        mots = Motivo.objects.filter(institucion__tipo = vID)
+
     data = serializers.serialize('json', mots, fields = ('motivo'))
 
     return HttpResponse(data, content_type='application/json')
@@ -144,6 +151,8 @@ def busquedaMo(request):
 def denunciasList(request):
     zona = request.user.zona
     tipo = request.user.institucion.tipo
+
+    motivos = Motivo.objects.all()
 
     if request.user.is_staff:
         denuncias = Denuncia.objects.all().order_by('-fecha')
@@ -156,32 +165,63 @@ def denunciasList(request):
                 motivo__institucion__tipo=tipo
                 ).order_by('-fecha')
 
+            motivos = motivos.filter(institucion=request.user.institucion)
+
+    # errores = []
+
     if request.GET:
         try:
             denuncias = denuncias.filter(fecha__year=request.GET['año'])
+            # errores.append('Año:' + str(request.GET['año']))
         except:
             pass
 
         try:
             denuncias = denuncias.filter(fecha__month=request.GET['mes'])
+            # errores.append('Mes:' + str(request.GET['mes']))
         except:
             pass
 
         try:
             denuncias = denuncias.filter(fecha__day=request.GET['dia'])
+            # errores.append('Dia:' + str(request.GET['dia']))
+        except:
+            pass
+
+        try:
+            denuncias = denuncias.filter(nombre__iexact=request.GET['nombre'])
+            # errores.append('Nombre:' + str(request.GET['nombre']))
+        except:
+            pass
+
+        try:
+            denuncias = denuncias.filter(motivo__id=request.GET['motivo'])
+            # errores.append('Motivo:' + str(
+            #                         Motivo.objects.get(request.GET['motivo'])))
         except:
             pass
         try:
-            denuncias = denuncias.filter(nombre__iexact=request.GET['nombre'])
+            denuncias = denuncias.filter(motivo__institucion=request.GET['institucion'])
+            # errores.append('Institucion:' + str(
+            #                         Institucion.objects.get(request.GET['motivo'])))
         except:
             pass
 
     if len(denuncias) == 0:
-        messages.error(request, 'No se ha encontrado nada con esos datos.')
+        messages.error(request, 'No existen coincidencias con esos parametros.')
+        # for error in errores:
+        #     messages.error(request, error)
 
     context = {
         "denuncias": denuncias,
+        "motivos": motivos
     }
+
+    if request.user.is_staff or tipo == 'NG':
+        context.update({
+            "instituciones": Institucion.objects.all()
+        })
+
 
     return render(request,'usuario/denuncias_list.html', context)
 

@@ -806,6 +806,7 @@ html, body
 		right: 0;
 		width: 40px;
 		height: 45px;
+		min-width: 500px;
 		background-color: #174E97;
 		transition: height 1.13s, width 1s;
 		opacity: .9;
@@ -816,13 +817,19 @@ html, body
 
 	.filtro_estatico input[type='button']{
 		width: 10px;
-		height: 50px;
+		height: 35px;
 		display: none;
 		bottom: 0;
+		top: 15%;
+		left: 4%;
 	}
 
-	.filtro_estatico:hover input[type='button'], .tabla_filtros{
-		display:table-cell;
+
+	.filtro_estatico:hover input[type='button']{
+		display: block;
+		/*margin-top: 10%;
+		margin-left: 1%;*/
+		position: relative;
 	}
 
 	.filtro_estatico:hover .tabla_filtros{
@@ -849,6 +856,14 @@ html, body
 .filtro_estatico:hover .filtroN{
 	transition: display 1s, width .5s;
  	display: table-row;
+	position: relative;
+	top: 10%;
+	margin-top: auto;
+	clear: both;
+ }
+
+ .tabla_columna{
+	 display: table-cell;
  }
 
 /*.filtro_estatico #lupa ul {

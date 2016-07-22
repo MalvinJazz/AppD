@@ -25,45 +25,67 @@ Lista de Denuncias
   <div class = "filtro_estatico">
     <span id="lupa">Filtro</span>
     <div class="tabla_filtros">
-      <div class="filtroF">
-        <label>Buscar por fecha</label></br></br>
-        <h6>Año</h6></br>
-        <select id="anio" name="">
-          <option value="0" selected>----</option>
-        </select>
-        <h6>Mes</h6></br>
-        <select id="mes" name="">
-          <option value="0" >--</option>
-          <option value="1" >Enero</option>
-          <option value="2" >Febrero</option>
-          <option value="3" >Marzo</option>
-          <option value="4" >Abril</option>
-          <option value="5" >Mayo</option>
-          <option value="6" >Junio</option>
-          <option value="7" >Julio</option>
-          <option value="8" >Agosto</option>
-          <option value="9" >Septiembre</option>
-          <option value="10" >Octubre</option>
-          <option value="11" >Noviembre</option>
-          <option value="12" >Diciembre</option>
-        </select>
-        <h6>Día</h6></br>
-        <select id='dia' name="">
-          <option value="0" selected>--</option>
-        </select>
+      <div class="tabla_columna" style="position: relative;
+right: 5%;">
+        <div class="filtroF">
+          <label>Buscar por fecha</label></br></br>
+          <h6>Año</h6></br>
+          <select id="anio" name="">
+            <option value="0" selected>----</option>
+          </select>
+          <h6>Mes</h6></br>
+          <select id="mes" name="">
+            <option value="0" >--</option>
+            <option value="1" >Enero</option>
+            <option value="2" >Febrero</option>
+            <option value="3" >Marzo</option>
+            <option value="4" >Abril</option>
+            <option value="5" >Mayo</option>
+            <option value="6" >Junio</option>
+            <option value="7" >Julio</option>
+            <option value="8" >Agosto</option>
+            <option value="9" >Septiembre</option>
+            <option value="10" >Octubre</option>
+            <option value="11" >Noviembre</option>
+            <option value="12" >Diciembre</option>
+          </select>
+          <h6>Día</h6></br>
+          <select id='dia' name="">
+            <option value="0" selected>--</option>
+          </select>
+        </div>
       </div>
-      <div class="filtros_column">
+      <div class="tabla_columna" style="position: relative;
+left: 14%;">
         <div class="filtroN">
           <label>Buscar por nombre</label></br>
           <input type="text" id="nombre" value="">
         </div>
-        <div class="filtroN">
+        {% if user.is_staff or user.institucion.tipo == 'NG' %}
+        <div class="filtroN" style="top: 20px;">
+          <label>Buscar por institucion</label></br>
+          <select id='institucion' name="">
+            <option value="0" selected>------</option>
+            {% for institucion in instituciones %}
+            <option value="{{institucion.id}}">{{institucion}}</option>
+            {% endfor %}
+          </select>
+          <!-- <input type="text" id="institucion" value=""> -->
+        </div>
+        {% endif %}
+        <div class="filtroN" style="top: 40px;">
           <label>Buscar por motivo</label></br>
-          <input type="text" id="motivo" value="">
+          <select id='motivo' name="">
+            <option value="0" selected>------</option>
+            {% for motivo in motivos %}
+            <option value="{{motivo.id}}">{{motivo}}</option>
+            {% endfor %}
+          </select>
+          <!-- <input type="text" id="motivo" value=""> -->
         </div>
       </div>
-      <input type="button" id="filtrar" value="Buscar">
     </div>
+    <input type="button" id="filtrar" value="Buscar">
   </div>
   <div id="linkbar">
     <span class="inlinkbar">
@@ -154,6 +176,8 @@ $('#document').ready(function(){
   }
 
 });
+
+$('#institucion').on('change', busquedaMo);
 $('#mes').on('change', calcular);
 $('#filtrar').on('click', function(){
 
@@ -161,6 +185,8 @@ $('#filtrar').on('click', function(){
   var mes = $('#mes').val();
   var anio = $('#anio').val();
   var nombre = $('#nombre').val();
+  var motivo = $('#motivo').val();
+  var institucion = $('#institucion').val();
 
   var diaF = "";
   if(dia!=0)
@@ -177,9 +203,23 @@ $('#filtrar').on('click', function(){
   if(nombre!="")
     nombre = '&nombre='+nombre;
 
+  var motF = "";
+  if(motivo!=0)
+    motF = '&motivo='+motivo;
+
+  var instF = "";
+  if(institucion!=0)
+    instF = '&institucion='+institucion;
+
   var splt = location.href.split('?')
 
-   location.href = splt[0] + '?'+diaF+mesF+anioF+nombre;
+   location.href = splt[0] + '?'+
+                            diaF+
+                            mesF+
+                            anioF+
+                            nombre+
+                            instF+
+                            motF;
 
 })
 
@@ -224,6 +264,54 @@ function cuantosDias(mes, anyo){
     cuantosDias = 29;
 
   return cuantosDias;
+}
+
+function busquedaMo(){
+
+  var id = $(this).val();
+
+  // if(id == 0){
+  //
+  // }
+
+  $.ajax({
+
+    data: {
+      'id': id,
+      'tipo': '0'
+    },
+    url: '/busqMot/mots',
+    type: 'get',
+    success: function(data){
+
+      var mots = document.getElementById('motivo');
+
+      mots.length = 0;
+
+      var p = document.createElement('option');
+      p.value = '0';
+      p.innerHTML = '--';
+
+      mots.options.add(p);
+
+      for (var i = 0; i < data.length; i++) {
+        var nuevo = document.createElement("option");
+
+        nuevo.value = data[i].pk;
+        nuevo.innerHTML = data[i].fields.motivo;
+
+        mots.options.add(nuevo);
+      }
+
+    },
+    error: function(){
+
+      alert('Error con el servidor, por favor recargue e intente de nuevo.');
+
+    }
+
+  })
+
 }
 </script>
 {% endblock %}
