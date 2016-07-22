@@ -24,37 +24,45 @@ Lista de Denuncias
 <div id='section'>
   <div class = "filtro_estatico">
     <span id="lupa">Filtro</span>
-    <div class="filtroF">
-      <h6>Buscar por fecha</h6>
-      <label>Año</label></br>
-      <select id="anio" name="">
-        <option value="0" selected>----</option>
-      </select>
-      <label>Mes</label></br>
-      <select id="mes" name="">
-        <option value="0" >--</option>
-        <option value="1" >Enero</option>
-        <option value="2" >Febrero</option>
-        <option value="3" >Marzo</option>
-        <option value="4" >Abril</option>
-        <option value="5" >Mayo</option>
-        <option value="6" >Junio</option>
-        <option value="7" >Julio</option>
-        <option value="8" >Agosto</option>
-        <option value="9" >Septiembre</option>
-        <option value="10" >Octubre</option>
-        <option value="11" >Noviembre</option>
-        <option value="12" >Diciembre</option>
-      </select>
-      <label>Día</label></br>
-      <select id='dia' name="">
-        <option value="0" selected>--</option>
-      </select>
+    <div class="tabla_filtros">
+      <div class="filtroF">
+        <label>Buscar por fecha</label></br></br>
+        <h6>Año</h6></br>
+        <select id="anio" name="">
+          <option value="0" selected>----</option>
+        </select>
+        <h6>Mes</h6></br>
+        <select id="mes" name="">
+          <option value="0" >--</option>
+          <option value="1" >Enero</option>
+          <option value="2" >Febrero</option>
+          <option value="3" >Marzo</option>
+          <option value="4" >Abril</option>
+          <option value="5" >Mayo</option>
+          <option value="6" >Junio</option>
+          <option value="7" >Julio</option>
+          <option value="8" >Agosto</option>
+          <option value="9" >Septiembre</option>
+          <option value="10" >Octubre</option>
+          <option value="11" >Noviembre</option>
+          <option value="12" >Diciembre</option>
+        </select>
+        <h6>Día</h6></br>
+        <select id='dia' name="">
+          <option value="0" selected>--</option>
+        </select>
+      </div>
+      <div class="filtros_column">
+        <div class="filtroN">
+          <label>Buscar por nombre</label></br>
+          <input type="text" id="nombre" value="">
+        </div>
+        <div class="filtroN">
+          <label>Buscar por motivo</label></br>
+          <input type="text" id="motivo" value="">
+        </div>
+      </div>
       <input type="button" id="filtrar" value="Buscar">
-    </div>
-    <div class="filtroN">
-      <h6>Buscar por nombre</h6>
-      <input type="text" id="nombre" value="">
     </div>
   </div>
   <div id="linkbar">

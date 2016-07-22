@@ -172,7 +172,7 @@ def denunciasList(request):
         except:
             pass
         try:
-            denuncias = denuncias.filter(nombre=request.GET['nombre'])
+            denuncias = denuncias.filter(nombre__iexact=request.GET['nombre'])
         except:
             pass
 

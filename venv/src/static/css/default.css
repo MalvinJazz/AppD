@@ -750,17 +750,40 @@ html, body
 
 	.filtroF, .filtroN{
 		/*float: right;*/
-		width: 30%;
+		margin-top: 15px;
+		width: 25%;
 		display: none;
 		position: relative;
 		left: 0;
 	}
 
+	.tabla_filtros{
+		display: none;
+	}
+
+	.filtroF label, .filtroN label{
+		/*float: right;*/
+		width: 100%;
+	}
+
 	.filtroF select, input{
 
-		min-width: 100%;
+		/*min-width: 100%;*/
 		width: 25%;
 		margin-left: 0;
+		display: inherit;
+
+	}
+
+	.filtroN input{
+
+		position: relative;
+		width: 85%;
+		margin-left: 0;
+		top: 15px;
+		margin: 10px;
+		/*padding: 10px;*/
+		clear: both;
 
 	}
 
@@ -772,6 +795,12 @@ html, body
 
 	.filtroF h6, label{
 		color: white;
+		margin: 1px 0px;
+	}
+
+	.filtroN h6, label{
+		color: white;
+		margin: 1px 0px;
 	}
 
 	.filtro_estatico{
@@ -785,19 +814,45 @@ html, body
 		opacity: .9;
 		align-items: center;
 		align-content: center;
+		/*display: table;*/
 	}
 
+	.filtro_estatico input[type='button']{
+		width: 10px;
+		height: 50px;
+		display: none;
+		bottom: 0;
+	}
+
+	.filtro_estatico:hover input[type='button'], .tabla_filtros{
+		display:table-cell;
+	}
+
+	.filtro_estatico:hover .tabla_filtros{
+		display: inline-table;
+	}
+
+	/*.filtro_estatico:hover .filtros_column{
+		display: table-column-group;;
+	}*/
+
 .filtro_estatico:hover{
-	width: 100%;
+	width: 50%;
 	height: 500px;
 	/*right: 97.1%;*/
 	/*left: 0;*/
 }
 
-.filtro_estatico:hover .filtroF, .filtro_estatico:hover .filtroN{
+.filtro_estatico:hover .filtroF{
 	transition: display 1s, width .5s;
-	display:inline-table;
+	display: table-row;
+	width: 30%;
 }
+
+.filtro_estatico:hover .filtroN{
+	transition: display 1s, width .5s;
+ 	display: table-row;
+ }
 
 /*.filtro_estatico #lupa ul {
   display:none;
@@ -831,6 +886,7 @@ html, body
 
 	.filtro_estatico #lupa{
 		margin-top: 5px;
+		/*margin-left: 5px;*/
 		display: block;
 		text-indent: -9999px;
 		width: 32px;
