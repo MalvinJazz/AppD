@@ -763,10 +763,12 @@ html, body
 
 	.filtroF label, .filtroN label{
 		/*float: right;*/
+		color: white;
+		margin: 1px 0px;
 		width: 100%;
 	}
 
-	.filtroF select, input{
+	.filtroF select, .filtroF input{
 
 		/*min-width: 100%;*/
 		width: 25%;
@@ -793,12 +795,7 @@ html, body
 
 	}
 
-	.filtroF h6, label{
-		color: white;
-		margin: 1px 0px;
-	}
-
-	.filtroN h6, label{
+	.filtroF h6, .filtroN label{
 		color: white;
 		margin: 1px 0px;
 	}
@@ -812,8 +809,8 @@ html, body
 		background-color: #174E97;
 		transition: height 1.13s, width 1s;
 		opacity: .9;
-		align-items: center;
-		align-content: center;
+		/*align-items: center;
+		align-content: center;*/
 		/*display: table;*/
 	}
 
