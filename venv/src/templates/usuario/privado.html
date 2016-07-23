@@ -10,7 +10,7 @@
 
 {% block content %}
 <div id="section">
-  <div class = "tablaCentro">
+  <div class = "tablaCentro" style="position: relative; right: 30%;">
     <table class="table">
       <tr>
           <td>Nombre de usuario</td>
@@ -47,5 +47,46 @@
       </tr>
     </table>
   </div>
+  <div id="line-chart">
+
+  </div>
 </div>
+{% endblock %}
+
+
+{% block js %}
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+google.charts.load('current', {'packages':['line']});
+      google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Día');
+      data.addColumn('number', "{{tiempo1}}");
+      data.addColumn('number', "{{tiempo2}}");
+
+
+      data.addRows([
+        {% for dia, cant1, cant2 in denuncias %}
+          ['{{dia}}', {{cant1}}, {{cant2}}],
+        {% endfor %}
+      ]);
+
+      var options = {
+        chart: {
+          title: 'Box Office Earnings in First Two Weeks of Opening',
+          subtitle: 'in millions of dollars (USD)'
+        },
+        width: 1000,
+        height: 500,
+      };
+
+      var chart = new google.charts.Line(document.getElementById('line-chart'));
+
+      chart.draw(data, options);
+    }
+
+</script>
 {% endblock %}

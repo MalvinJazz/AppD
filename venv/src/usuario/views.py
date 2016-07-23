@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+# import collections
+# import time
+import calendar
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
@@ -15,6 +19,7 @@ from django.contrib import messages
 from .forms import UserCreationForm, InicioForm
 from .models import Usuario
 from localizaciones.models import Departamento
+from denuncia.models import Denuncia
 
 
 @login_required(login_url="inicio")
@@ -93,9 +98,41 @@ def cerrar(request):
     logout(request)
     return redirect('inicio')
 
+def getDenuncias():
+    dias = timezone.now().day
+
+    i=1
+    # denuncias = collections.OrderedDict()
+    denuncias = []
+    while i<=dias:
+        denuncias.append((
+            str(i), len(Denuncia.objects.filter(
+                fecha__year = timezone.now().year
+            ).filter(
+                fecha__month = timezone.now().month
+            ).filter(
+                fecha__day = i
+            )), len(Denuncia.objects.filter(
+                fecha__year = timezone.now().year
+            ).filter(
+                fecha__month = timezone.now().month - 1
+            ).filter(
+                fecha__day = i)))
+            )
+        i += 1
+
+    return denuncias
+
 @login_required(login_url='inicio')
 def privado(request):
-    return render(request, 'usuario/privado.html', {})
+
+    context = {
+        'denuncias': getDenuncias(),
+        'tiempo1': timezone.now().strftime('%B'),
+        'tiempo2': calendar.month_name[timezone.now().month - 1]
+    }
+
+    return render(request, 'usuario/privado.html', context)
 
 
 @login_required(login_url='inicio')

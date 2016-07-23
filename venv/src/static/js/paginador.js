@@ -33,8 +33,17 @@ Paginador = function(divPaginador, tabla, tamPagina){
 }
 
 this.Mostrar = function(){
+
+    // var combo = document.getElementById('paginas');
+    //
+    // var p = document.createElement('option');
+    // p.value = this.tabla.rows.length;
+    // p.innerHTML = this.tabla.rows.length;
+    // combo.options.add(p);
+
     //Crear la tabla
     var tblPaginador = document.createElement('table');
+    tblPaginador.id = 'tblPaginador';
     tblPaginador.style.width = '20%';
 
     //Agregar una fila a la tabla

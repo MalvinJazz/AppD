@@ -25,8 +25,7 @@ Lista de Denuncias
   <div class = "filtro_estatico">
     <span id="lupa">Filtro</span>
     <div class="tabla_filtros">
-      <div class="tabla_columna" style="position: relative;
-right: 5%;">
+      <div class="tabla_columna" style="position: relative; right: 5%;">
         <div class="filtroF">
           <label>Buscar por fecha</label></br></br>
           <h6>Año</h6></br>
@@ -55,8 +54,7 @@ right: 5%;">
           </select>
         </div>
       </div>
-      <div class="tabla_columna" style="position: relative;
-left: 14%;">
+      <div class="tabla_columna" style="position: relative; left: 14%;">
         <div class="filtroN">
           <label>Buscar por nombre</label></br>
           <input type="text" id="nombre" value="">
@@ -93,16 +91,6 @@ left: 14%;">
         <li><a href={% url 'usuario:privado' %}><span>Perfil</span></a></li>
         <li><span style="color: black;"><i>/</i></span></li>
         <li><a href=""><span>Denuncias</span></a></li>
-        <!-- <li><span style="color: black;"><i>/</i></span></li>
-         <li>
-          <span class="datetimeshortcuts">
-            <a href="javascript:DateTimeShortcuts.handleCalendarQuickLink(0, 0);">Hoy</a>
-            |
-            <a href="javascript:DateTimeShortcuts.openCalendar(0);">
-              <span class="date-icon" title="Elige una fecha"></span>
-            </a>
-          </span>
-        </li> -->
       </ul>
     </span>
   </div>
@@ -139,6 +127,13 @@ left: 14%;">
   {% endif %}
   </div>
   <div id="paginador"></div>
+
+  <select id="paginas" class="" name="paginas">
+    <option value="5">5</option>
+    <option value="10" selected>10</option>
+    <option value="20">20</option>
+    <option value="40">40</option>
+  </select>
 </div>
 {% endblock %}
 
@@ -152,6 +147,22 @@ $('#document').ready(function(){
     document.getElementById('tblDatos'),
     10
   );
+
+  document.getElementById('paginas').addEventListener('change', function(){
+
+    var tbl = document.getElementById('tblPaginador');
+
+    tbl.parentNode.removeChild(tbl);
+
+    p = new Paginador(
+      document.getElementById('paginador'),
+      document.getElementById('tblDatos'),
+      parseInt($('#paginas').val())
+    );
+
+    p.Mostrar();
+
+  });
 
   p.Mostrar();
 
@@ -236,7 +247,7 @@ function calcular(){
 
   var p = document.createElement('option');
   p.value = '0';
-  p.innerHTML = '--';
+  p.innerHTML = '------';
 
   comboD.options.add(p);
 

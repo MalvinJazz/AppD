@@ -397,6 +397,17 @@ html, body
 /*Paginador                                                                      */
 /*********************************************************************************/
 
+
+#paginas{
+	min-width: 60px;
+	width: 5%;
+	position: relative;
+	float: left;
+	/*right: 0;
+	left: 51%;*/
+	margin: 0;
+}
+
 .pag_num{
 
 	color: #1A57A7;
