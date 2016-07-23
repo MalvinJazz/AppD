@@ -117,8 +117,13 @@ def getDenuncias():
             ).filter(
                 fecha__month = timezone.now().month - 1
             ).filter(
-                fecha__day = i)))
-            )
+                fecha__day = i
+            )), len(Denuncia.objects.filter(
+                fecha__year = timezone.now().year
+            ).filter(
+                fecha__month = timezone.now().month - 2
+            ).filter(
+                fecha__day = i))))
         i += 1
 
     return denuncias
@@ -129,7 +134,8 @@ def privado(request):
     context = {
         'denuncias': getDenuncias(),
         'tiempo1': timezone.now().strftime('%B'),
-        'tiempo2': calendar.month_name[timezone.now().month - 1]
+        'tiempo2': calendar.month_name[timezone.now().month - 1],
+        'tiempo3': calendar.month_name[timezone.now().month - 2]
     }
 
     return render(request, 'usuario/privado.html', context)

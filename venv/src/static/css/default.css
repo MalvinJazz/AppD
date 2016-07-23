@@ -1331,6 +1331,10 @@ clases de Chart
 	/*margin-right: 50%;*/
 }
 
+#line-chart{
+	position: relative;
+}
+
 #columnchart{
 	height: 500px;
 	text-align: left;

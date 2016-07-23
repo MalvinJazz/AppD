@@ -66,11 +66,12 @@ google.charts.load('current', {'packages':['line']});
       data.addColumn('string', 'Día');
       data.addColumn('number', "{{tiempo1}}");
       data.addColumn('number', "{{tiempo2}}");
+      data.addColumn('number', "{{tiempo3}}");
 
 
       data.addRows([
-        {% for dia, cant1, cant2 in denuncias %}
-          ['{{dia}}', {{cant1}}, {{cant2}}],
+        {% for dia, cant1, cant2, cant3 in denuncias %}
+          ['{{dia}}', {{cant1}}, {{cant2}}, {{cant3}}],
         {% endfor %}
       ]);
 
@@ -79,8 +80,8 @@ google.charts.load('current', {'packages':['line']});
           title: 'Box Office Earnings in First Two Weeks of Opening',
           subtitle: 'in millions of dollars (USD)'
         },
-        width: 1000,
-        height: 500,
+        width: 700,
+        height: 400,
       };
 
       var chart = new google.charts.Line(document.getElementById('line-chart'));
