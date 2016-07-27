@@ -1333,6 +1333,11 @@ clases de Chart
 
 #line-chart{
 	position: relative;
+	left: 21%;
+	width: 55%;
+	top: -330px;
+	clear: both;
+	height: 400px;
 }
 
 #columnchart{

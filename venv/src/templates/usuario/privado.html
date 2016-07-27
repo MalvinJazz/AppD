@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-<div id="section">
+<div id="section" style="max-height: 500px;">
   <div class = "tablaCentro" style="position: relative; right: 30%;">
     <table class="table">
       <tr>
@@ -33,7 +33,7 @@
           <td><i>{{user.tipo}}</i></td>
       </tr>
     </table>
-    <table>
+    <table style="position: relative; top: 18%;">
       <tr>
         {% if user.is_staff %}
         <td><a href={% url 'usuario:lista_u' %}><span> Usuarios </span></a></td>
@@ -77,11 +77,16 @@ google.charts.load('current', {'packages':['line']});
 
       var options = {
         chart: {
-          title: 'Box Office Earnings in First Two Weeks of Opening',
-          subtitle: 'in millions of dollars (USD)'
+          title: 'Denuncias mensuales.',
+          subtitle: 'Ultimos 3 meses.'
         },
-        width: 700,
-        height: 400,
+        // width: 700,
+        // height: 400,
+        animation: {
+          duration: 1500,
+          easing: 'out',
+          startup: true,
+        },
       };
 
       var chart = new google.charts.Line(document.getElementById('line-chart'));
