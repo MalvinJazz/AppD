@@ -30,7 +30,15 @@
       </tr>
       <tr>
           <td>Tipo de Usuario</td>
-          <td><i>{{user.tipo}}</i></td>
+          <td><i>
+            {% if user.is_staff %}
+            Super Usuario
+            {% elif user.is_admin %}
+            Analisis
+            {% elif user.is_res %}
+            Respuesta
+            {% endif %}
+          </i></td>
       </tr>
     </table>
     <table style="position: relative; top: 18%;">

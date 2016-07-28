@@ -43,12 +43,16 @@ Editar {{usuario}}
           {{form.correo}}</br>
         </div>
         <div>
-          <label>Tipo</label></br>
-          {{form.tipo}}</br>
+          <label>SU</label></br>
+          {{form.is_staff}}</br>
         </div>
         <div>
-          <label>Admin</label></br>
-          {{form.is_staff}}</br>
+          <label>Analisis</label></br>
+          {{form.is_admin}}</br>
+        </div>
+        <div>
+          <label>Respuesta</label></br>
+          {{form.is_res}}</br>
         </div>
         <div>
           <label>Activo</label></br>
@@ -63,7 +67,7 @@ Editar {{usuario}}
           <select id="deps" class="" name="deps1">
             <option value="0" selected>------</option>
             {% for departamento in departamentos %}
-            <option value="{{departamento.id}}">{{departamento}}</option>
+            <option value="{{departamento.id}}" {% if departamento.id == user.zona.municipio.departamento.id %} selected {% endif %}>{{departamento}}</option>
             {% endfor %}
           </select></br>
         </div>
@@ -94,6 +98,9 @@ Editar {{usuario}}
 
   $('#deps').on('change', busquedaMuni);
   $('#muni').on('change', busquedaDir);
+  $('#id_is_staff').on('change', seleccionar);
+  $('#id_is_admin').on('change', seleccionar);
+  $('#id_is_res').on('change', seleccionar);
 
   document.getElementById('id_zona').length = 0;
 
@@ -112,6 +119,8 @@ Editar {{usuario}}
         inner.innerHTML = "";
         var p = document.createElement("option");
 
+        var municipio = "{{user.zona.municipio}}";
+
         // console.log(data[i].fields.nombre)
 
         p.value = "0";
@@ -126,6 +135,8 @@ Editar {{usuario}}
 
           nuevo.value = data[i].pk;
           nuevo.innerHTML = data[i].fields.nombre;
+          if(nuevo.innerHTML == municipio)
+            nuevo.selected = true;
 
           inner.options.add(nuevo);
 
@@ -164,6 +175,20 @@ Editar {{usuario}}
       }
 
     })
+
+  }
+
+  function seleccionar(){
+    // $(this).prop('checked')
+    var check = $(this);
+
+    var lista = $('input[type=checkbox]');
+
+    for (var i = 0; i < lista.length - 1; i++) {
+      if(lista[i]!=check[0]){
+        lista[i].checked = false;
+      }
+    }
 
   }
 

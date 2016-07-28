@@ -191,8 +191,9 @@ class UsuarioEdit(UpdateView):
         'apellidos',
         'correo',
         'is_staff',
+        'is_admin',
+        'is_res',
         'is_active',
-        'tipo',
         'institucion',
         'zona'
     ]

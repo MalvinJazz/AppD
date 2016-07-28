@@ -59,11 +59,23 @@
       {% endif %}
       <tr>
         <th>Institucion</th>
-        <td><a href={% url 'usuario:lista_u_i' usuario.institucion %}>{{usuario.institucion}}</a></td>
+        <td>{{usuario.institucion}}</td>
       </tr>
       <tr>
         <th>Tipo</th>
-        <td><p><i>{{usuario.tipo}}</i></p></td>
+        <td>
+          <p>
+            <i>
+              {% if usuario.is_staff %}
+              Super Usuario
+              {% elif usuario.is_admin %}
+              Analisis
+              {% elif usuario.is_res %}
+              Respuesta
+              {% endif %}
+            </i>
+          </p>
+        </td>
       </tr>
       <tr>
         <th>Zona</th>

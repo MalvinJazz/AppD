@@ -52,8 +52,8 @@ class Usuario(AbstractBaseUser):
     correo = models.EmailField(unique=True)
     ultima_conexion = models.DateTimeField(auto_now_add=False, auto_now=True)
     is_staff = models.BooleanField(default=False)
-    is_res = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
+    is_res = models.BooleanField(default=False)
 
     is_active = models.BooleanField(default=True)
 
