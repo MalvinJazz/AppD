@@ -163,14 +163,14 @@ def denunciasList(request):
             denuncias = Denuncia.objects.filter(direccion=zona).order_by('-fecha')
         else:
             denuncias = Denuncia.objects.filter(
-                direccion=zona,
+                # direccion=zona,
                 motivo__institucion=institucion
                 ).order_by('-fecha')
 
             motivos = motivos.filter(institucion=request.user.institucion)
 
             if request.user.is_res:
-                fecha_hasta = timezone.now()
+                fecha_hasta = timezone.now().replace(day=timezone.now().day+1)
                 fecha_desde = timezone.now().replace(day=timezone.now().day-8)
                 print fecha_desde
                 print fecha_hasta
@@ -250,11 +250,16 @@ class DenunciaDetail(DetailView):
     def dispatch(self, request, *args, **kwargs):
         handler = super(DenunciaDetail, self).dispatch(request, *args, **kwargs)
 
+        user = request.user
         objeto = self.get_object(self.get_queryset())
 
-        if not request.user.is_staff:
-            if objeto.direccion != request.user.zona:
-                if objeto.direccion.municipio != request.user.zona.municipio:
+        if not user.is_staff:
+            if user.is_admin and user.institucion.tipo == 'NG':
+                if objeto.direccion != user.zona:
+                    if objeto.direccion.municipio != user.zona.municipio:
+                        return render(request, 'error/permisos.html', {})
+            else:
+                if objeto.motivo.institucion != user.institucion:
                     return render(request, 'error/permisos.html', {})
 
         return handler

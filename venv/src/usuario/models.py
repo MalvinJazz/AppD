@@ -50,7 +50,7 @@ class Usuario(AbstractBaseUser):
     apellidos = models.CharField(max_length=55)
     username = models.CharField(max_length=25, unique=True)
     correo = models.EmailField(unique=True)
-    ultima_conexion = models.DateTimeField(auto_now_add=False, auto_now=True)
+    ultima_conexion = models.DateTimeField(auto_now_add=True, auto_now=False)
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     is_res = models.BooleanField(default=False)

@@ -31,6 +31,7 @@ USUARIOS
       <th>Nombre y Apellidos</th>
       <th>Usuario</th>
       <th>Institucion</th>
+      <!-- <th>En linea</th> -->
       <th>Activo</th>
     </tr>
     {% for usuario in usuarios %}
@@ -49,6 +50,13 @@ USUARIOS
             {% endif %}
           </span>
         <a>
+      </td> -->
+      <!-- <td>
+        {% if usuario.is_authenticated %}
+        Si
+        {% else %}
+        No
+        {% endif %}
       </td> -->
       <td>
         {% if usuario.is_active %}

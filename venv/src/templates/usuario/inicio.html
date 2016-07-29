@@ -13,6 +13,19 @@ Iniciar Sesión
 {% block content %}
 <div id="section">
   <div id="bloqueForms">
+    <div class="messages">
+      {% if messages %}
+      <table>
+        {% for message in messages %}
+        <tr>
+          <th>
+            <span {% if message.tags %} class="{{ message.tags }}"{% endif %}>...</span>{{message}}
+          </th>
+        </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+    </div>
     <form method="post" action="">
       {% csrf_token %}
       <div class="form-group">
@@ -32,16 +45,3 @@ Iniciar Sesión
   </div>
 </div>
 {% endblock %}
-
-{% if messages %}
-{% block js %}
-<script type="text/javascript">
-    {% for message in messages %}
-    alert('{{ message }}');
-    var pass = document.getElementById('id_password').value = '';
-    //pass.value = '';
-    // pass.style.border = 'solid red';
-    {% endfor %}
-</script>
-{% endblock %}
-{% endif %}
