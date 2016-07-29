@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.utils import timezone
 from django.core import mail
 from django.core import serializers
 from django.core.mail import EmailMessage
@@ -151,6 +152,7 @@ def busquedaMo(request):
 def denunciasList(request):
     zona = request.user.zona
     tipo = request.user.institucion.tipo
+    institucion = request.user.institucion
 
     motivos = Motivo.objects.all()
 
@@ -162,10 +164,21 @@ def denunciasList(request):
         else:
             denuncias = Denuncia.objects.filter(
                 direccion=zona,
-                motivo__institucion__tipo=tipo
+                motivo__institucion=institucion
                 ).order_by('-fecha')
 
             motivos = motivos.filter(institucion=request.user.institucion)
+
+            if request.user.is_res:
+                fecha_hasta = timezone.now()
+                fecha_desde = timezone.now().replace(day=timezone.now().day-8)
+                print fecha_desde
+                print fecha_hasta
+                denuncias = denuncias.filter(
+                        fecha__range=(
+                            fecha_desde,
+                            fecha_hasta)
+                            )
 
     # errores = []
 
