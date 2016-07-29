@@ -262,6 +262,10 @@ class DenunciaDetail(DetailView):
                 if objeto.motivo.institucion != user.institucion:
                     return render(request, 'error/permisos.html', {})
 
+                fecha_limite = timezone.now().replace(day=timezone.now().day-8)
+                if user.is_res and objeto.fecha < fecha_limite:
+                    return render(request, 'error/permisos.html', {})
+
         return handler
 
     def get_context_data(self, **kwargs):
