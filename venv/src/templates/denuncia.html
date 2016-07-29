@@ -10,6 +10,19 @@
 
 {% block content %}
 <div id="section">
+  <div class="messages">
+    {% if messages %}
+    <table>
+      {% for message in messages %}
+      <tr>
+        <th>
+          <span {% if message.tags %} class="{{ message.tags }}"{% endif %}>...</span>{{message}}
+        </th>
+      </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+  </div>
   <div class = "radioBtn">
     <div class="bloqueOne">
       <input type="radio" name="tipo" value="anonimo" checked onClick="deshabilita()">

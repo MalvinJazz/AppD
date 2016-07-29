@@ -115,7 +115,7 @@ def denunciar(request):
             return redirect('success')
 
         else:
-            print "no funciona"
+            messages.error(request, 'Ingresa correctamente los datos.')
 
     else:
         form = DenunciaForm()
