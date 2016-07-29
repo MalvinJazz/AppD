@@ -10,6 +10,7 @@ from denuncia.models import Denuncia, Motivo
 
 #--------------------------------------------------------
 #Serializador de json------------------------------------
+
 class MuniSerializer(Serializer):
 
     def get_dump_object(self, obj):
