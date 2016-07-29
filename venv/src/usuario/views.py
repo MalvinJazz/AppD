@@ -25,19 +25,23 @@ from denuncia.models import Denuncia
 @login_required(login_url="inicio")
 def registro(request):
 
-    form = UserCreationForm(request.POST or None)
+    if request.user.is_staff:
 
-    context = {
-        "form": form,
-        "departamentos": Departamento.objects.all()
-    }
+        form = UserCreationForm(request.POST or None)
 
-    if form.is_valid():
-        form.save()
+        context = {
+            "form": form,
+            "departamentos": Departamento.objects.all()
+        }
 
-        return HttpResponseRedirect('/')
+        if form.is_valid():
+            form.save()
 
-    return render(request, 'usuario/registro.html', context)
+            return HttpResponseRedirect('/')
+
+        return render(request, 'usuario/registro.html', context)
+
+    return render(request, 'error/permisos.html', {})
 
 
 def inicio(request):
@@ -151,7 +155,9 @@ def usuarioList(request):
 
     if request.GET:
         if request.GET['institucion']:
-            usuarios = usuarios.filter(institucion__nombre=request.GET['institucion'])
+            usuarios = usuarios.filter(
+                        institucion__nombre=request.GET['institucion']
+                        )
 
 
     context = {
@@ -170,11 +176,11 @@ class UsuarioDetail(DetailView):
     def dispatch(self, request, *args, **kwargs):
         handler = super(UsuarioDetail, self).dispatch(request, *args, **kwargs)
 
-        if not request.user.is_staff:
-            return render(request, 'error/permisos.html', {})
-
         if self.get_object(self.queryset) == request.user:
             return redirect('usuario:privado')
+
+        if not request.user.is_staff:
+            return render(request, 'error/permisos.html', {})
 
         return handler
 
@@ -203,11 +209,11 @@ class UsuarioEdit(UpdateView):
 
         handler = super(UsuarioEdit, self).dispatch(request, *args, **kwargs)
 
-        if not request.user.is_staff:
-            return render(request, 'error/permisos.html', {})
-
         if self.get_object(self.queryset) == request.user:
             return redirect('usuario:privado')
+
+        if not request.user.is_staff:
+            return render(request, 'error/permisos.html', {})
 
         return handler
 
