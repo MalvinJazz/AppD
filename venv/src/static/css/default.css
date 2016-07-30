@@ -927,7 +927,7 @@ html, body
 }
 
 .messages table tr th{
-	color: red;
+	color: #0d1750;
 	font-size: 20px;
 }
 
@@ -940,6 +940,18 @@ html, body
 	height: 32px;
 	position: relative;
 	background: url(images/social-hover.png) no-repeat 0 -128px;
+	float: left;
+}
+
+.messages table tr th .info{
+	margin-top: -5px;
+	margin-right: 15px;
+	display: block;
+	text-indent: -9999px;
+	width: 32px;
+	height: 32px;
+	position: relative;
+	background: url(images/social-hover.png) no-repeat -32px -128px;
 	float: left;
 }
 
