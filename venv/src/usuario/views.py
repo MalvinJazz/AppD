@@ -255,4 +255,4 @@ def cambiarPass(request):
     else:
         form = CambioPassForm()
 
-    return render(request, 'cambio_pass.html', {'form':form})
+    return render(request, 'usuario/cambio_pass.html', {'form':form})
