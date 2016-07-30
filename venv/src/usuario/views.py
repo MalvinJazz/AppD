@@ -16,7 +16,7 @@ from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 
-from .forms import UserCreationForm, InicioForm
+from .forms import UserCreationForm, InicioForm, CambioPassForm
 from .models import Usuario
 from localizaciones.models import Departamento
 from denuncia.models import Denuncia
@@ -227,3 +227,32 @@ class UsuarioEdit(UpdateView):
     		})
 
     	return context
+
+@login_required(login_url='inicio')
+def cambiarPass(request):
+    if request.method == 'POST':
+        form = CambioPassForm(request.POST)
+
+        if form.is_valid():
+
+            actual_pass = request.POST['actual']
+            if request.user.check_password(actual_pass):
+                nuevo_pass = request.POST['password1']
+
+                if not request.user.check_password(nuevo_pass):
+
+                    request.user.set_password(nuevo_pass)
+                    request.user.save()
+
+                    logout(request)
+                    messages.info(request, 'Inicia sesión de nuevo porfavor.')
+                    return redirect('inicio')
+                else:
+                    messages.error(request, 'No puedes usar tu actual contraseña.')
+
+            else:
+                messages.error(request, 'Primero ingresa tu contraseña actual.')
+    else:
+        form = CambioPassForm()
+
+    return render(request, 'cambio_pass.html', {'form':form})

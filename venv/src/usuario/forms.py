@@ -9,6 +9,25 @@ class InicioForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput())
 
+class CambioPassForm(forms.Form):
+
+    actual = forms.CharField(label='Password', widget=forms.PasswordInput())
+    password = forms.CharField(label='Password', widget=forms.PasswordInput())
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput())
+
+    def clean_password1(self):
+
+        password = self.cleaned_data.get("password")
+        password1 = self.cleaned_data.get("password1")
+
+        if password and password1 and password != password1:
+            raise forms.ValidationError("Las contraseñas no coinciden.")
+        if password and password1 and len(password) < 8:
+            raise forms.ValidationError("Ingrese una contraseña más larga.")
+
+        return password1
+
+
 class UserCreationForm(forms.ModelForm):
 
     # password = forms.CharField(label='Password', widget=forms.PasswordInput())
