@@ -103,7 +103,7 @@ def cerrar(request):
     return redirect('inicio')
 
 def getDenuncias():
-    dias = timezone.now().day
+    dias = 31#timezone.now().day
 
     i=1
     # denuncias = collections.OrderedDict()

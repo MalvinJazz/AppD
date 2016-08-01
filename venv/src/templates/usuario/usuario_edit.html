@@ -97,6 +97,7 @@ Editar {{usuario}}
 <script type="text/javascript">
 
   $('#deps').on('change', busquedaMuni);
+  $(document).ready(busquedaMuni);
   $('#muni').on('change', busquedaDir);
   $('#id_is_staff').on('change', seleccionar);
   $('#id_is_admin').on('change', seleccionar);
@@ -106,7 +107,7 @@ Editar {{usuario}}
 
   function busquedaMuni(){
 
-    var id = $(this).val();
+    var id = $('#deps').val();
     $.ajax({
 
       data: {'id': id},
@@ -142,6 +143,8 @@ Editar {{usuario}}
 
         }
 
+        busquedaDir();
+
       }
 
     })
@@ -150,7 +153,7 @@ Editar {{usuario}}
 
   function busquedaDir(){
 
-    var id = $(this).val();
+    var id = $('#muni').val();
     $.ajax({
 
       data: {'id': id},
@@ -160,6 +163,7 @@ Editar {{usuario}}
         document.getElementById('id_zona').length = 0;
 
         var inner = document.getElementById('id_zona');
+        var zona = '{{user.zona}}';
 
         for(var i = 0; i<data.length; i++){
 
@@ -167,6 +171,9 @@ Editar {{usuario}}
 
           nuevo.value = data[i].pk;
           nuevo.innerHTML = data[i].fields.direccion;
+
+          if(nuevo.innerHTML == zona)
+            nuevo.selected = true;
 
           inner.options.add(nuevo);
 
