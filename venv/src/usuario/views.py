@@ -11,6 +11,7 @@ from django.utils.decorators import method_decorator
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.utils import timezone
+from django.core.mail import EmailMultiAlternatives
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -264,13 +265,59 @@ def confirmarPass(request):
             password = request.POST['password']
 
             if request.user.check_password(password):
-                HttpResponseRedirect(request.GET['next'])
+                request.session['confirmado'] = True
+
+                return HttpResponseRedirect(request.GET['next'])
             else:
                 messages.error(request, 'Contraseña incorrecta.')
 
-    return render(request, 'usuario/confirmarPass.html', {})
+        return render(request, 'usuario/confirmarPass.html', {})
+
+    else:
+        return redirect('inicio')
 
 
-# @login_required(login_url='inicio')
-# def cambiarCorreo(request):
-#     if
+@login_required(login_url='inicio')
+def cambiarCorreo(request):
+    try:
+        confirmado = request.session['confirmado']
+    except:
+        confirmado = False
+
+    if not confirmado:
+        return HttpResponseRedirect('/confirmar/?next=%s' % request.path)
+    else:
+
+        if request.method == 'POST':
+            correo = request.POST['correo']
+
+            if correo == request.user.correo:
+                messages.info(request, 'Ese es tu correo actual.')
+            else:
+                request.user.correo = correo
+                request.user.save()
+                request.session['confirmado'] = False
+
+                logout(request)
+                messages.info(request, 'Inicia sesión de nuevo porfavor.')
+
+                # text_content = 'Denuncia'
+                # html_content = '<body><h1></h1></body>
+                #                     '''<footer><i>Los archivos quedan a cargo de la
+                #                      entidad indicada.</i><br>
+                #                     <i>Todos los datos de este correo son
+                #                      confidenciales y no deben ser difundidos
+                #                     a nadie más que las entidades interesadas
+                #                      en ellos.</i></footer>'''
+                #
+                # from_email = '"Denuncia Movil" <denunciamovil@gmail.com>'
+                # to = vIn
+                # msg = EmailMultiAlternatives(motivo, text_content, from_email, to)
+                # msg.attach_alternative(html_content, "text/html")
+                # if request.FILES:
+                #     msg.attach(archivo.name,archivo.read(),archivo.content_type)
+                # msg.send()
+
+                return redirect('inicio')
+
+        return render(request, 'usuario/cambio_correo.html', {})
