@@ -195,7 +195,7 @@ class UsuarioEdit(UpdateView):
     fields = [
         'nombre',
         'apellidos',
-        'correo',
+        # 'correo',
         'is_staff',
         'is_admin',
         'is_res',
@@ -256,3 +256,21 @@ def cambiarPass(request):
         form = CambioPassForm()
 
     return render(request, 'usuario/cambio_pass.html', {'form':form})
+
+@login_required(login_url='inicio')
+def confirmarPass(request):
+    if request.GET:
+        if request.method == 'POST':
+            password = request.POST['password']
+
+            if request.user.check_password(password):
+                HttpResponseRedirect(request.GET['next'])
+            else:
+                messages.error(request, 'Contraseña incorrecta.')
+
+    return render(request, 'usuario/confirmarPass.html', {})
+
+
+# @login_required(login_url='inicio')
+# def cambiarCorreo(request):
+#     if
