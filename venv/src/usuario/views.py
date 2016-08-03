@@ -253,6 +253,8 @@ def cambiarPass(request):
 
             else:
                 messages.error(request, 'Primero ingresa tu contraseña actual.')
+        else:
+            messages.error(request, 'Ingresa correctamente los campos')
     else:
         form = CambioPassForm()
 

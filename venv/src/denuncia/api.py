@@ -53,6 +53,9 @@ class DenunciaResource(ModelResource):
 
         imgData = bundle.data.get('file')
 
+        print bundle.data.get('latitud')
+        print bundle.data.get('longitud')
+
         bundle.obj = self._meta.object_class()
 
         for key, value in kwargs.items():
