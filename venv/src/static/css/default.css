@@ -218,7 +218,7 @@ html, body
 /* 4-column                                                                      */
 /*********************************************************************************/
 
-	.box1,
+	/*.box1,
 	.box2,
 	.box3,
 	.box4
@@ -237,7 +237,7 @@ html, body
 	.box4
 	{
 		float: right;
-	}
+	}*/
 
 /*********************************************************************************/
 /* 3-column                                                                      */
@@ -549,7 +549,7 @@ html, body
 	/*--MAPA DE DENUNCIAS------------------------------------------*/
 	/*-------------------------------------------------------------*/
 
-	#map{
+	#mapa{
 		height: 80%;
 		min-height: 550px;
 		width: 90%;
@@ -675,7 +675,7 @@ html, body
 	letter-spacing: 1px;
 	text-decoration: initial;
 	text-transform: uppercase;
-	align-items:  left;
+	/*align-items:  left;*/
 	font-size: 1em;
 	color: rgba(255,255,255,0.80);
 	background-color: black;
@@ -1311,14 +1311,14 @@ input, select, textarea{
 	margin-left: 15px;
 }
 
-
+/*
 .bDos {
 	text-align: left;
 	float: right;
 	width: 40%;
 	display: grid;
 	margin-left: 15px;
-}
+}*/
 
 div {
 	margin: .4em 0;
@@ -1506,7 +1506,7 @@ clases de Chart
 	{
 		text-align: left;
 		color: #000;
-		align-content: right;
+		/*align-content: right;*/
 		margin-left: 30%;
 		min-height: 100px;
 		width: 70%;
@@ -1559,7 +1559,7 @@ clases de Chart
 	}
 
 
-	input[type="submit" i], button {
+	/*input[type="submit"], button {
 		margin-left: 40%;
     align-items: flex-start;
     text-align: center;
@@ -1568,10 +1568,10 @@ clases de Chart
     background-color: buttonface;
     box-sizing: border-box;
     padding: 2px 6px 3px;
-		/*padding-right:  30px;*/
+		/*padding-right:  30px;
     border: 2px outset buttonface;
 
-	}
+	}*/
 
 
 	.boton {
@@ -1587,11 +1587,11 @@ clases de Chart
 
 	}
 
-	.camposForms form input[type="submit" i]{
+	/*.camposForms form input[type="submit"]{
 		width: 200px;
 		float: none;
 		margin: 10px auto;
-	}
+	}*/
 
 	element.style {
 		background-color: red;
@@ -1615,7 +1615,7 @@ clases de Chart
 	{
 		text-align: left;
 		color: rgba(0,0,0,0.6);
-		align-content: right;
+		/*align-content: right;*/
 		margin: 0 auto;
 		min-height: 300px;
 	}
