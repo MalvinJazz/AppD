@@ -32,7 +32,8 @@ urlpatterns = [
     url(r'^busqMot/', busquedaMo, name='mots'),
     url(r'^estadisticas/', include('localizaciones.urls', namespace="local")),
     url(r'^mapa/','localizaciones.views.mapa',name="mapa"),
-    url(r'^confirmar/', 'usuario.views.confirmarPass', name='confirmarPass')
+    url(r'^confirmar/', 'usuario.views.confirmarPass', name='confirmarPass'),
+    url(r'^push/', include('gcm.urls')),
 ]
 
 if settings.DEBUG:
