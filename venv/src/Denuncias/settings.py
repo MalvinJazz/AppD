@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tastypie',
+    'gcm',
     'denuncia',
     'localizaciones',
     'institucion',
@@ -111,6 +112,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'usuario.Usuario'
+
+GCM_APIKEY = "AIzaSyAPIn8C1d9dQLNNnv-Z2D0AKz6WESeZ8tI"
 
 # SESSION_COOKIE_AGE = 1800
 
