@@ -4,10 +4,7 @@
 
 @font-face {
 	font-family: "Tox";
-	src: url("fonts/Tox Typewriter/Tox_Typewriter.eot"),
-				url("fonts/Tox Typewriter/Tox_Typewriter.ttf"),
-				url("fonts/Tox Typewriter/Tox_Typewriter.svg"),
-				url("fonts/Tox Typewriter/Tox_Typewriter.woff");
+	src: url("fonts/Tox Typewriter/Tox_Typewriter.eot"),url("fonts/Tox Typewriter/Tox_Typewriter.ttf"),url("fonts/Tox Typewriter/Tox_Typewriter.svg"),url("fonts/Tox Typewriter/Tox_Typewriter.woff");
 }
 
 html, body
