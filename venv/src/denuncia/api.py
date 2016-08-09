@@ -135,6 +135,6 @@ class DenunciaResource(ModelResource):
             'motivo': ALL_WITH_RELATIONS,
             'direccion': ALL_WITH_RELATIONS
         }
-        allowed_methods = ['get', 'post']
+        allowed_methods = ['post']
         resource_name = 'denuncia'
         authorization = Authorization()

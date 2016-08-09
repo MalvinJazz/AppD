@@ -3,6 +3,7 @@
 from django.shortcuts import render, redirect
 from django.utils.encoding import smart_str, smart_unicode
 from django.core.mail import send_mail
+from django.core.serializers.json import Serializer
 from django.core.mail import EmailMultiAlternatives
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -19,6 +20,35 @@ from .forms import DenunciaForm
 from institucion.models import Correo, Institucion
 from localizaciones.models import Departamento, Municipio, Direccion
 from .models import Motivo, Denuncia
+
+#------------------------------------------------
+
+class DenunciaSerializer(Serializer):
+
+    def get_dump_object(self, obj):
+        fecha = timezone.localtime(obj.fecha)
+
+        dic = {
+            "sprite": obj.getSprite(),
+            "motivo": obj.motivo.motivo,
+            "fecha": fecha.strftime('%d-%b-%Y %-H:%M %Z'),
+            "latitud": obj.latitud,
+            "longitud": obj.longitud,
+        }
+
+        return dic
+
+
+def getDenuncias(request):
+
+    denuncias = Denuncia.objects.exclude(longitud = 0, latitud = 0)
+    denuncias = denuncias.exclude(longitud = None, latitud = None)
+
+    data = DenunciaSerializer().serialize(denuncias)
+
+    return HttpResponse(data, content_type='application/json')
+
+#------------------------------------------------
 
 def denunciar(request):
 
