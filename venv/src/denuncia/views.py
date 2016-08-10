@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime, date, time, timedelta
 
 from django.shortcuts import render, redirect
 from django.utils.encoding import smart_str, smart_unicode
@@ -31,7 +32,7 @@ class DenunciaSerializer(Serializer):
         dic = {
             "sprite": obj.getSprite(),
             "motivo": obj.motivo.motivo,
-            "fecha": fecha.strftime('%d-%b-%Y %-H:%M %Z'),
+            "fecha": fecha.strftime('%d-%b-%Y %-I:%M %p %Z'),
             "latitud": obj.latitud,
             "longitud": obj.longitud,
         }
@@ -43,6 +44,16 @@ def getDenuncias(request):
 
     denuncias = Denuncia.objects.exclude(longitud = 0, latitud = 0)
     denuncias = denuncias.exclude(longitud = None, latitud = None)
+
+    # print timezone.now()-timedelta(days=11)
+
+    fecha_desde = timezone.now()-timedelta(hours=24)
+    denuncias = denuncias.filter(
+        fecha__range = (
+            fecha_desde,
+            timezone.now()
+        )
+    )
 
     data = DenunciaSerializer().serialize(denuncias)
 
@@ -201,8 +212,8 @@ def denunciasList(request):
             motivos = motivos.filter(institucion=request.user.institucion)
 
             if request.user.is_res:
-                fecha_hasta = timezone.now().replace(day=timezone.now().day+1)
-                fecha_desde = timezone.now().replace(day=timezone.now().day-8)
+                fecha_hasta = timezone.now()+timedelta(days=1)
+                fecha_desde = timezone.now()-timedelta(days=8)
                 print fecha_desde
                 print fecha_hasta
                 denuncias = denuncias.filter(
