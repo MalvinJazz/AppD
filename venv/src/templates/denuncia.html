@@ -114,6 +114,10 @@
   $('#id_tipo').on('change', busquedaMot);
   $('#help1').on('click', mostrar);
   $('#document').ready(getGeolocation);
+  $('#id_motivo').on('change', function(){
+    if(document.getElementById('id_denuncia').value == "")
+      document.getElementById('id_denuncia').value = $('#id_motivo option:selected').text();
+  });
 
   document.getElementById('muni_id').length = 0;
   document.getElementById('id_direccion').length = 0;
@@ -208,7 +212,7 @@
 
   function busquedaMot(){
 
-    var id = $(this).val();
+    var id = $('#id_tipo').val();
     $.ajax({
 
       data: {'id': id},
@@ -246,6 +250,7 @@
   }
 
 	function getGeolocation() {
+    busquedaMot();
 		if (navigator.geolocation) {
 		    navigator.geolocation.getCurrentPosition(function(position){
 
