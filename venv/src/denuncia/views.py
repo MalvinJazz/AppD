@@ -244,7 +244,8 @@ def denunciasList(request):
             pass
 
         try:
-            denuncias = denuncias.filter(nombre__iexact=request.GET['nombre'])
+            denuncias = denuncias.filter(nombre__icontains=request.GET['nombre'])
+            # denuncias = denuncias.filter(nombre__iexact=request.GET['nombre'])
             # errores.append('Nombre:' + str(request.GET['nombre']))
         except:
             pass
