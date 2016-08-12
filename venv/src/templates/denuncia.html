@@ -146,6 +146,12 @@
   }
 
   function busquedaMuni(){
+    // var img = document.createElement('img');
+    // img.src = 'static/images/ajax-loader.gif';
+    // img.id = 'cargando';
+    // img.width = '32px';
+    // img.height = '32px';
+    // $(this).before('<img style="width=32px;" height="32px" src="static/images/ajax-loader.gif"></img>');
 
     var id = $(this).val();
     $.ajax({
@@ -174,10 +180,11 @@
           inner.options.add(nuevo);
 
         }
-
+        // img.parentNode.removeChild(img);
       },
       error: function(){
-        alert('Ocurrió un error con el servidor, intenta de nuevo más tarde.')
+        alert('Ocurrió un error con el servidor, intenta de nuevo más tarde.');
+        img.parentNode.removeChild(img);
       }
 
     })
