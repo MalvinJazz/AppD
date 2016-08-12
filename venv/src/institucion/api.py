@@ -12,7 +12,7 @@ class InstitucionResource(ModelResource):
             'tipo': ALL
         }
         resource_name = 'institucion'
-        allowed_methods = ['get', 'post']
+        allowed_methods = ['get']
         include_resource_uri = False
         authorization = Authorization()
 
@@ -28,3 +28,4 @@ class CorreoResource(ModelResource):
     class Meta:
         queryset = Correo.objects.all()
         resource_name = 'correo'
+        allowed_methods = ['get']
