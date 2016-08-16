@@ -59,10 +59,10 @@ Lista de Denuncias
         </div>
       </div>
       <div class="tabla_columna" style="position: relative; left: 14%;">
-        <div class="filtroN">
+        <!-- <div class="filtroN">
           <label>Buscar por nombre</label></br>
           <input type="text" id="nombre" value="">
-        </div>
+        </div> -->
         {% if user.is_staff or user.institucion.tipo == 'NG' %}
         <div class="filtroN" style="top: 20px;">
           <label>Buscar por institucion</label></br>
@@ -101,7 +101,7 @@ Lista de Denuncias
   <table id="tblDatos" class="table" style="color: black;">
     <tr>
       <th>ID</th>
-      <th>Nombre</th>
+      <!-- <th>Nombre</th> -->
       <th>Institucion</th>
       <th>Motivo</th>
       <th>Fecha</th>
@@ -109,7 +109,7 @@ Lista de Denuncias
     {% for denuncia in denuncias %}
     <tr>
       <td>{{denuncia.id}}</td>
-      <td>{{denuncia}}</td>
+      <!-- <td>{{denuncia}}</td> -->
       <td>{{denuncia.motivo.institucion}}</td>
       <td>{{denuncia.motivo}}</td>
       <td>{{denuncia.fecha}}</td>
@@ -199,7 +199,7 @@ $('#filtrar').on('click', function(){
   var dia = $('#dia').val();
   var mes = $('#mes').val();
   var anio = $('#anio').val();
-  var nombre = $('#nombre').val();
+  // var nombre = $('#nombre').val();
   var motivo = $('#motivo').val();
   var institucion = $('#institucion').val();
 
@@ -215,8 +215,8 @@ $('#filtrar').on('click', function(){
   if(anio!=0)
     anioF = '&año='+anio;
 
-  if(nombre!="")
-    nombre = '&nombre='+nombre;
+  // if(nombre!="")
+  //   nombre = '&nombre='+nombre;
 
   var motF = "";
   if(motivo!=0)
@@ -232,7 +232,7 @@ $('#filtrar').on('click', function(){
                             diaF+
                             mesF+
                             anioF+
-                            nombre+
+                            // nombre+
                             instF+
                             motF;
 
