@@ -23,7 +23,7 @@
     </table>
   {% endif %}
   </div>
-  <div class = "radioBtn">
+  <!-- <div class = "radioBtn">
     <div class="bloqueOne">
       <input type="radio" name="tipo" value="anonimo" checked onClick="deshabilita()">
       <label>Anonima</label>
@@ -32,12 +32,12 @@
       <input type="radio" name="tipo" value="personal" onClick="habilita()">
       <label>Personal</label>
     </div>
-  </div>
+  </div> -->
   <div id="bloqueForms">
     <form id="form1" method="POST" action='' enctype='multipart/form-data'>
       {% csrf_token %}
         <div class="form-group">
-          <div id="ident" style="display: none;">
+          <!-- <div id="ident" style="display: none;">
             <div>
               <label>Nombre</label></br>
                 {{form.nombre}} </br>
@@ -50,7 +50,7 @@
               <label>Telefono</label></br>
                 {{form.telefono}}</br>
             </div>
-          </div>
+          </div> -->
           <div>
           <label>Descripcion</label></br>
             {{form.denuncia}} </br>
@@ -135,17 +135,17 @@
   document.getElementById('id_direccion').length = 0;
   document.getElementById('id_motivo').length = 0;
 
-  function habilita(){
-    document.getElementById("id_nombre").disabled = false;
-    document.getElementById("id_dpi").disabled = false;
-    document.getElementById("ident").style.display = 'block'
-  }
-
-  function deshabilita(){
-    document.getElementById("id_nombre").disabled = true;
-    document.getElementById("id_dpi").disabled = true;
-    document.getElementById("ident").style.display = 'none';
-  }
+  // function habilita(){
+  //   document.getElementById("id_nombre").disabled = false;
+  //   document.getElementById("id_dpi").disabled = false;
+  //   document.getElementById("ident").style.display = 'block'
+  // }
+  //
+  // function deshabilita(){
+  //   document.getElementById("id_nombre").disabled = true;
+  //   document.getElementById("id_dpi").disabled = true;
+  //   document.getElementById("ident").style.display = 'none';
+  // }
 
   function busquedaMuni(){
     // var img = document.createElement('img');
