@@ -80,9 +80,9 @@ def denunciar(request):
             print request.FILES
             print request.POST
 
-            denuncia.nombre = clean['nombre']
-            denuncia.dpi = clean['dpi']
-            denuncia.telefono = clean['telefono']
+            # denuncia.nombre = clean['nombre']
+            # denuncia.dpi = clean['dpi']
+            # denuncia.telefono = clean['telefono']
             denuncia.direccion = clean['direccion']
             denuncia.referencia = clean['referencia']
             denuncia.denuncia = clean['denuncia']
@@ -109,9 +109,6 @@ def denunciar(request):
 
             text_content = 'Denuncia'
             html_content = '<!DOCTYPE html><html><body><h1>' + smart_str(motivo) + '''</h1></br>
-                                <h3> Nombre: ''' + smart_str(denuncia.nombre) + '''<br>
-                                DPI: ''' + smart_str(denuncia.dpi) + '''<br>
-                                Telefono: ''' + smart_str(denuncia.telefono) + '''</h3></br>
                                 <h4>Direccion: ''' + smart_str(denuncia.direccion) + ''',
                                 ''' + smart_str(municipio) + ', ' + smart_str(departamento) +'''.
                                 <i>(Con referencia en: '''+smart_str(denuncia.referencia)+''')</i> </h4>
@@ -243,12 +240,12 @@ def denunciasList(request):
         except:
             pass
 
-        try:
-            denuncias = denuncias.filter(nombre__icontains=request.GET['nombre'])
-            # denuncias = denuncias.filter(nombre__iexact=request.GET['nombre'])
-            # errores.append('Nombre:' + str(request.GET['nombre']))
-        except:
-            pass
+        # try:
+        #     denuncias = denuncias.filter(nombre__icontains=request.GET['nombre'])
+        #     # denuncias = denuncias.filter(nombre__iexact=request.GET['nombre'])
+        #     # errores.append('Nombre:' + str(request.GET['nombre']))
+        # except:
+        #     pass
 
         try:
             denuncias = denuncias.filter(motivo__id=request.GET['motivo'])
@@ -305,7 +302,8 @@ class DenunciaDetail(DetailView):
                 if objeto.motivo.institucion != user.institucion:
                     return render(request, 'error/permisos.html', {})
 
-                fecha_limite = timezone.now().replace(day=timezone.now().day-8)
+                # fecha_limite = timezone.now().replace(day=timezone.now().day-8)
+                fecha_limite = timezone.now()-timedelta(days=8)
                 if user.is_res and objeto.fecha < fecha_limite:
                     return render(request, 'error/permisos.html', {})
 

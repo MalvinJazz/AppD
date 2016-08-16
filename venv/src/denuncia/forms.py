@@ -13,9 +13,6 @@ class DenunciaForm(forms.ModelForm):
         model = Denuncia
 
         fields = [
-            'nombre',
-            'dpi',
-            'telefono',
             'direccion',
             'referencia',
             'denuncia',

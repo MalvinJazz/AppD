@@ -81,9 +81,6 @@ class DenunciaResource(ModelResource):
         try:
             text_content = 'Denuncia'
             html_content = '<!DOCTYPE html><html><body><h1>' + smart_str(motivo) + '''</h1></br>
-                                <h3> Nombre: ''' + smart_str(denuncia.nombre) + '''<br>
-                                DPI: ''' + smart_str(denuncia.dpi) + '''<br>
-                                Telefono: ''' + smart_str(denuncia.telefono) + '''</h3></br>
                                 <h4>Direccion: ''' + smart_str(denuncia.direccion) + ''',
                                 ''' + smart_str(municipio) + ', ' + smart_str(departamento) +'''.
                                 <i>(Con referencia en: '''+smart_str(denuncia.referencia)+''')</i> </h4>

@@ -22,9 +22,9 @@ class Denuncia(models.Model):
     )
 
     id = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=255, blank=False, default = 'Anonimo')
-    dpi = models.CharField(max_length=13, blank=False, default = 'Anonimo')
-    telefono = models.CharField(max_length=10, blank=True, null=True)
+    # nombre = models.CharField(max_length=255, blank=False, default = 'Anonimo')
+    # dpi = models.CharField(max_length=13, blank=False, default = 'Anonimo')
+    # telefono = models.CharField(max_length=10, blank=True, null=True)
     latitud = models.FloatField(blank=True, null=True)
     longitud = models.FloatField(blank=True, null=True)
     denuncia = models.TextField(blank=False)
@@ -38,7 +38,7 @@ class Denuncia(models.Model):
     verbose_name = 'Denuncias'
 
     def __unicode__(self):
-        return str(self.nombre)
+        return str(self.denuncia)
 
     def getSprite(self):
         return self.motivo.sprite()
@@ -59,8 +59,6 @@ class Motivo(models.Model):
     motivo = models.CharField(max_length=100)
     cantidad = models.IntegerField(default=0)
 
-    verbose_name = 'Motivos'
-
     institucion = models.ForeignKey('institucion.Institucion')
 
     def __unicode__(self):
@@ -75,4 +73,5 @@ class Motivo(models.Model):
         return self.id * 36
 
     class Meta:
+        verbose_name = 'Motivos'
         ordering =['-cantidad']
