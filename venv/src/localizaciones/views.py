@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core import serializers
 from django.core.serializers.json import Serializer
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 # from django.views.generic.detail import DetailView
 #from django.utils.encoding import smart_text, is_protected_type
 
@@ -117,10 +117,13 @@ def municipioDetail(request, dep, muni):
         tmp1 = tmp1 + ' ' + splt1[i]
         i += 1
 
-    ms = Municipio.objects.filter(departamento__nombre=tmp)
-    m = ms.get(nombre=tmp1)
-    dirs = Direccion.objects.filter(municipio=m)
+    try:
 
+        ms = Municipio.objects.filter(departamento__nombre=tmp)
+        m = ms.get(nombre=tmp1)
+        dirs = Direccion.objects.filter(municipio=m)
+    except:
+        raise Http404('Error')
 
     context = {
         'municipio': m,

@@ -9,7 +9,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.utils import timezone
 from django.core.mail import EmailMultiAlternatives
@@ -173,7 +173,8 @@ def privado(request):
 def usuarioList(request):
 
     if not request.user.is_staff:
-        return render(request, 'error/permisos.html', {})
+        # return render(request, 'error/permisos.html', {})
+        raise Http404('error')
 
     usuarios = Usuario.objects.exclude(id=request.user.id)
 
@@ -183,6 +184,8 @@ def usuarioList(request):
                         institucion__nombre=request.GET['institucion']
                         )
 
+    if len(usuarios) == 0:
+        raise Http404('error')
 
     context = {
         'usuarios': usuarios
@@ -204,7 +207,8 @@ class UsuarioDetail(DetailView):
             return redirect('usuario:privado')
 
         if not request.user.is_staff:
-            return render(request, 'error/permisos.html', {})
+            # return render(request, 'error/permisos.html', {})
+            raise Http404('error')
 
         return handler
 
@@ -237,7 +241,8 @@ class UsuarioEdit(UpdateView):
             return redirect('usuario:privado')
 
         if not request.user.is_staff:
-            return render(request, 'error/permisos.html', {})
+            # return render(request, 'error/permisos.html', {})
+            raise Http404('error')
 
         return handler
 

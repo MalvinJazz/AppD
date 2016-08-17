@@ -14,7 +14,7 @@ from django.core import serializers
 from django.core.mail import EmailMessage
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib import messages
 
 from .forms import DenunciaForm
@@ -297,15 +297,18 @@ class DenunciaDetail(DetailView):
             if user.is_admin and user.institucion.tipo == 'NG':
                 if objeto.direccion != user.zona:
                     if objeto.direccion.municipio != user.zona.municipio:
-                        return render(request, 'error/permisos.html', {})
+                        # return render(request, 'error/permisos.html', {})
+                        raise Http404('error')
             else:
                 if objeto.motivo.institucion != user.institucion:
-                    return render(request, 'error/permisos.html', {})
+                    # return render(request, 'error/permisos.html', {})
+                    raise Http404('error')
 
                 # fecha_limite = timezone.now().replace(day=timezone.now().day-8)
                 fecha_limite = timezone.now()-timedelta(days=8)
                 if user.is_res and objeto.fecha < fecha_limite:
-                    return render(request, 'error/permisos.html', {})
+                    # return render(request, 'error/permisos.html', {})
+                    raise Http404('error')
 
         return handler
 
