@@ -3,6 +3,7 @@
 # import collections
 # import time
 import calendar
+from datetime import datetime, date, time, timedelta
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
@@ -103,12 +104,32 @@ def cerrar(request):
     logout(request)
     return redirect('inicio')
 
+def restarMeses(fecha, resta):
+    if resta >= fecha.month:
+        resta = resta - fecha.month
+
+        nueva_fecha = fecha.replace(year=(fecha.year-1), month=(12-resta))
+
+        # print resta
+        # if resta > 12:
+        #     nueva_fecha = restarMeses(nueva_fecha, resta)
+        # else:
+        #     nueva_fecha = nueva_fecha.replace(month=(12-resta))
+    # elif resta == fecha.month:
+    #     nueva_fecha = fecha.replace(month=1)
+    else:
+        nueva_fecha = fecha.replace(month=(fecha.month - resta))
+
+    return nueva_fecha
+
 def getDenuncias():
     dias = 31#timezone.now().day
 
     i=1
     # denuncias = collections.OrderedDict()
     denuncias = []
+    fecha1 = restarMeses(timezone.now(), 1)
+    fecha2 = restarMeses(timezone.now(), 2)
     while i<=dias:
         denuncias.append((
             str(i), len(Denuncia.objects.filter(
@@ -118,15 +139,15 @@ def getDenuncias():
             ).filter(
                 fecha__day = i
             )), len(Denuncia.objects.filter(
-                fecha__year = timezone.now().year
+                fecha__year = fecha1.year
             ).filter(
-                fecha__month = timezone.now().month - 1
+                fecha__month = fecha1.month
             ).filter(
                 fecha__day = i
             )), len(Denuncia.objects.filter(
-                fecha__year = timezone.now().year
+                fecha__year = fecha2.year
             ).filter(
-                fecha__month = timezone.now().month - 2
+                fecha__month = fecha2.month
             ).filter(
                 fecha__day = i))))
         i += 1
@@ -136,11 +157,13 @@ def getDenuncias():
 @login_required(login_url='inicio')
 def privado(request):
 
+    # print restarMeses(timezone.now(), 23)
+
     context = {
         'denuncias': getDenuncias(),
         'tiempo1': timezone.now().strftime('%B'),
-        'tiempo2': calendar.month_name[timezone.now().month - 1],
-        'tiempo3': calendar.month_name[timezone.now().month - 2]
+        'tiempo2': calendar.month_name[restarMeses(timezone.now(), 1).month],
+        'tiempo3': calendar.month_name[restarMeses(timezone.now(), 2).month]
     }
 
     return render(request, 'usuario/privado.html', context)
