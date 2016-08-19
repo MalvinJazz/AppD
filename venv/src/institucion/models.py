@@ -21,7 +21,7 @@ class Institucion(models.Model):
 
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255, blank = False)
-    telefono = models.CharField(max_length=8, blank = False)
+    # telefono = models.CharField(max_length=8, blank = False)
     tipo = models.CharField(max_length=2, choices=TIPO_CHOICES, default=CRIMINAL)
 
 
@@ -45,6 +45,7 @@ class Correo(models.Model):
     correo = models.EmailField()
 
     institucion = models.ForeignKey('Institucion')
+    municipio = models.ForeignKey('localizaciones.Municipio')
 
     def __unicode__(self):
         return str(self.correo)
