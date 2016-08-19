@@ -101,7 +101,17 @@ def denunciar(request):
 
             motivo = denuncia.motivo
             vIn = motivo.institucion
-            vIn = Correo.objects.filter(institucion=vIn)
+            if denuncia.tipo == 'MU':
+                vIn = Correo.objects.filter(
+                    institucion=vIn,
+                    municipio=municipio
+                )
+            else:
+                vIn = Correo.objects.filter(
+                    institucion=vIn,
+                    municipio__departamento=departamento
+                )
+
             print vIn
 
 

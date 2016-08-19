@@ -6,7 +6,7 @@ from .models import Denuncia, Motivo
 
 
 class DenunciaAdmin(admin.ModelAdmin):
-    list_display = ['id', 'motivo', 'denuncia','direccion','referencia', 'fecha']
+    list_display = ['id', 'motivo', 'tipo', 'denuncia','direccion','referencia', 'fecha']
 
 class MotivoAdmin(admin.ModelAdmin):
     list_display = ['id', 'motivo','institucion','cantidad']
