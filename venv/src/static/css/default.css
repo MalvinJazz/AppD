@@ -77,9 +77,11 @@ html, body
 	.jocote{
 		min-height: 100px;
 		clear: both;
-		padding-top: 5.5%;
+		padding-top: 6.5%;
 		margin: 0px;
 	}
+
+
 
 /*********************************************************************************/
 /* Image Style                                                                   */
@@ -643,13 +645,17 @@ html, body
 		margin: 0 auto;
 		position: absolute;
 		height: 3.28em;
-		width: 3.28em;
+		width: 12.28em;
 		left: 1%;
 	}
 
 	.logo img{
 		height: 100%;
 		position: relative;
+	}
+
+	.logo p{
+		display: block;
 	}
 
 	/*#logo h1
@@ -875,6 +881,10 @@ html, body
 		border-radius: 10px;
 	}
 
+	.filtro_estatico input[type='button']:hover{
+		background:#0f6f91;
+		color: #FFF;
+	}
 
 	.filtro_estatico:hover input[type='button']{
 		display: block;

@@ -83,7 +83,7 @@
 
 #navbar ul li a{
 
-  color: #9a9a9a;
+  color: #BCBCBC;
   font-size: smaller;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
@@ -99,7 +99,7 @@
 
   height:100%;
 
-  line-height:36px;
+  line-height:50px;
 
   display:block;
 
@@ -113,17 +113,17 @@
 
   height:100%;
 
-  line-height:36px;
+  line-height:45px;
 }
 
 #navbar .navhome a span, #navbar .navhome a:hover span{
 
-  color: #5197FF;
+  color: #f7a601;;
 
 
   height:100%;
 
-  line-height:36px;
+  line-height:45px;
 
 }
 
@@ -134,7 +134,7 @@
 
   height:100%;
 
-  line-height:36px;
+  line-height:50px;
 
 }
 
@@ -143,18 +143,18 @@
 
   height:100%;
 
-  line-height:36px;
+  line-height:45px;
 }
 
 #navbar ul li a:hover span{
 
-  color: #5197FF;
+  color: #f7a601;;
 
   height:100%;
 
-  line-height:36px;
+  line-height:45px;
 
-  border-bottom: medium solid #071773;
+  /*border-bottom: medium solid #4370bb;*/
   /*border-top: medium solid #071773;*/
 }
 
