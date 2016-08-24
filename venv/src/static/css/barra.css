@@ -2,7 +2,7 @@
 
   width:auto;
 
-  height:36px;
+  height:3.28em;
 
   float: right;
 
@@ -15,7 +15,7 @@
 
   display:block;
 
-  height:36px;
+  height:100%;
 
 }
 
@@ -25,18 +25,18 @@
   display:none;
 	min-width:110px;
   float: left;
-  background-color: #1A57A7;
+  background-color: #294471;
 }
 
 .inbar li:hover > ul {
   display:block;
-  background-color: #1A57A7;
+  background-color: #294471;
   float: left;
 }
 
 .nav li ul li {
   float: left;
-  background-color: #1A57A7;
+  background-color: #294471;
   width: 110px;
 }
 
@@ -46,6 +46,7 @@
 
 .inbar #usuario li a span{
   width: 110px;
+  font-size: smaller;
 }
 
 /*---------------------------------------------------*/
@@ -60,7 +61,7 @@
 
   list-style:none;
 
-  height:36px;
+  /*height:100%;*/
 
   line-height:36px;
 }
@@ -82,9 +83,9 @@
 
 #navbar ul li a{
 
-  color: #C1C1C3;
+  color: #9a9a9a;
   font-size: smaller;
-  font-family: Helvetica;
+  font-family: 'Montserrat', sans-serif;
   font-weight: bold;
 
   text-decoration:none;
@@ -96,7 +97,7 @@
 
   padding:0 10px;
 
-  height:36px;
+  height:100%;
 
   line-height:36px;
 
@@ -104,13 +105,13 @@
 
   margin-left: 0px;
 
-  background-color: #1A57A7;
+  background-color: #294471;
 }
 
 #navbar .navhome a, #navbar .navhome a:hover{
 
 
-  height:36px;
+  height:100%;
 
   line-height:36px;
 }
@@ -120,7 +121,7 @@
   color: #5197FF;
 
 
-  height:36px;
+  height:100%;
 
   line-height:36px;
 
@@ -131,7 +132,7 @@
   color:#FFF;
 
 
-  height:36px;
+  height:100%;
 
   line-height:36px;
 
@@ -140,7 +141,7 @@
 #navbar ul li a:hover{
 
 
-  height:36px;
+  height:100%;
 
   line-height:36px;
 }
@@ -149,12 +150,12 @@
 
   color: #5197FF;
 
-  height:36px;
+  height:100%;
 
   line-height:36px;
 
   border-bottom: medium solid #071773;
-  border-top: medium solid #071773;
+  /*border-top: medium solid #071773;*/
 }
 
 /*Barra de navegación en listas---------------------------------*/
@@ -208,10 +209,9 @@
 
 #linkbar ul li a{
 
-  color: #1A57A7;
+  color: #294471;
   font-size: smaller;
-  font-family: Helvetica;
-  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
 
   text-decoration:none;
 

@@ -8,6 +8,7 @@ input, select{
   height: 100%;
   margin-left: -10%;
   clear: both;
+  font-family: 'Martel', serif;
 }
 
 textarea{
@@ -19,6 +20,7 @@ textarea{
   height: 150px;
   margin-left: -10%;
   clear: both;
+  font-family: 'Martel', serif;
 }
 
 input[type='file']{
@@ -46,6 +48,17 @@ input[type='submit']{
   font-size-adjust: .5;
   clear: both;
   margin-left: -100%;
+  font-family: 'Montserrat', sans-serif;
+  background: #ee8e00;
+  color: #FFF;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+input[type='submit']:hover{
+  background: #0f6f91;
+  color: #FFF;
 }
 
 /*input[type='text']{
