@@ -19,7 +19,7 @@ html, body
 	{
 		margin: 0px;
 		padding: 0px;
-		background: #000;
+		background: #FFF;
 		font-family: 'Didact Gothic', sans-serif;
 		font-size: 12pt;
 		font-weight: 200;
@@ -33,7 +33,7 @@ html, body
 		text-align: left;
 		font-family: 'Montserrat', sans-serif;
 		font-weight: bold;
-		color: #FFF;
+		color: #294471;
 		font-size: larger;
 	}
 
@@ -313,7 +313,7 @@ html, body
 	.title
 	{
 		padding: .5em;
-		background-color: #5c83c4;
+		background-color: #efefef;
 		margin: 0px;
 	}
 
@@ -596,10 +596,13 @@ html, body
 		position: fixed;
 		z-index: 100;
 		opacity: .9;
+		-webkit-box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.4);
+		-moz-box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.4);
+		box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.4);
 	}
 
 	.table{
-		font-family: 'Martel', serif;
+		font-family: 'Roboto', serif;
 	}
 
 	.table > tbody > tr > th{
@@ -614,7 +617,8 @@ html, body
 	{
 		position: relative;
 		padding: 0em 0em 3.28em 0em;
-		background-color: #294471;
+		background-color: #e6e6e6;
+		border-bottom: .75px solid rgba(0,0,0,0.05);
 	}
 
 	#header
@@ -858,12 +862,10 @@ html, body
 		width: 40px;
 		height: 45px;
 		/*min-width: 500px;*/
-		background-color: #174E97;
+		/*3f69af*/
+		background-color: rgba(63, 105, 175, 0.8);
+		/*background-color: #174E97;*/
 		transition: height 1.13s, width 1s;
-		opacity: .9;
-		/*align-items: center;
-		align-content: center;*/
-		/*display: table;*/
 	}
 
 	.filtro_estatico input[type='button']{
@@ -874,11 +876,12 @@ html, body
 		top: 15%;
 		left: 4%;
 		font-family: 'Montserrat', sans-serif;
-		background: #ee8e00;
+		background: #CC0C19;
 		color: #FFF;
 		-webkit-border-radius: 10px;
 		-moz-border-radius: 10px;
 		border-radius: 10px;
+		border: 0;
 	}
 
 	.filtro_estatico input[type='button']:hover{
@@ -1028,8 +1031,9 @@ html, body
 
 	#finalPag{
 
-		background-color: #000;
+		background-color: #E6E6E6;
 		padding: .2em;
+		width: 100%;
 
 	}
 
@@ -1041,7 +1045,7 @@ html, body
 		margin-bottom: 3%;
 		text-align: center;
 		font-size: 70%;
-		font-family: 'Martel', serif;
+		font-family: 'Roboto', sans-serif;
 
 	}
 
@@ -1060,12 +1064,12 @@ html, body
 /*********************************************************************************/
 td > a{
 	color: #8a8a8a;
-	font-family: 'Martel', serif;
+	font-family: 'Roboto', sans-serif;
 
 }
 
 td > p{
-	font-family: 'Martel', serif;
+	font-family: 'Roboto', sans-serif;
 }
 
 h3 > i > a{
@@ -1398,12 +1402,12 @@ clases de Chart
 }
 
 #line-chart{
-	position: relative;
-	left: 21%;
+	position: absolute;
+	left: 40%;
 	width: 55%;
-	top: -330px;
+	top: 10%;
 	clear: both;
-	height: 400px;
+	height: 70%;
 }
 
 #columnchart{

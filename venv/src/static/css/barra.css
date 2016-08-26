@@ -81,9 +81,13 @@
   text-align: center;
 }
 
-#navbar ul li a{
+.paranga ul li a span{
+  border-top: .75px solid rgba(0,0,0,.1);
+}
 
-  color: #BCBCBC;
+#navbar ul li a {
+
+  color: #3f69af;
   font-size: smaller;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
@@ -91,6 +95,8 @@
   text-decoration:none;
 
   display:block;
+
+  text-shadow: 0.5px 0.5px 2px rgba(0,0,0,0.35);
 }
 
 #navbar ul li a span{
@@ -105,7 +111,7 @@
 
   margin-left: 0px;
 
-  background-color: #294471;
+  background-color: #e6e6e6;
 }
 
 #navbar .navhome a, #navbar .navhome a:hover{
@@ -118,7 +124,7 @@
 
 #navbar .navhome a span, #navbar .navhome a:hover span{
 
-  color: #f7a601;;
+  color: #d91522;
 
 
   height:100%;
@@ -148,11 +154,13 @@
 
 #navbar ul li a:hover span{
 
-  color: #f7a601;;
+  color: #d91522;
 
   height:100%;
 
   line-height:45px;
+
+  text-shadow: 1px 4px 2px rgba(0,0,0,0.35);
 
   /*border-bottom: medium solid #4370bb;*/
   /*border-top: medium solid #071773;*/
