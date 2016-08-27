@@ -33,7 +33,7 @@ html, body
 		text-align: left;
 		font-family: 'Montserrat', sans-serif;
 		font-weight: bold;
-		color: #294471;
+		color: #294897;
 		font-size: larger;
 	}
 
@@ -651,6 +651,23 @@ html, body
 		height: 3.28em;
 		width: 12.28em;
 		left: 1%;
+	}
+
+	.logo table{
+		display: inline-block;
+		position: absolute;
+		top: 20%;
+		left: 42%;
+		font-family: "Montserrat",serif;
+		font-size: large;
+		color: #FFF;
+		line-height: 20px;
+		text-shadow: 0px 1px 3px #000;
+	}
+
+	.logo td{
+		font-family: 'Patua One', cursive;
+		font-size: larger;
 	}
 
 	.logo img{
