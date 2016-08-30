@@ -9,7 +9,7 @@ class DenunciaAdmin(admin.ModelAdmin):
     list_display = ['id', 'motivo', 'tipo', 'denuncia','direccion','referencia', 'fecha']
 
 class MotivoAdmin(admin.ModelAdmin):
-    list_display = ['id', 'motivo','institucion','cantidad']
+    list_display = ['id', 'motivo' ,'cantidad']
 
 admin.site.register(Denuncia, DenunciaAdmin)
 admin.site.register(Motivo, MotivoAdmin)

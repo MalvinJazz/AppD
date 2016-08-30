@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.db import models
+from django.utils.encoding import smart_str, smart_unicode
 from django.utils import timezone
 
 class Denuncia(models.Model):
@@ -38,7 +39,7 @@ class Denuncia(models.Model):
     verbose_name = 'Denuncias'
 
     def __unicode__(self):
-        return str(self.denuncia)
+        return self.denuncia
 
     def getSprite(self):
         return self.motivo.sprite()
@@ -55,15 +56,28 @@ def denuncia_save(sender, instance, **kwargs):
     instance.motivo.save()
 
 class Motivo(models.Model):
+    CRIMINAL = 'CR'
+    MUNICIPAL = 'MU'
+    MEDIO_AMBIENTE = 'MA'
+    DERECHOS_HUMANOS = 'DH'
+
+    TIPO_CHOICES = (
+        (CRIMINAL, 'Criminal'),
+        (MUNICIPAL, 'Municipal'),
+        (MEDIO_AMBIENTE, 'Medio Ambiente'),
+        (DERECHOS_HUMANOS, 'Derechos Humanos'),
+    )
+
     id = models.AutoField(primary_key=True)
     motivo = models.CharField(max_length=100)
     cantidad = models.IntegerField(default=0)
+    tipo = models.CharField(max_length=2, choices=TIPO_CHOICES, default=CRIMINAL)
 
-    correos = models.ManyToManyField('institucion.Correo')
-    # institucion = models.ForeignKey('institucion.Institucion')
+    # correos = models.ManyToManyField('institucion.Correo')
+    instituciones = models.ManyToManyField('institucion.Institucion')
 
     def __unicode__(self):
-        return str(self.motivo)
+        return self.motivo
 
     def sumTotal(self):
         denuncias = Denuncia.objects.filter(motivo=self)

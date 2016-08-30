@@ -100,19 +100,34 @@ def denunciar(request):
             departamento = municipio.departamento
 
             motivo = denuncia.motivo
-            vIn = motivo.institucion
-            if denuncia.tipo == 'MU':
-                vIn = Correo.objects.filter(
-                    institucion=vIn,
-                    municipio=municipio
-                )
-            else:
-                vIn = Correo.objects.filter(
-                    institucion=vIn,
-                    municipio__departamento=departamento
-                )
+            vIn = motivo.instituciones.all()
 
-            print vIn
+            correos = Correo.objects.none()
+            for institucion in vIn:
+                if institucion.tipo == "MU":
+                    temp = Correo.objects.filter(
+                                    institucion = institucion,
+                                    municipio = municipio
+                                    )
+                else:
+                    temp = Correo.objects.filter(
+                                    institucion = institucion,
+                                    municipio__departamento = departamento
+                    )
+                correos = correos | temp
+
+            # if denuncia.tipo == 'MU':
+            #     vIn = Correo.objects.filter(
+            #         institucion=vIn,
+            #         municipio=municipio
+            #     )
+            # else:
+            #     vIn = Correo.objects.filter(
+            #         institucion=vIn,
+            #         municipio__departamento=departamento
+            #     )
+
+            print correos
 
 
             #Envio de correo----------------------------------------------------
@@ -132,7 +147,7 @@ def denunciar(request):
                                  en ellos.</i></footer></html>'''
 
             from_email = '"Denuncia Movil" <denunciamovil@gmail.com>'
-            to = vIn
+            to = correos
             msg = EmailMultiAlternatives(motivo, text_content, from_email, to)
             msg.attach_alternative(html_content, "text/html")
             if request.FILES:
@@ -191,7 +206,7 @@ def busquedaMo(request):
             mots = Motivo.objects.filter(institucion__id=vID)
 
     except:
-        mots = Motivo.objects.filter(institucion__tipo = vID)
+        mots = Motivo.objects.filter(tipo = vID)
 
     data = serializers.serialize('json', mots, fields = ('motivo'))
 

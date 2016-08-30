@@ -23,9 +23,9 @@ from localizaciones.api import (
 
 class MotivoResource(ModelResource):
 
-    institucion = fields.ForeignKey(
+    instituciones = fields.ToManyField(
         InstitucionResource,
-        attribute='institucion',
+        attribute='instituciones',
         full=True,
         )
 
@@ -33,7 +33,7 @@ class MotivoResource(ModelResource):
         queryset = Motivo.objects.all()
         filtering = {
             'id': ALL,
-            'institucion': ALL_WITH_RELATIONS,
+            'instituciones': ALL_WITH_RELATIONS,
         }
         allowed_methods = ['get']
         resource_name = 'motivo'
