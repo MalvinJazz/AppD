@@ -59,7 +59,8 @@ class Motivo(models.Model):
     motivo = models.CharField(max_length=100)
     cantidad = models.IntegerField(default=0)
 
-    institucion = models.ForeignKey('institucion.Institucion')
+    correos = models.ManyToManyField('institucion.Correo')
+    # institucion = models.ForeignKey('institucion.Institucion')
 
     def __unicode__(self):
         return str(self.motivo)
