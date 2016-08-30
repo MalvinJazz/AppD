@@ -21,7 +21,7 @@ from django.contrib import admin
 from denuncia.views import busquedaMo
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^a84cdb3a7c1d949ede1fc3a72a1e781d3f4de971/', admin.site.urls),
     url(r'^logout/', 'usuario.views.cerrar', name='logout'),
     url(r'^usuario/', include('usuario.urls', namespace='usuario')),
     url(r'^institucion/', include('institucion.urls', namespace='institucion')),

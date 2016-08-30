@@ -203,7 +203,7 @@ def busquedaMo(request):
 
     try:
         if request.GET['tipo']:
-            mots = Motivo.objects.filter(institucion__id=vID)
+            mots = Motivo.objects.filter(instituciones__id=vID)
 
     except:
         mots = Motivo.objects.filter(tipo = vID)
