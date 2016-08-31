@@ -104,6 +104,7 @@ def denunciar(request):
 
             correos = Correo.objects.none()
             for institucion in vIn:
+                print institucion
                 if institucion.tipo == "MU":
                     temp = Correo.objects.filter(
                                     institucion = institucion,
@@ -114,6 +115,7 @@ def denunciar(request):
                                     institucion = institucion,
                                     municipio__departamento = departamento
                     )
+                print temp
                 correos = correos | temp
 
             # if denuncia.tipo == 'MU':

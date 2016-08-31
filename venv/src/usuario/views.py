@@ -108,7 +108,7 @@ def restarMeses(fecha, resta):
     if resta >= fecha.month:
         resta = resta - fecha.month
 
-        nueva_fecha = fecha.replace(year=(fecha.year-1), month=(12-resta))
+        nueva_fecha = fecha.replace(year=(fecha.year-1), month=(12-resta), day=1)
 
         # print resta
         # if resta > 12:
@@ -118,7 +118,7 @@ def restarMeses(fecha, resta):
     # elif resta == fecha.month:
     #     nueva_fecha = fecha.replace(month=1)
     else:
-        nueva_fecha = fecha.replace(month=(fecha.month - resta))
+        nueva_fecha = fecha.replace(month=(fecha.month - resta), day=1)
 
     return nueva_fecha
 

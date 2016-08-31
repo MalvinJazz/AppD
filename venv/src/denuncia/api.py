@@ -75,9 +75,21 @@ class DenunciaResource(ModelResource):
         departamento = municipio.departamento
 
         motivo = denuncia.motivo
-        # vIn = motivo.institucion
-        # vIn = Correo.objects.filter(institucion=vIn)
+        vIn = motivo.instituciones.all()
 
+        correos = Correo.objects.none()
+        for institucion in vIn:
+            if institucion.tipo == "MU":
+                temp = Correo.objects.filter(
+                                institucion = institucion,
+                                municipio = municipio
+                                )
+            else:
+                temp = Correo.objects.filter(
+                                institucion = institucion,
+                                municipio__departamento = departamento
+                )
+            correos = correos | temp
 
         try:
             text_content = 'Denuncia'
@@ -95,7 +107,7 @@ class DenunciaResource(ModelResource):
                                  en ellos.</i></footer></html>'''
 
             from_email = '"Denuncia Movil" <denunciamovil@gmail.com>'
-            to = vIn
+            to = correos
             msg = EmailMultiAlternatives(motivo, text_content, from_email, to)
 
             msg.attach_alternative(html_content, "text/html")
