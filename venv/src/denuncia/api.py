@@ -33,6 +33,7 @@ class MotivoResource(ModelResource):
         queryset = Motivo.objects.all()
         filtering = {
             'id': ALL,
+            'tipo': ALL,
             'instituciones': ALL_WITH_RELATIONS,
         }
         allowed_methods = ['get']
@@ -74,8 +75,8 @@ class DenunciaResource(ModelResource):
         departamento = municipio.departamento
 
         motivo = denuncia.motivo
-        vIn = motivo.institucion
-        vIn = Correo.objects.filter(institucion=vIn)
+        # vIn = motivo.institucion
+        # vIn = Correo.objects.filter(institucion=vIn)
 
 
         try:
