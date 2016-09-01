@@ -77,7 +77,14 @@ class Motivo(models.Model):
     instituciones = models.ManyToManyField('institucion.Institucion')
 
     def __unicode__(self):
-        return self.motivo
+        splt = self.motivo.split('_')
+
+        tmp = splt[0]
+        i = 1
+        while i<len(splt):
+            tmp = tmp + ' ' + splt[i]
+            i += 1
+        return tmp
 
     def sumTotal(self):
         denuncias = Denuncia.objects.filter(motivo=self)
