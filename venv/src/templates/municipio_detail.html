@@ -44,7 +44,7 @@ function draw() {
           easing: 'out',
           startup: true,
       },
-      colors: ['#0d47a1'],
+      colors: ['#4370bb'],
       hAxis:{
         format: 'decimal',
         minValue: 0,
@@ -90,7 +90,7 @@ function draw() {
             var datos = google.visualization.arrayToDataTable([
               ['Motivo', 'Denuncias'],
               {% for motivo in motivos %}
-                ['{{motivo}}', data[0].mots.{{motivo}}],
+                ['{{motivo}}', data[0].mots.{{motivo.motivo}}],
               {% endfor %}
             ]);
 
