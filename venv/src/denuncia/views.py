@@ -16,6 +16,8 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib import messages
+from django.template import Context
+from django.template.loader import get_template
 
 from .forms import DenunciaForm
 from institucion.models import Correo, Institucion
@@ -135,18 +137,23 @@ def denunciar(request):
             #Envio de correo----------------------------------------------------
 
             text_content = 'Denuncia'
-            html_content = '<!DOCTYPE html><html><body><h1>' + smart_str(motivo) + '''</h1></br>
-                                <h4>Direccion: ''' + smart_str(denuncia.direccion) + ''',
-                                ''' + smart_str(municipio) + ', ' + smart_str(departamento) +'''.
-                                <i>(Con referencia en: '''+smart_str(denuncia.referencia)+''')</i> </h4>
-                                </br> <h5> Denuncio: </h5></br> <p>
-                                ''' + smart_str(denuncia.denuncia) + '''</p></body>
-                                <footer><i>Los archivos quedan a cargo de la
-                                 entidad indicada.</i><br>
-                                <i>Todos los datos de este correo son
-                                 confidenciales y no deben ser difundidos
-                                a nadie más que las entidades interesadas
-                                 en ellos.</i></footer></html>'''
+            # html_content = '<!DOCTYPE html><html><body><h1>' + smart_str(motivo) + '''</h1></br>
+            #                     <h4>Direccion: ''' + smart_str(denuncia.direccion) + ''',
+            #                     ''' + smart_str(municipio) + ', ' + smart_str(departamento) +'''.
+            #                     <i>(Con referencia en: '''+smart_str(denuncia.referencia)+''')</i> </h4>
+            #                     </br> <h5> Denuncio: </h5></br> <p>
+            #                     ''' + smart_str(denuncia.denuncia) + '''</p></body>
+            #                     <footer><i>Los archivos quedan a cargo de la
+            #                      entidad indicada.</i><br>
+            #                     <i>Todos los datos de este correo son
+            #                      confidenciales y no deben ser difundidos
+            #                     a nadie más que las entidades interesadas
+            #                      en ellos.</i></footer></html>'''
+            mail_html = get_template('correo.html')
+
+            d = Context({'motivo':motivo})
+
+            html_content = mail_html.render(d)
 
             from_email = '"Denuncia Movil" <denunciamovil@gmail.com>'
             to = correos
