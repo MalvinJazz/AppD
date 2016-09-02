@@ -28,7 +28,7 @@ class Denuncia(models.Model):
     # telefono = models.CharField(max_length=10, blank=True, null=True)
     latitud = models.FloatField(blank=True, null=True)
     longitud = models.FloatField(blank=True, null=True)
-    denuncia = models.TextField(blank=False)
+    denuncia = models.TextField(blank=True)
     referencia = models.CharField(blank=True, max_length=140, default="")
     fecha = models.DateTimeField(auto_now=True, auto_now_add=False, blank = False)
     tipo = models.CharField(max_length=2, choices=TIPO_CHOICES, default=CRIMINAL)

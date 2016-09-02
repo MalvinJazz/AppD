@@ -91,6 +91,11 @@ def denunciar(request):
             denuncia.latitud = request.POST['lat']
             denuncia.longitud = request.POST['lon']
 
+            geo = False
+
+            if denuncia.latitud != 0 and denuncia.longitud != 0:
+                geo = True
+
             if request.FILES:
                 archivo = request.FILES['file']
 
@@ -151,7 +156,17 @@ def denunciar(request):
             #                      en ellos.</i></footer></html>'''
             mail_html = get_template('correo.html')
 
-            d = Context({'motivo':motivo})
+            d = Context({
+                    'motivo':motivo,
+                    'denuncia': denuncia.denuncia,
+                    'geo': geo,
+                    'referencia': denuncia.referencia,
+                    'latitud': denuncia.latitud,
+                    'longitud': denuncia.longitud,
+                    'label': motivo.motivo[0],
+                    'fecha': timezone.localtime(denuncia.fecha).strftime('%d-%b-%Y %-I:%M %p %Z'),
+                    'direccion': denuncia.direccion.direccion+", "+municipio.nombre+", "+departamento.nombre
+                    })
 
             html_content = mail_html.render(d)
 
