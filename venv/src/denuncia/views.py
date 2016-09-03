@@ -165,7 +165,8 @@ def denunciar(request):
                     'longitud': denuncia.longitud,
                     'label': motivo.motivo[0],
                     'fecha': timezone.localtime(denuncia.fecha).strftime('%d-%b-%Y %-I:%M %p %Z'),
-                    'direccion': denuncia.direccion.direccion+", "+municipio.nombre+", "+departamento.nombre
+                    'direccion': denuncia.direccion.direccion+", "+municipio.nombre+", "+departamento.nombre,
+                    'tipo': motivo.tipo
                     })
 
             html_content = mail_html.render(d)

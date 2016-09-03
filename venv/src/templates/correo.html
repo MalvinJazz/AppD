@@ -20,10 +20,6 @@
           margin: 0px;
           padding: 0px;
           background: #FFF;
-          font-family: 'Didact Gothic', sans-serif;
-          font-size: 12pt;
-          font-weight: 200;
-          color: #FFF;
       }
 
       #header-static{
@@ -31,7 +27,7 @@
         width: 100%;
         position: fixed;
         z-index: 100;
-        opacity: .9;
+        opacity: 0.9;
         -webkit-box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.4);
         -moz-box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.4);
         box-shadow: 0px 3px 4px 0px rgba(0,0,0,0.4);
@@ -42,7 +38,7 @@
         position: relative;
         padding: 0em 0em 3.28em 0em;
         background-color: #e6e6e6;
-        border-bottom: .75px solid rgba(0,0,0,0.05);
+        border-bottom: 0.75px solid rgba(0,0,0,0.05);
       }
 
       .logo{
@@ -226,10 +222,20 @@
         <p ><span >La información recopilada por Denuncia Móvil puede serles de utilidad para una respuesta inmediata a las denuncias de alto riesgo y para un estudio de fondo que puede mejorar la elaboración de estrategias para solucionar diferentes problemáticas. </span></p>
         <p ><span >&nbsp;</span></p>
         <p ><span >Sin otro particular, solicitamos respetuosamente se le de tramite a la denuncia que consiste en: </span></p>
-        <p ><span >&nbsp;</span></p>
+        <!-- <p ><span >&nbsp;</span></p> -->
         <p ><span>&nbsp;</span></p>
-        <p ><span>{{denuncia}}</span></p>
+        <p ><span>{{motivo}}, <i>Tipo: {{tipo}}</i></span></p>
         <table id="denuncia-completa">
+          {% if denuncia %}
+          <tr>
+            <th>
+              Descripción
+            </th>
+            <td>
+              {{denuncia}}
+            </td>
+          </tr>
+          {% endif %}
           <tr>
             <th>
               Fecha
@@ -242,32 +248,30 @@
             <th>
               Dirección
             </th>
-            {% if referencia %}
-            <th>
-              Referencia
-            </th>
-            {% endif %}
-          </tr>
-          <tr>
             <td>
               {{direccion}}
             </td>
-            {% if referencia %}
+          </tr>
+          {% if referencia %}
+          <tr>
+            <th>
+              Referencia
+            </th>
             <td>
               {{referencia}}
             </td>
-            {% endif %}
           </tr>
+          {% endif %}
         </table>
         {% if geo %}
         <img src="https://maps.googleapis.com/maps/api/staticmap?center={{latitud}},{{longitud}}&markers=color:0x3067B0%7Clabel:{{label}}%7C{{latitud}},{{longitud}}&zoom=17&size=400x200&key=AIzaSyAPIn8C1d9dQLNNnv-Z2D0AKz6WESeZ8tI" alt="Ubicación" />
         {% endif %}
       </div>
     </div>
-    <footer id="finalPag">
+    <!-- <footer id="finalPag">
       <p>
         © 2016
       </p>
-    </footer>
+    </footer> -->
   </body>
 </html>
