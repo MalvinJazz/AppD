@@ -3,6 +3,8 @@
 
 from django.core.mail import EmailMultiAlternatives
 from django.utils.encoding import smart_str, smart_unicode
+from django.template import Context
+from django.template.loader import get_template
 
 from tastypie.resources import (
                         ModelResource,
@@ -69,8 +71,13 @@ class DenunciaResource(ModelResource):
 
         objeto = self.save(bundle)
 
-
         denuncia = bundle.obj
+
+        geo = False
+
+        if denuncia.latitud != 0 and denuncia.longitud != 0:
+            geo = True
+
         municipio = denuncia.direccion.municipio
         departamento = municipio.departamento
 
@@ -93,18 +100,23 @@ class DenunciaResource(ModelResource):
 
         try:
             text_content = 'Denuncia'
-            html_content = '<!DOCTYPE html><html><body><h1>' + smart_str(motivo) + '''</h1></br>
-                                <h4>Direccion: ''' + smart_str(denuncia.direccion) + ''',
-                                ''' + smart_str(municipio) + ', ' + smart_str(departamento) +'''.
-                                <i>(Con referencia en: '''+smart_str(denuncia.referencia)+''')</i> </h4>
-                                </br> <h5> Denuncio: </h5></br> <p>
-                                ''' + smart_str(denuncia.denuncia) + '''</p></body>
-                                <footer><i>Los archivos quedan a cargo de la
-                                 entidad indicada.</i><br>
-                                <i>Todos los datos de este correo son
-                                 confidenciales y no deben ser difundidos
-                                a nadie más que las entidades interesadas
-                                 en ellos.</i></footer></html>'''
+
+            mail_html = get_template('correo.html')
+
+            d = Context({
+                    'motivo':motivo,
+                    'denuncia': denuncia.denuncia,
+                    'geo': geo,
+                    'referencia': denuncia.referencia,
+                    'latitud': denuncia.latitud,
+                    'longitud': denuncia.longitud,
+                    'label': motivo.motivo[0],
+                    'fecha': timezone.localtime(denuncia.fecha).strftime('%d-%b-%Y %-I:%M %p %Z'),
+                    'direccion': denuncia.direccion.direccion+", "+municipio.nombre+", "+departamento.nombre,
+                    'tipo': motivo.tipo
+                    })
+
+            html_content = mail_html.render(d)
 
             from_email = '"Denuncia Movil" <denunciamovil@gmail.com>'
             to = correos

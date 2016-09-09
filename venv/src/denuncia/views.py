@@ -82,9 +82,6 @@ def denunciar(request):
             print request.FILES
             print request.POST
 
-            # denuncia.nombre = clean['nombre']
-            # denuncia.dpi = clean['dpi']
-            # denuncia.telefono = clean['telefono']
             denuncia.direccion = clean['direccion']
             denuncia.referencia = clean['referencia']
             denuncia.denuncia = clean['denuncia']
@@ -111,7 +108,6 @@ def denunciar(request):
 
             correos = Correo.objects.none()
             for institucion in vIn:
-                print institucion
                 if institucion.tipo == "MU":
                     temp = Correo.objects.filter(
                                     institucion = institucion,
@@ -122,38 +118,12 @@ def denunciar(request):
                                     institucion = institucion,
                                     municipio__departamento = departamento
                     )
-                print temp
                 correos = correos | temp
-
-            # if denuncia.tipo == 'MU':
-            #     vIn = Correo.objects.filter(
-            #         institucion=vIn,
-            #         municipio=municipio
-            #     )
-            # else:
-            #     vIn = Correo.objects.filter(
-            #         institucion=vIn,
-            #         municipio__departamento=departamento
-            #     )
-
-            print correos
-
 
             #Envio de correo----------------------------------------------------
 
             text_content = 'Denuncia'
-            # html_content = '<!DOCTYPE html><html><body><h1>' + smart_str(motivo) + '''</h1></br>
-            #                     <h4>Direccion: ''' + smart_str(denuncia.direccion) + ''',
-            #                     ''' + smart_str(municipio) + ', ' + smart_str(departamento) +'''.
-            #                     <i>(Con referencia en: '''+smart_str(denuncia.referencia)+''')</i> </h4>
-            #                     </br> <h5> Denuncio: </h5></br> <p>
-            #                     ''' + smart_str(denuncia.denuncia) + '''</p></body>
-            #                     <footer><i>Los archivos quedan a cargo de la
-            #                      entidad indicada.</i><br>
-            #                     <i>Todos los datos de este correo son
-            #                      confidenciales y no deben ser difundidos
-            #                     a nadie más que las entidades interesadas
-            #                      en ellos.</i></footer></html>'''
+
             mail_html = get_template('correo.html')
 
             d = Context({
@@ -178,26 +148,6 @@ def denunciar(request):
             if request.FILES:
                 msg.attach(archivo.name,archivo.read(),archivo.content_type)
             msg.send()
-
-            # connection = mail.get_connection()
-            # connection.open()
-            #
-            # correo = EmailMessage(
-            #     motivo,
-            #     denuncia.denuncia,
-            #     'denunciamovil@gmail.com',
-            #     vIn,
-            #     connection=connection,
-            #     )
-            #
-            # if request.FILES:
-            #     correo.attach(archivo.name,archivo.read(),archivo.content_type)
-            #
-            # print correo.subject, correo.from_email, correo.to
-            #
-            # correo.send(fail_silently = False)
-            # connection.close()
-            # print 'conexion cerrada'
 
             #Cierre de conexion-------------------------------------------------
 
