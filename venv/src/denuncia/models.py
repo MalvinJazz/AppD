@@ -2,11 +2,14 @@
 
 from __future__ import unicode_literals
 
+import hashlib
+
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.db import models
 from django.utils.encoding import smart_str, smart_unicode
 from django.utils import timezone
+from django.utils.encoding import smart_str, smart_unicode
 
 class Denuncia(models.Model):
 
@@ -86,10 +89,16 @@ class Motivo(models.Model):
             i += 1
         return tmp
 
+    def motivo_hash(self):
+        return "h"+hashlib.md5(smart_str(self.motivo)).hexdigest()
+
     def sumTotal(self):
         denuncias = Denuncia.objects.filter(motivo=self)
 
         return len(denuncias)
+
+    def get_instituciones(self):
+        return ", ".join([m.nombre for m in self.instituciones.all()])
 
     def sprite(self):
         return self.id * 36

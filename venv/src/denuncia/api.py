@@ -5,6 +5,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.utils.encoding import smart_str, smart_unicode
 from django.template import Context
 from django.template.loader import get_template
+from django.utils import timezone
 
 from tastypie.resources import (
                         ModelResource,

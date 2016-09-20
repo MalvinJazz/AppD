@@ -102,7 +102,7 @@ Lista de Denuncias
     <tr>
       <th>ID</th>
       <!-- <th>Nombre</th> -->
-      <th>Institucion</th>
+      <th>Instituciones</th>
       <th>Motivo</th>
       <th>Fecha</th>
     </tr>
@@ -110,7 +110,7 @@ Lista de Denuncias
     <tr>
       <td>{{denuncia.id}}</td>
       <!-- <td>{{denuncia}</td> -->
-      <td>{{denuncia.motivo.institucion}}</td>
+      <td>{{denuncia.motivo.get_instituciones}}</td>
       <td>{{denuncia.motivo}}</td>
       <td>{{denuncia.fecha}}</td>
       <td><a href={% url 'usuario:detalles' denuncia.id %}>Ver</a>

@@ -79,6 +79,7 @@ html, body
 		clear: both;
 		padding-top: 6.5%;
 		margin: 0px;
+		/*height: 100%;*/
 	}
 
 
@@ -1576,6 +1577,8 @@ clases de Chart
 		margin-left: 30%;
 		min-height: 100px;
 		width: 70%;
+		top: 20%;
+		position: relative;
 
 	}
 	#bloqueForms .formularios p label{

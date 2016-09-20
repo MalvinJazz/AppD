@@ -108,12 +108,14 @@
             {% endfor %}
           ]];
 
+          // console.dir(data);
+
 
          for(var i=0; i<data.length;i++){
            lista.push([
              data[i].fields.nombre,
              {% for dato in motivos %}
-             data[i].mots.{{dato.motivo}},
+             data[i].mots.{{dato.motivo_hash}},
              {% endfor %}
            ]);
          }

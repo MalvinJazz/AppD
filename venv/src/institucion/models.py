@@ -27,7 +27,7 @@ class Institucion(models.Model):
 
 
     def __unicode__(self):
-        return str(self.nombre)
+        return self.nombre
 
 # class Sede(models.Model):
 #     id = models.AutoField(primary_key=True)
@@ -49,7 +49,7 @@ class Correo(models.Model):
     municipio = models.ForeignKey('localizaciones.Municipio')
 
     def __unicode__(self):
-        return str(self.correo)
+        return self.correo
 
 # class Telefono(models.Model):
 #     id = models.AutoField(primary_key=True)

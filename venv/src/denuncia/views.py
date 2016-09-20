@@ -255,9 +255,9 @@ def denunciasList(request):
             pass
         try:
             if request.user.is_staff or tipo == 'NG':
-                denuncias = denuncias.filter(motivo__institucion=request.GET['institucion'])
+                denuncias = denuncias.filter(motivo__instituciones=request.GET['institucion'])
             else:
-                denuncias = denuncias.filter(motivo__institucion=request.user.institucion)
+                denuncias = denuncias.filter(motivo__instituciones=request.user.institucion)
             # errores.append('Institucion:' + str(
             #                         Institucion.objects.get(request.GET['motivo'])))
         except:

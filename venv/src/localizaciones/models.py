@@ -62,7 +62,7 @@ class Municipio(models.Model):
                 motivo = mot
                 ))
             dic.update({
-                mot.motivo: x,
+                mot.motivo_hash(): x,
             })
 
         return dic
@@ -94,7 +94,7 @@ class Direccion(models.Model):
                 motivo = mot
                 ))
             dic.update({
-                mot.motivo: x,
+                mot.motivo_hash(): x,
             })
 
         return dic
