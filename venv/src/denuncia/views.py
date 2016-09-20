@@ -49,7 +49,7 @@ def getDenuncias(request):
 
     # print timezone.now()-timedelta(days=11)
 
-    fecha_desde = timezone.now()-timedelta(hours=24)
+    fecha_desde = timezone.now()-timedelta(days=7)
     denuncias = denuncias.filter(
         fecha__range = (
             fecha_desde,
