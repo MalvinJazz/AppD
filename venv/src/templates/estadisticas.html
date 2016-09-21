@@ -16,8 +16,8 @@
   <div id="chart_div" class="geoChart" ></div>
   <div class="total"><h3><i>Total: {{total}}</i></h3></div>
   <div class="graficas">
+    <div id="filter_div"></div>
     <div id="columnchart"></div>
-    <!-- <div id="piechart"></div> -->
   </div>
 </div>
 {% endblock %}
@@ -38,7 +38,7 @@
               "*Da un click sobre la barra de algun municipio, esta te\n\n"+
               " redirigira a la pagina de estadisticas del municipio.")
   });
-  google.charts.load('visualization', '1', {'packages': ['geochart', 'corechart']});
+  google.charts.load('visualization', '1', {'packages': ['geochart', 'corechart', 'controls']});
   google.charts.setOnLoadCallback(drawMarkersMap);
   $("#columnchart").hide();
 
