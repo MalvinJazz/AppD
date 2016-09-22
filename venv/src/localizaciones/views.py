@@ -67,7 +67,7 @@ def obtenerD(request):
 
 def detalleZona(request):
     vZona = request.GET['zona']
-    zona = Direccion.objects.filter(direccion=vZona)
+    zona = Direccion.objects.filter(id=vZona)
 
     serial = DirSerializer()
 
