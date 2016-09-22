@@ -94,9 +94,9 @@ function draw() {
           success: function(data) {
 
             var datos = google.visualization.arrayToDataTable([
-              ['Motivo', 'Denuncias'],
+              ['Motivo', 'Tipo', 'Denuncias'],
               {% for motivo in motivos %}
-                ['{{motivo}}', data[0].mots.{{motivo.motivo_hash}}],
+                ['{{motivo}}', '{{motivo.tipo}}', data[0].mots.{{motivo.motivo_hash}}],
               {% endfor %}
             ]);
 
@@ -121,7 +121,10 @@ function draw() {
               document.getElementById('piechart').appendChild(print);
             });
 
-            grafica.draw(datos, opciones);
+            var view1 = new google.visualization.DataView(datos);
+            view1.hideColumns([1]);
+
+            grafica.draw(view1, opciones);
 
           },
           error: function(){
