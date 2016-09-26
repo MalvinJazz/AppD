@@ -3,6 +3,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.dispatch import receiver
+from django.db.models.signals import post_delete, post_save
 from django.db.models import Q
 
 from denuncia.models import Denuncia, Motivo
@@ -31,6 +33,7 @@ class Departamento(models.Model):
 
     class Meta:
         ordering = ["codigo"]
+
 
 class Municipio(models.Model):
     id = models.AutoField(primary_key=True)
@@ -67,6 +70,15 @@ class Municipio(models.Model):
 
         return dic
 
+@receiver(post_save, sender=Municipio)
+def zona_prov(sender, instance, **kwargs):
+    i = 1
+    while i < 21:
+        zona = Direccion()
+        zona.direccion = 'Zona ' + str(i)
+        zona.municipio = instance
+        zona.save()
+        i+=1
 
 
 class Direccion(models.Model):

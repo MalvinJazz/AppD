@@ -89,14 +89,14 @@ class DenunciaResource(ModelResource):
         for institucion in vIn:
             if institucion.tipo == "MU":
                 temp = Correo.objects.filter(
-                                institucion = institucion,
-                                municipio = municipio
-                                )
+                            institucion = institucion,
+                            municipio = municipio
+                            )
             else:
                 temp = Correo.objects.filter(
-                                institucion = institucion,
-                                municipio__departamento = departamento
-                )
+                            institucion = institucion,
+                            municipio__departamento = departamento
+                            )
             correos = correos | temp
 
         try:
