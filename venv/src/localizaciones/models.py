@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from __future__ import unicode_literals
 
 from django.db import models
@@ -17,7 +16,7 @@ class Departamento(models.Model):
     codigo = models.CharField(max_length=6, blank = False, null = False)
 
     def __unicode__(self):
-        return str(self.nombre)
+        return self.nombre
 
     def sumMunicipios(self):
         denuncias = Municipio.objects.filter(departamento=self)
@@ -42,7 +41,7 @@ class Municipio(models.Model):
     departamento = models.ForeignKey('Departamento')
 
     def __unicode__(self):
-        return str(self.nombre)
+        return self.nombre
 
     def sumDirecciones(self):
         denuncias = Direccion.objects.filter(municipio=self)
