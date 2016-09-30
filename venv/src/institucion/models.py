@@ -3,8 +3,18 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-# Create your models here.
+"""
 
+Atributo    Descripcion
+
+id          Identificador de la institucion
+
+nombre      Nombre de la institucion
+
+tipo        Sección del total de denuncias a las que pertenece esta
+            institucion, relacionado con el atributo TIPO_CHOICES.
+
+"""
 class Institucion(models.Model):
     CRIMINAL = 'CR'
     MUNICIPAL = 'MU'
@@ -23,7 +33,11 @@ class Institucion(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255, blank = False)
     # telefono = models.CharField(max_length=8, blank = False)
-    tipo = models.CharField(max_length=2, choices=TIPO_CHOICES, default=CRIMINAL)
+    tipo = models.CharField(
+                    max_length=2,
+                    choices=TIPO_CHOICES,
+                    default=CRIMINAL
+                    )
 
 
     def __unicode__(self):
@@ -41,6 +55,21 @@ class Institucion(models.Model):
 #    class Meta:
         #verbose_name = 'Sedes'
 
+"""
+
+Atributo    Descripcion
+
+id          Identificador del correo
+
+correo      Correo de la institucion relacionada y
+            del municipio a donde pertenece esta.
+
+institucion Institucion a la que pertenece este correo.
+
+municipio   Municipio a donde pertenece el correo.
+
+"""
+
 class Correo(models.Model):
     id = models.AutoField(primary_key=True)
     correo = models.EmailField()
@@ -50,6 +79,12 @@ class Correo(models.Model):
 
     def __unicode__(self):
         return self.correo
+
+    def get_departamento(self):
+        return self.municipio.departamento
+
+    class Meta:
+        ordering = ['-municipio']
 
 # class Telefono(models.Model):
 #     id = models.AutoField(primary_key=True)
