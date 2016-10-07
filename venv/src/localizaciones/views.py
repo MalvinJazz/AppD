@@ -1,9 +1,10 @@
+from datetime import datetime, date, time, timedelta
+
 from django.shortcuts import render
 from django.core import serializers
+from django.utils import timezone
 from django.core.serializers.json import Serializer
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-# from django.views.generic.detail import DetailView
-#from django.utils.encoding import smart_text, is_protected_type
 
 from .models import Departamento, Municipio, Direccion
 from denuncia.models import Denuncia, Motivo
@@ -91,10 +92,24 @@ def estadisticas(request):
     return render(request,'estadisticas.html', context)
 
 def mapa(request):
-    denuncias = Denuncia.objects.exclude(longitud = None,latitud = None)
+
+    fecha_desde = timezone.now()-timedelta(days=7)
+
+    denuncias = Denuncia.objects.exclude(
+                    longitud = None,
+                    latitud = None
+                ).exclude(
+                    longitud = 0,
+                    latitud = 0
+                ).filter(
+                    fecha__range = (
+                        fecha_desde,
+                        timezone.now()
+                    )
+                )
 
     context = {
-        'denuncias': denuncias.exclude(longitud = 0, latitud = 0),
+        'denuncias': denuncias,
         'motivos': Motivo.objects.all(),
     }
 
