@@ -84,9 +84,9 @@
 
           map.setOptions({styles: styleArray});
 
-          {% for dato in denuncias %}
-            loc = {lat: {{dato.latitud}}, lng: {{dato.longitud}}};
-            addMarker(loc, map, '{{dato.motivo}}', {{dato.getSprite}});
+          {% for denuncia in denuncias %}
+            loc = {lat: {{denuncia.latitud}}, lng: {{denuncia.longitud}}};
+            addMarker(loc, map, '{{denuncia.motivo}}', {{denuncia.getSprite}});
           {% endfor %}
 
           var image = {
