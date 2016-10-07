@@ -78,10 +78,6 @@ def denunciar(request):
 
             denuncia = Denuncia()
 
-            print clean
-            print request.FILES
-            print request.POST
-
             denuncia.direccion = clean['direccion']
             denuncia.referencia = clean['referencia']
             denuncia.denuncia = clean['denuncia']
@@ -211,8 +207,6 @@ def denunciasList(request):
             if request.user.is_res:
                 fecha_hasta = timezone.now()+timedelta(days=1)
                 fecha_desde = timezone.now()-timedelta(days=8)
-                print fecha_desde
-                print fecha_hasta
                 denuncias = denuncias.filter(
                         fecha__range=(
                             fecha_desde,
