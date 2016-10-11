@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '6s1($s@0v)v8$4@v=qm7a0tdx0hofrdtfs44+cs$1m$#%ae(&x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = not True
 
-ALLOWED_HOSTS = ['localhost', '0.0.0.0']
+ALLOWED_HOSTS = ['localhost', '0.0.0.0', '192.168.0.89']
 
 
 # Application definition
@@ -153,6 +153,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = '/home/meljua/www/denunciamovil.com/static'
 
 STATIC_URL = '/static/'
 

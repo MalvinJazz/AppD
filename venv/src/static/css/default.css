@@ -639,7 +639,7 @@ html, body
 
 	#logo
 	{
-		position: relative;;
+		position: relative;
 		/*top: 0em;*/
 		left: 1em;
 		float: left;
@@ -1438,7 +1438,7 @@ clases de Chart
 
 #chart{
 	height: 400px;
-	text-align: center;;
+	text-align: center;
 	color: black;
 	width: 100%;
 	position: static;
@@ -1507,7 +1507,7 @@ clases de Chart
 	}
 
 	.bloqueOne {
-		text-align: right;;
+		text-align: right;
 		color: black;
 		/*float: left;*/
 		width: 50%;
@@ -1518,7 +1518,7 @@ clases de Chart
 
 
 	.bloqueTwo {
-		text-align: right;;
+		text-align: right;
 		color: black;
 		/*float: right;*/
 		width: 50%;
