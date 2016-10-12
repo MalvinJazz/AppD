@@ -143,7 +143,7 @@ def denunciar(request):
             msg.attach_alternative(html_content, "text/html")
             if request.FILES:
                 msg.attach(archivo.name,archivo.read(),archivo.content_type)
-            msg.send()
+            #msg.send()
 
             #Cierre de conexion-------------------------------------------------
 
