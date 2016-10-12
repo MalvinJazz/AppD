@@ -153,7 +153,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = '/home/meljua/www/denunciamovil.com/static'
+STATIC_ROOT = '/var/www/denunciapp.com/static' #'/home/meljua/www/denunciamovil.com/static'
 
 STATIC_URL = '/static/'
 
