@@ -25,8 +25,8 @@ SECRET_KEY = '6s1($s@0v)v8$4@v=qm7a0tdx0hofrdtfs44+cs$1m$#%ae(&x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not True
 
-ALLOWED_HOSTS = ['localhost', '0.0.0.0', '192.168.0.89']
-
+#ALLOWED_HOSTS = ['localhost', '0.0.0.0', '192.168.0.89']
+ALLOWED_HOSTS = ['denunciamovil.com', 'www.denunciamovil.com']
 
 # Application definition
 
@@ -82,13 +82,21 @@ WSGI_APPLICATION = 'Denuncias.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'DenunciaMovil',
+    #     'USER': 'meljua',
+    #     'PASSWORD':'superroot',
+    #     'HOST':'localhost',
+    #     'PORT':'',
+    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'DenunciaMovil',
-        'USER': 'meljua',
-        'PASSWORD':'superroot',
-        'HOST':'localhost',
-        'PORT':'',
+        'NAME': 'denunciapp',
+        'USER': 'denunciapp',
+        'PASSWORD':'F8a$acHa*atH',
+        'HOST':'198.211.106.40',
+        'PORT':'5432',
     }
 }
 
