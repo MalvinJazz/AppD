@@ -33,16 +33,17 @@ class UsuarioManager(BaseUserManager):
         usuario = self.create_user(username, correo, nombre, apellidos, password)
         usuario.is_admin = True
         usuario.is_staff = True
+        usuario.is_active = True
         usuario.save()
 
         return usuario
 
-class Tipo_Usuario(models.Model):
-    id = models.AutoField(primary_key=True)
-    tipo = models.CharField(max_length=45)
-
-    def __unicode__(self):
-        return self.tipo
+# class Tipo_Usuario(models.Model):
+#     id = models.AutoField(primary_key=True)
+#     tipo = models.CharField(max_length=45)
+#
+#     def __unicode__(self):
+#         return self.tipo
 
 class Usuario(AbstractBaseUser):
     id = models.AutoField(primary_key=True)
@@ -57,7 +58,7 @@ class Usuario(AbstractBaseUser):
 
     is_active = models.BooleanField(default=False)
 
-    tipo = models.ForeignKey('Tipo_Usuario', default=1)
+    # tipo = models.ForeignKey('Tipo_Usuario', default=1)
     institucion = models.ForeignKey('institucion.Institucion', default = 1)
     zona = models.ForeignKey('localizaciones.Direccion', default = 1)
 
