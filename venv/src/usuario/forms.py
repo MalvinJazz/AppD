@@ -40,7 +40,6 @@ class UserCreationForm(forms.ModelForm):
             'apellidos',
             'username',
             'correo',
-            'tipo',
             'institucion',
             'zona'
         ]

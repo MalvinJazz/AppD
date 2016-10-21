@@ -657,7 +657,7 @@ html, body
 	.logo table{
 		display: inline-block;
 		position: absolute;
-		top: 20%;
+		top: 30%;
 		left: 42%;
 		font-family: "Montserrat",serif;
 		font-size: large;
@@ -668,7 +668,7 @@ html, body
 
 	.logo td{
 		font-family: 'Patua One', cursive;
-		font-size: larger;
+		font-size: 1.8em;
 	}
 
 	.logo img{

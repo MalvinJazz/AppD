@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Usuario, Tipo_Usuario
+from .models import Usuario
 
 class UsuarioAdmin(admin.ModelAdmin):
     list_display = [
@@ -9,13 +9,12 @@ class UsuarioAdmin(admin.ModelAdmin):
         'username',
         'correo',
         'ultima_conexion',
-        'tipo',
         'institucion',
         'zona'
         ]
 
-class TipoAdmin(admin.ModelAdmin):
-    list_display = ['id', 'tipo']
+# class TipoAdmin(admin.ModelAdmin):
+#     list_display = ['id', 'tipo']
 
 admin.site.register(Usuario, UsuarioAdmin)
-admin.site.register(Tipo_Usuario, TipoAdmin)
+# admin.site.register(Tipo_Usuario, TipoAdmin)
