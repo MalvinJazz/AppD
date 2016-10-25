@@ -26,7 +26,7 @@ SECRET_KEY = '6s1($s@0v)v8$4@v=qm7a0tdx0hofrdtfs44+cs$1m$#%ae(&x'
 DEBUG = not True
 
 #ALLOWED_HOSTS = ['localhost', '0.0.0.0', '192.168.0.89']
-ALLOWED_HOSTS = ['denunciamovil.com', 'www.denunciamovil.com']
+ALLOWED_HOSTS = ['denunciappguatemala.com', 'www.denunciappguatemala.com']
 
 # Application definition
 
