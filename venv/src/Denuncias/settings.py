@@ -82,22 +82,22 @@ WSGI_APPLICATION = 'Denuncias.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'DenunciaMovil',
-    #     'USER': 'meljua',
-    #     'PASSWORD':'superroot',
-    #     'HOST':'localhost',
-    #     'PORT':'',
-    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'denunciapp',
-        'USER': 'denunciapp',
-        'PASSWORD':'F8a$acHa*atH',
-        'HOST':'198.211.106.40',
-        'PORT':'5432',
+        'NAME': 'DenunciaMovil',
+        'USER': 'meljua',
+        'PASSWORD':'superroot',
+        'HOST':'localhost',
+        'PORT':'',
     }
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'denunciapp',
+#         'USER': 'denunciapp',
+#         'PASSWORD':'F8a$acHa*atH',
+#         'HOST':'198.211.106.40',
+#         'PORT':'5432',
+#     }
 }
 
 

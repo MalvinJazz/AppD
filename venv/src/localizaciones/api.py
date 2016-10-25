@@ -11,7 +11,7 @@ from .models import Departamento, Municipio, Direccion
 class DepartamentoResource(ModelResource):
 
     def dehydrate(self, bundle):
-        #bundle.data['denuncias'] = bundle.obj.sumMunicipios()
+        bundle.data['denuncias'] = bundle.obj.sumMunicipios()
         return bundle
 
     class Meta:

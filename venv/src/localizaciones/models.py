@@ -90,8 +90,8 @@ class Direccion(models.Model):
         return str(self.direccion)
 
     def sumDenuncias(self):
-        denuncias = Denuncia.objects.filter(direccion=self)
-        return len(denuncias)
+        return Denuncia.objects.filter(direccion=self).count()
+        #return len(denuncias)
 
     def getDenuncias(self):
 
