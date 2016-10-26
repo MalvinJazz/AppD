@@ -17,7 +17,7 @@ class MuniSerializer(Serializer):
     def get_dump_object(self, obj):
         dic = super(MuniSerializer, self).get_dump_object(obj)
         dic.update({
-            'cant': obj.sumDirecciones(),
+            'cant': obj.denuncias,
             'mots': obj.getDenuncias(),
         })
         return dic
