@@ -14,6 +14,7 @@ class Departamento(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255)
     codigo = models.CharField(max_length=6, blank = False, null = False)
+    denuncias = models.IntegerField()
 
     def __unicode__(self):
         return self.nombre
@@ -37,6 +38,7 @@ class Departamento(models.Model):
 class Municipio(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255)
+    denuncias = models.IntegerField()
 
     departamento = models.ForeignKey('Departamento')
 
