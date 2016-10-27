@@ -54,19 +54,15 @@ class Municipio(models.Model):
         return suma
 
     def getDenuncias(self):
-        direcciones = Direccion.objects.filter(municipio=self)
-
-        motivos = Motivo.objects.all()
-
+        #direcciones = Direccion.objects.filter(municipio=self)
         dic = {}
 
-        for mot in motivos:
-            x = len(Denuncia.objects.filter(
-                direccion__municipio=self,
-                motivo = mot
-                ))
+        for mot in Motivo.objects.all():
             dic.update({
-                mot.motivo_hash(): x,
+                mot.motivo_hash(): Denuncia.objects.filter(
+                    direccion__municipio=self,
+                    motivo = mot
+                    ).count(),
             })
 
         return dic
