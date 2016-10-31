@@ -7,11 +7,28 @@ from tastypie.authorization import Authorization
 from tastypie import fields
 
 from .models import Departamento, Municipio, Direccion
+from denuncia.models import Denuncia
 
 class DepartamentoResource(ModelResource):
 
     def dehydrate(self, bundle):
         #bundle.data['denuncias'] = bundle.obj.sumMunicipios()
+        bundle.data['CR'] = Denuncia.objects.filter(
+                                    tipo='CR',
+                                    direccion__municipio__departamento=bundle.obj
+                                    ).count()
+        bundle.data['MU'] = Denuncia.objects.filter(
+                                    tipo='MU',
+                                    direccion__municipio__departamento=bundle.obj
+                                    ).count()
+        bundle.data['MA'] = Denuncia.objects.filter(
+                                    tipo='MA',
+                                    direccion__municipio__departamento=bundle.obj
+                                    ).count()
+        bundle.data['DH'] = Denuncia.objects.filter(
+                                    tipo='DH',
+                                    direccion__municipio__departamento=bundle.obj
+                                    ).count()
         return bundle
 
     class Meta:
