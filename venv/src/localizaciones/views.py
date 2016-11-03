@@ -14,12 +14,18 @@ from denuncia.models import Denuncia, Motivo
 
 class MuniSerializer(Serializer):
 
+    tipo = "0"
+
     def get_dump_object(self, obj):
         dic = super(MuniSerializer, self).get_dump_object(obj)
         dic.update({
-            'cant': obj.denuncias,
+            # 'cant': obj.denuncias,
             'mots': obj.getDenuncias(),
         })
+        if self.tipo!="0":
+            dic.update({
+                'filtrado': obj.filtro_denuncias(self.tipo)
+            })
         return dic
 
 
@@ -61,6 +67,12 @@ def obtenerD(request):
     dens = Municipio.objects.filter(departamento=dep)
 
     serial = MuniSerializer()
+
+    try:
+        tipo = request.GET['tipo']
+        serial.tipo = tipo
+    except:
+        pass
 
     data = serial.serialize(dens)
 

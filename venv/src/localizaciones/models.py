@@ -45,6 +45,12 @@ class Municipio(models.Model):
     def __unicode__(self):
         return self.nombre
 
+    def filtro_denuncias(self, tipo):
+        return Denuncia.objects.filter(
+            direccion__municipio=self,
+            tipo=tipo
+        ).count()
+
     def sumDirecciones(self):
         denuncias = Direccion.objects.filter(municipio=self)
         suma = 0
@@ -68,14 +74,15 @@ class Municipio(models.Model):
         return dic
 
 @receiver(post_save, sender=Municipio)
-def zona_prov(sender, instance, **kwargs):
-    i = 1
-    while i < 21:
-        zona = Direccion()
-        zona.direccion = 'Zona ' + str(i)
-        zona.municipio = instance
-        zona.save()
-        i+=1
+def zona_prov(sender, instance, created, **kwargs):
+    if not created:
+        i = 1
+        while i < 21:
+            zona = Direccion()
+            zona.direccion = 'Zona ' + str(i)
+            zona.municipio = instance
+            zona.save()
+            i+=1
 
 
 class Direccion(models.Model):
