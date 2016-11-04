@@ -11,6 +11,33 @@ from denuncia.models import Denuncia, Motivo
 
 #--------------------------------------------------------
 #Serializador de json------------------------------------
+class EstadisticasSerializer(Serializer):
+
+    def get_dump_object(self, obj):
+        dic = super(EstadisticasSerializer, self).get_dump_object(obj)
+
+        dic.update({
+            "tipos":{
+                "CR": Denuncia.objects.filter(
+                        direccion__municipio=obj,
+                        tipo="CR"
+                        ).count(),
+                "MU": Denuncia.objects.filter(
+                        direccion__municipio=obj,
+                        tipo="MU"
+                        ).count(),
+                "MA": Denuncia.objects.filter(
+                        direccion__municipio=obj,
+                        tipo="MA"
+                        ).count(),
+                "DH": Denuncia.objects.filter(
+                        direccion__municipio=obj,
+                        tipo="DH"
+                        ).count()
+            }
+        })
+
+        return dic
 
 class MuniSerializer(Serializer):
 
@@ -46,6 +73,17 @@ class DirSerializer(Serializer):
         super(DirSerializer, self).end_object(obj)
 
 #--------------------------------------------------------
+
+def respuesta_municipio(request):
+    muni_id = request.GET['id']
+    municipio = Municipio.objects.filter(id=muni_id)
+
+    serial = EstadisticasSerializer()
+
+    data = serial.serialize(municipio)
+
+    return HttpResponse(data, content_type='application/json')
+
 
 def busquedaM(request):
     vID = request.GET['id']

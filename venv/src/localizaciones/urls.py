@@ -9,6 +9,7 @@ from .views import (
         estadisticas,
         municipioDetail,
         detalleZona,
+        respuesta_municipio
         )
 from .api import (
         DepartamentoResource,
@@ -26,6 +27,7 @@ urlpatterns = [
     url(r'^busqM/',busquedaM, name='muni'),
     url(r'^busqD/', busquedaD, name = 'dirs'),
     url(r'^obtD/', obtenerD, name='dens'),
+    url(r'^muni_response/', respuesta_municipio, name='respuesta_municipio'),
     url(r'^$',estadisticas, name="estadisticas"),
     url(r'^detalleZona/', detalleZona, name='detalleZona'),
     url(r'^(?P<dep>\w+)/(?P<muni>\w+)$',municipioDetail,name='mDetail'),
