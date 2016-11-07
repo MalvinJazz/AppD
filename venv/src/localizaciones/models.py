@@ -14,19 +14,22 @@ class Departamento(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255)
     codigo = models.CharField(max_length=6, blank = False, null = False)
-    denuncias = models.IntegerField()
+    # denuncias = models.IntegerField()
 
     def __unicode__(self):
         return self.nombre
 
     def sumMunicipios(self):
-        denuncias = Municipio.objects.filter(departamento=self)
-        suma = 0
-
-        for dato in denuncias:
-            suma = suma + dato.sumDirecciones()
-
-        return suma
+        return Denuncia.objects.filter(
+                    direccion__municipio__departamento=self
+                    ).count()
+        # denuncias = Municipio.objects.filter(departamento=self)
+        # suma = 0
+        #
+        # for dato in denuncias:
+        #     suma = suma + dato.sumDirecciones()
+        #
+        # return suma
 
     def getMunicipios(self):
         return Municipio.objects.filter(departamento=self)
@@ -38,7 +41,7 @@ class Departamento(models.Model):
 class Municipio(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255)
-    denuncias = models.IntegerField()
+    # denuncias = models.IntegerField()
 
     departamento = models.ForeignKey('Departamento')
 
@@ -52,12 +55,13 @@ class Municipio(models.Model):
         ).count()
 
     def sumDirecciones(self):
-        denuncias = Direccion.objects.filter(municipio=self)
-        suma = 0
-        for dato in denuncias:
-            suma = suma + dato.sumDenuncias()
-
-        return suma
+        return Denuncia.objects.filter(direccion__municipio=self).count()
+        # denuncias = Direccion.objects.filter(municipio=self)
+        # suma = 0
+        # for dato in denuncias:
+        #     suma = suma + dato.sumDenuncias()
+        #
+        # return suma
 
     def getDenuncias(self):
         #direcciones = Direccion.objects.filter(municipio=self)
@@ -73,16 +77,16 @@ class Municipio(models.Model):
 
         return dic
 
-@receiver(post_save, sender=Municipio)
-def zona_prov(sender, instance, created, **kwargs):
-    if not created:
-        i = 1
-        while i < 21:
-            zona = Direccion()
-            zona.direccion = 'Zona ' + str(i)
-            zona.municipio = instance
-            zona.save()
-            i+=1
+# @receiver(post_save, sender=Municipio)
+# def zona_prov(sender, instance, created, **kwargs):
+#     if not created:
+#         i = 1
+#         while i < 21:
+#             zona = Direccion()
+#             zona.direccion = 'Zona ' + str(i)
+#             zona.municipio = instance
+#             zona.save()
+#             i+=1
 
 
 class Direccion(models.Model):
