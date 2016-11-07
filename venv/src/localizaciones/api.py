@@ -12,7 +12,7 @@ from denuncia.models import Denuncia
 class DepartamentoResource(ModelResource):
 
     def dehydrate(self, bundle):
-        #bundle.data['denuncias'] = bundle.obj.sumMunicipios()
+        bundle.data['denuncias'] = bundle.obj.sumMunicipios()
         bundle.data['CR'] = Denuncia.objects.filter(
                                     tipo='CR',
                                     direccion__municipio__departamento=bundle.obj
