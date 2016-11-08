@@ -109,13 +109,13 @@ class Direccion(models.Model):
                     tipo="CR").count(),
             "MA": Denuncia.objects.filter(
                     direccion=self,
-                    tipo="CR").count(),
+                    tipo="MA").count(),
             "MU": Denuncia.objects.filter(
                     direccion=self,
-                    tipo="CR").count(),
+                    tipo="MU").count(),
             "DH": Denuncia.objects.filter(
                     direccion=self,
-                    tipo="CR").count(),
+                    tipo="DH").count(),
         }
 
         return dic
