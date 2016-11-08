@@ -37,15 +37,15 @@ class EstadisticasSerializer(Serializer):
             }
         })
 
-        zonas = {}
+        dirs = []
         for zona in Direccion.objects.filter(municipio=obj):
-            zonas.update({
-                "zona": zona,
+            dirs.append({
+                "zona": zona.direccion,
                 "denuncias": zona.sumDenuncias()
             })
 
         dic.update({
-            "zonas": zonas
+            "zonas": dirs
         })
 
         return dic
