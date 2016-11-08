@@ -52,19 +52,11 @@ class Denuncia(models.Model):
 def denuncia_delete(sender, instance, **kwargs):
     instance.motivo.cantidad -= 1
     instance.motivo.save()
-    instance.direccion.municipio.departamento.denuncias -= 1
-    instance.direccion.municipio.denuncias -= 1
-    instance.direccion.municipio.departamento.save()
-    instance.direccion.municipio.save()
 
 @receiver(post_save, sender=Denuncia)
 def denuncia_save(sender, instance, **kwargs):
     instance.motivo.cantidad += 1
     instance.motivo.save()
-    instance.direccion.municipio.departamento.denuncias += 1
-    instance.direccion.municipio.denuncias += 1
-    instance.direccion.municipio.departamento.save()
-    instance.direccion.municipio.save()
 
 class Motivo(models.Model):
     CRIMINAL = 'CR'
