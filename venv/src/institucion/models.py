@@ -69,7 +69,7 @@ institucion Institucion a la que pertenece este correo.
 municipio   Municipio a donde pertenece el correo.
 
 """
-
+#concejomunixelaof@gmail.com
 class Correo(models.Model):
     id = models.AutoField(primary_key=True)
     correo = models.EmailField()
