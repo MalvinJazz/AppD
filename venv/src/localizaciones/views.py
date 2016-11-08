@@ -42,7 +42,7 @@ class EstadisticasSerializer(Serializer):
             if zona.sumDenuncias() != 0:
                 dirs.append({
                     "zona": zona.direccion,
-                    "denuncias": zona.sumDenuncias()
+                    "denuncias": zona.denuncias_tipo()
                 })
 
         dic.update({

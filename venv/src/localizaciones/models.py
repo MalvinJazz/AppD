@@ -102,6 +102,24 @@ class Direccion(models.Model):
         return Denuncia.objects.filter(direccion=self).count()
         #return len(denuncias)
 
+    def denuncias_tipo(self):
+        dic = {
+            "CR": Denuncia.objects.filter(
+                    direccion=self,
+                    tipo="CR").count(),
+            "MA": Denuncia.objects.filter(
+                    direccion=self,
+                    tipo="CR").count(),
+            "MU": Denuncia.objects.filter(
+                    direccion=self,
+                    tipo="CR").count(),
+            "DH": Denuncia.objects.filter(
+                    direccion=self,
+                    tipo="CR").count(),
+        }
+
+        return dic
+
     def getDenuncias(self):
 
         motivos = Motivo.objects.all()
@@ -109,10 +127,10 @@ class Direccion(models.Model):
         dic = {}
 
         for mot in motivos:
-            x = len(Denuncia.objects.filter(
+            x = Denuncia.objects.filter(
                 direccion = self,
                 motivo = mot
-                ))
+                ).count()
             dic.update({
                 mot.motivo_hash(): x,
             })
