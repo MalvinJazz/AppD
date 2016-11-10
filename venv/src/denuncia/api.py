@@ -143,7 +143,7 @@ class DenunciaResource(ModelResource):
             except Exception, ex:
                 print ex, '1'
 
-            #msg.send()
+            msg.send()
 
         except Exception, ex:
             print ex, '2'
