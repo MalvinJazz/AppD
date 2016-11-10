@@ -137,7 +137,7 @@ def denunciar(request):
 
             html_content = mail_html.render(d)
 
-            from_email = '"Denuncia Movil" <denunciamovil@gmail.com>'
+            from_email = '"DenunciApp" <denunciamovil@gmail.com>'
             to = correos
             msg = EmailMultiAlternatives(motivo, text_content, from_email, to)
             msg.attach_alternative(html_content, "text/html")
