@@ -128,12 +128,13 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 LOGIN_URL =  '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'denunciamovil@gmail.com'
-EMAIL_HOST = 'smtp.gmail.com'
+DEFAULT_FROM_EMAIL = 'denuncias@denunciappguatemala.com'
+EMAIL_HOST = 'smtp.zoho.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'denunciamovil@gmail.com'
-EMAIL_HOST_PASSWORD = 'wclahejszozluxav'
+EMAIL_HOST_USER = 'denuncias@denunciappguatemala.com'
+EMAIL_HOST_PASSWORD = 'jaJ8TuPe5h2C-prE'#'wclahejszozluxav'
 EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 FILE_UPLOAD_HANDLERS = [
