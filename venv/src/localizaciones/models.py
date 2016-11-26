@@ -8,7 +8,15 @@ from django.db.models import Q
 
 from denuncia.models import Denuncia, Motivo
 
-# Create your models here.
+"""
+--------------------------------------------------------------------------------
+|     VARIABLE     |       TIPO      |              DESCRIPCION                |
+-------------------+-----------------+------------------------------------------
+|        id        |       PK        |  Llave primaria de Departamento.        |
+|                  |      (INT)      |                                         |
+--------------------------------------------------------------------------------
+
+"""
 
 class Departamento(models.Model):
     id = models.AutoField(primary_key=True)
