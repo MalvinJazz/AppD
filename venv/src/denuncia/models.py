@@ -11,6 +11,25 @@ from django.utils.encoding import smart_str, smart_unicode
 from django.utils import timezone
 from django.utils.encoding import smart_str, smart_unicode
 
+"""
+Tabla de la BD para guardar las denuncias.
+
+--------------------------------------------------------------------------------
+|     VARIABLE     |       TIPO      |              DESCRIPCION                |
+-------------------+-----------------+------------------------------------------
+|   TIPO_CHOICES   |      Tupla      |  Contiene a los tipos de denuncia que se|
+|                  |                 |  pueden escoger. Se utilizan en la      |
+|                  |                 |  variable 'tipo'. Utiliza como indices  |
+|                  |                 |  a las 4 variables anteriores a ella.   |
+--------------------------------------------------------------------------------
+|        id        |       PK        |  Llave primaria de Denuncia.            |
+|                  |      (INT)      |                                         |
+--------------------------------------------------------------------------------
+|      latitud     |    FloatField   |  Localizacion exacta de la denuncia.    |
+--------------------------------------------------------------------------------
+|     longitud     |    FloatField   |  Localizacion exacta de la denuncia.    |
+--------------------------------------------------------------------------------
+"""
 class Denuncia(models.Model):
 
     CRIMINAL = 'CR'
@@ -26,9 +45,6 @@ class Denuncia(models.Model):
     )
 
     id = models.AutoField(primary_key=True)
-    # nombre = models.CharField(max_length=255, blank=False, default = 'Anonimo')
-    # dpi = models.CharField(max_length=13, blank=False, default = 'Anonimo')
-    # telefono = models.CharField(max_length=10, blank=True, null=True)
     latitud = models.FloatField(blank=True, null=True)
     longitud = models.FloatField(blank=True, null=True)
     denuncia = models.TextField(blank=True)
