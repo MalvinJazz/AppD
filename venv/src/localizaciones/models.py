@@ -15,14 +15,34 @@ from denuncia.models import Denuncia, Motivo
 |        id        |       PK        |  Llave primaria de Departamento.        |
 |                  |      (INT)      |                                         |
 --------------------------------------------------------------------------------
+|      nombre      |    CharField    |  Nombre del departamento.               |
+--------------------------------------------------------------------------------
+|      codigo      |    CharField    |  Cadena que identifica al departamento  |
+|                  |                 |  por medio de su codigo ISO.            |
+--------------------------------------------------------------------------------
+|    __unicode__   |     funcion     |  Representación del obejto como una     |
+|                  |                 |  cadena, en este caso, es el 'nombre'.  |
+--------------------------------------------------------------------------------
+|   sumMunicipios  |     funcion     |  Retorna el conteo de objetos de la     |
+|                  |                 |  tabla Denuncia, relacionadas con este  |
+|                  |                 |  departamento.                          |
+--------------------------------------------------------------------------------
+|   getMunicipios  |     funcion     |  Retorna la lista de Municipios del     |
+|                  |                 |  Departamento.                          |
+--------------------------------------------------------------------------------
 
+Meta:
+--------------------------------------------------------------------------------
+|     ordering     |      array      |  Lista que indica por que parametros    |
+|                  |                 |  se ordena la tabla del modelo. Se      |
+|                  |                 |  ordena por cantidad.                   |
+--------------------------------------------------------------------------------
 """
 
 class Departamento(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255)
     codigo = models.CharField(max_length=6, blank = False, null = False)
-    # denuncias = models.IntegerField()
 
     def __unicode__(self):
         return self.nombre
@@ -31,13 +51,6 @@ class Departamento(models.Model):
         return Denuncia.objects.filter(
                     direccion__municipio__departamento=self
                     ).count()
-        # denuncias = Municipio.objects.filter(departamento=self)
-        # suma = 0
-        #
-        # for dato in denuncias:
-        #     suma = suma + dato.sumDirecciones()
-        #
-        # return suma
 
     def getMunicipios(self):
         return Municipio.objects.filter(departamento=self)
@@ -45,11 +58,32 @@ class Departamento(models.Model):
     class Meta:
         ordering = ["codigo"]
 
-
+"""
+--------------------------------------------------------------------------------
+|     VARIABLE     |       TIPO      |              DESCRIPCION                |
+-------------------+-----------------+------------------------------------------
+|        id        |       PK        |  Llave primaria de Municipio.           |
+|                  |      (INT)      |                                         |
+--------------------------------------------------------------------------------
+|      nombre      |    CharField    |  Nombre del municipio.                  |
+--------------------------------------------------------------------------------
+|   departamento   |       FK        |  Relacion del municipio con un dep.     |
+--------------------------------------------------------------------------------
+|    __unicode__   |     funcion     |  Representación del obejto como una     |
+|                  |                 |  cadena, en este caso, es el 'nombre'.  |
+--------------------------------------------------------------------------------
+|  sumDirecciones  |     funcion     |  Retorna el conteo de objetos de la     |
+|                  |                 |  tabla Denuncia, relacionadas con este  |
+|                  |                 |  municipio.                             |
+--------------------------------------------------------------------------------
+|   getDenuncias   |     funcion     |  Retorna un diccionario con la cantidad |
+|                  |                 |  de denuncias por motivo, filtrado por  |
+|                  |                 |  municipio.                             |
+--------------------------------------------------------------------------------
+"""
 class Municipio(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=255)
-    # denuncias = models.IntegerField()
 
     departamento = models.ForeignKey('Departamento')
 
@@ -64,12 +98,6 @@ class Municipio(models.Model):
 
     def sumDirecciones(self):
         return Denuncia.objects.filter(direccion__municipio=self).count()
-        # denuncias = Direccion.objects.filter(municipio=self)
-        # suma = 0
-        # for dato in denuncias:
-        #     suma = suma + dato.sumDenuncias()
-        #
-        # return suma
 
     def getDenuncias(self):
         #direcciones = Direccion.objects.filter(municipio=self)
@@ -95,8 +123,31 @@ class Municipio(models.Model):
 #             zona.municipio = instance
 #             zona.save()
 #             i+=1
+"""
+--------------------------------------------------------------------------------
+|     VARIABLE     |       TIPO      |              DESCRIPCION                |
+-------------------+-----------------+------------------------------------------
+|        id        |       PK        |  Llave primaria de Direccion.           |
+|                  |      (INT)      |                                         |
+--------------------------------------------------------------------------------
+|     direccion    |    CharField    |  Nombre de la zona.                     |
+--------------------------------------------------------------------------------
+|     municipio    |       FK        |  Relacion del objeto con un Municipio.  |
+--------------------------------------------------------------------------------
+|    __unicode__   |     funcion     |  Representación del obejto como una     |
+|                  |                 |  cadena, en este caso, es la 'dir'.     |
+--------------------------------------------------------------------------------
+|   sumDenuncias   |     funcion     |  Conteo de objetos de la tabla Denuncia |
+|                  |                 |  relacionadas con el objeto Direccion.  |
+--------------------------------------------------------------------------------
+|  denuncias_tipo  |     funcion     |  Retorna un diccionario con la cantidad |
+|                  |                 |  de denuncias de la direccion por tipo. |
+--------------------------------------------------------------------------------
+|   getDenuncias   |     funcion     |  Retorna un diccionario con la cantidad |
+|                  |                 |  de denuncias por de la dir. por motivo.|
+--------------------------------------------------------------------------------
 
-
+"""
 class Direccion(models.Model):
     id = models.AutoField(primary_key=True)
     direccion = models.CharField(max_length=255)
@@ -104,7 +155,7 @@ class Direccion(models.Model):
     municipio = models.ForeignKey('Municipio')
 
     def __unicode__(self):
-        return str(self.direccion)
+        return self.direccion
 
     def sumDenuncias(self):
         return Denuncia.objects.filter(direccion=self).count()

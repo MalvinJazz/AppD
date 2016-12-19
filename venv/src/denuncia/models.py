@@ -151,8 +151,9 @@ Meta:
 |   verbose_name   |      String     |  Plural del nombre del modelo.          |
 --------------------------------------------------------------------------------
 |     ordering     |      array      |  Lista que indica por que parametros    |
-|                  |                 |  se ordena la tabla del modelo.         |
---------------------------------------------------------------------------------                                      
+|                  |                 |  se ordena la tabla del modelo. Se      |
+|                  |                 |  ordena por cantidad.                   |
+--------------------------------------------------------------------------------
 """
 class Motivo(models.Model):
     CRIMINAL = 'CR'
