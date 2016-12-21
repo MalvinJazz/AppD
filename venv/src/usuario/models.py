@@ -138,8 +138,14 @@ class Usuario(AbstractBaseUser):
     username = models.CharField(max_length=25, unique=True)
     correo = models.EmailField(unique=True)
     ultima_conexion = models.DateTimeField(auto_now_add=True, auto_now=False)
+    #Permisos a todo el sistema.
     is_staff = models.BooleanField(default=False)
+    #Permisos al sistema de denuncias por departamento e institucion.
+    #Se otorga a usuarios de analisis.
     is_admin = models.BooleanField(default=False)
+    #Permisos al sistema de denuncias por departamento e institucion.
+    #Solo de los ultimos 7 dias.
+    #Se otorga a usuarios de respuesta.
     is_res = models.BooleanField(default=True)
 
     is_active = models.BooleanField(default=False)
