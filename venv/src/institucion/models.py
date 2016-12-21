@@ -4,16 +4,27 @@ from __future__ import unicode_literals
 from django.db import models
 
 """
+Modelo que contiene la lista de instituciones con las que trabaja el sistema.
 
-Atributo    Descripcion
-
-id          Identificador de la institucion
-
-nombre      Nombre de la institucion
-
-tipo        Sección del total de denuncias a las que pertenece esta
-            institucion, relacionado con el atributo TIPO_CHOICES.
-
+--------------------------------------------------------------------------------
+|     VARIABLE     |       TIPO      |              DESCRIPCION                |
+-------------------+-----------------+------------------------------------------
+|        id        |       PK        |  Llave primaria de Institucion.         |
+|                  |      (INT)      |                                         |
+--------------------------------------------------------------------------------
+|   TIPO_CHOICES   |      Tupla      |  Contiene a los tipos de institucion    |
+|                  |                 |  Se utilizan en la variable 'tipo'.     |
+|                  |                 |  Utiliza como indices a las 5 variables |
+|                  |                 |  anteriores a ella.                     |
+--------------------------------------------------------------------------------
+|      nombre      |    CharField    |  Nombre de la institucion.              |
+--------------------------------------------------------------------------------
+|       tipo       |   CharField(2)  |  Tipo de la institucion, solo se puede  |
+|                  |                 |  con algun indice de TIPO_CHOICES.      |
+--------------------------------------------------------------------------------
+|    __unicode__   |     funcion     |  Representación del obejto como una     |
+|                  |                 |  cadena, en este caso, es el 'nombre'.  |
+--------------------------------------------------------------------------------
 """
 class Institucion(models.Model):
     CRIMINAL = 'CR'
@@ -43,6 +54,14 @@ class Institucion(models.Model):
         return self.nombre
 
 """
+
+--------------------------------------------------------------------------------
+|     VARIABLE     |       TIPO      |              DESCRIPCION                |
+-------------------+-----------------+------------------------------------------
+|        id        |       PK        |  Llave primaria de Correo.              |
+|                  |      (INT)      |                                         |
+--------------------------------------------------------------------------------
+
 
 Atributo    Descripcion
 
