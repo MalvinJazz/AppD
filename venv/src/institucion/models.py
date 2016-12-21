@@ -20,7 +20,8 @@ Modelo que contiene la lista de instituciones con las que trabaja el sistema.
 |      nombre      |    CharField    |  Nombre de la institucion.              |
 --------------------------------------------------------------------------------
 |       tipo       |   CharField(2)  |  Tipo de la institucion, solo se puede  |
-|                  |                 |  con algun indice de TIPO_CHOICES.      |
+|                  |                 |  llenar con algun indice de             |
+|                  |                 |  TIPO_CHOICES.                          |
 --------------------------------------------------------------------------------
 |    __unicode__   |     funcion     |  Representación del obejto como una     |
 |                  |                 |  cadena, en este caso, es el 'nombre'.  |
@@ -54,6 +55,8 @@ class Institucion(models.Model):
         return self.nombre
 
 """
+Modelo que registra a los correos de las instituciones, por municipio o
+departamento.
 
 --------------------------------------------------------------------------------
 |     VARIABLE     |       TIPO      |              DESCRIPCION                |
@@ -61,18 +64,20 @@ class Institucion(models.Model):
 |        id        |       PK        |  Llave primaria de Correo.              |
 |                  |      (INT)      |                                         |
 --------------------------------------------------------------------------------
-
-
-Atributo    Descripcion
-
-id          Identificador del correo
-
-correo      Correo de la institucion relacionada y
-            del municipio a donde pertenece esta.
-
-institucion Institucion a la que pertenece este correo.
-
-municipio   Municipio a donde pertenece el correo.
+|      correo      |    EmailField   |  Correo correspondiente a una           |
+|                  |                 |  institucion, especificamente a una     |
+|                  |                 |  sucursal de un municipio o dep.        |
+--------------------------------------------------------------------------------
+|    institucion   |        FK       |  Relacion con el modelo Institucion,    |
+|                  |                 |  indica a que institucion pertenece el  |
+|                  |                 |  correo.                                |
+--------------------------------------------------------------------------------
+|     municipio    |        FK       |  Relacion con el modelo Municipio,      |
+|                  |                 |  indica el municipio del correo, si la  |
+|                  |                 |  institucion tiene una sucursal         |
+|                  |                 |  departamental, se relaciona con la     |
+|                  |                 |  cabecera.                              |
+--------------------------------------------------------------------------------
 
 """
 #concejomunixelaof@gmail.com
