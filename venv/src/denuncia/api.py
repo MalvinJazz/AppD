@@ -34,11 +34,11 @@ Meta:
 |   queryset       |     queryset    |  Lista de motivos para alimentar        |
 |                  |                 |  al recurso.                            |
 -------------------+-----------------+------------------------------------------
-|  filtering       |    dictionary   |  Campos por los que se van a filtrar    |
+|  filtering       |   diccionario   |  Campos por los que se van a filtrar    |
 |                  |                 |  los motivos. (por id, tipo             |
 |                  |                 |  e institucion)                         |
 -------------------+-----------------+------------------------------------------
-|  allowed_methods |      array      |  Metodos permitidos por la api,         |
+|  allowed_methods |      lista      |  Metodos permitidos por la api,         |
 |                  |                 |  en este caso solo permite GET.         |
 -------------------+-----------------+------------------------------------------
 |  resource_name   |      String     |  Nombre del recurso, se asigna a la URL.|
@@ -93,11 +93,11 @@ Meta:
 -------------------+-----------------+------------------------------------------
 |     queryset     |     queryset    |  Alimenta el recurso con denuncias.     |
 -------------------+-----------------+------------------------------------------
-|     filtering    |    dictionary   |  Campos por los que se van a filtrar    |
+|     filtering    |   diccionario   |  Campos por los que se van a filtrar    |
 |                  |                 |  las denuncias. (por id, tipo, motivo y |
 |                  |                 |  direccion)                             |
 -------------------+-----------------+------------------------------------------
-|  allowed_methods |      array      |  Metodos permitidos por la api,         |
+|  allowed_methods |      lista      |  Metodos permitidos por la api,         |
 |                  |                 |  en este caso solo permite POST.        |
 -------------------+-----------------+------------------------------------------
 |  resource_name   |      String     |  Nombre del recurso, se asigna a la URL.|

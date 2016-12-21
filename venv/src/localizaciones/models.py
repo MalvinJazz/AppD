@@ -9,6 +9,9 @@ from django.db.models import Q
 from denuncia.models import Denuncia, Motivo
 
 """
+Guarda la informacion de un departamento que estara relacionado indirectamente
+con el modelo Denuncia.
+
 --------------------------------------------------------------------------------
 |     VARIABLE     |       TIPO      |              DESCRIPCION                |
 -------------------+-----------------+------------------------------------------
@@ -33,9 +36,9 @@ from denuncia.models import Denuncia, Motivo
 
 Meta:
 --------------------------------------------------------------------------------
-|     ordering     |      array      |  Lista que indica por que parametros    |
+|     ordering     |      lista      |  Lista que indica por que parametros    |
 |                  |                 |  se ordena la tabla del modelo. Se      |
-|                  |                 |  ordena por cantidad.                   |
+|                  |                 |  ordena por codigo.                     |
 --------------------------------------------------------------------------------
 """
 
@@ -59,6 +62,9 @@ class Departamento(models.Model):
         ordering = ["codigo"]
 
 """
+Guarda la informacion de los municipios que estan relacionados con un
+Departamento, e indirectamente con Denuncia.
+
 --------------------------------------------------------------------------------
 |     VARIABLE     |       TIPO      |              DESCRIPCION                |
 -------------------+-----------------+------------------------------------------
@@ -100,7 +106,6 @@ class Municipio(models.Model):
         return Denuncia.objects.filter(direccion__municipio=self).count()
 
     def getDenuncias(self):
-        #direcciones = Direccion.objects.filter(municipio=self)
         dic = {}
 
         for mot in Motivo.objects.all():
@@ -113,17 +118,10 @@ class Municipio(models.Model):
 
         return dic
 
-# @receiver(post_save, sender=Municipio)
-# def zona_prov(sender, instance, created, **kwargs):
-#     if not created:
-#         i = 1
-#         while i < 21:
-#             zona = Direccion()
-#             zona.direccion = 'Zona ' + str(i)
-#             zona.municipio = instance
-#             zona.save()
-#             i+=1
 """
+Informacion de las zonas de un municipio, relaciondas con el modelo Municipio y
+con Denuncia.
+
 --------------------------------------------------------------------------------
 |     VARIABLE     |       TIPO      |              DESCRIPCION                |
 -------------------+-----------------+------------------------------------------
