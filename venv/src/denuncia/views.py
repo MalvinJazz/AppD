@@ -25,16 +25,31 @@ from localizaciones.models import Departamento, Municipio, Direccion
 from .models import Motivo, Denuncia
 
 #------------------------------------------------
+"""
+Serializador JSON para el modelo Denuncia, hereda de json.Serializer.
 
+--------------------------------------------------------------------------------
+|     VARIABLE     |       TIPO      |              DESCRIPCION                |
+-------------------+-----------------+------------------------------------------
+|  get_dump_object |     funcion     |  Actualiza el diccionario que será      |
+|                  |                 |  serializado, agregando más información |
+|                  |                 |  sirve para llenar el mapa de la app.   |
+--------------------------------------------------------------------------------
+"""
 class DenunciaSerializer(Serializer):
 
     def get_dump_object(self, obj):
+        #Se obtiene la fecha del objeto y se formatea a la zona local.
         fecha = timezone.localtime(obj.fecha)
 
         dic = {
+            #Se obtiene la posicion del marcador del motivo.
             "sprite": obj.getSprite(),
+            #Motivo de la denuncia.
             "motivo": obj.motivo.motivo,
+            #La fecha se formatea como ej: "1-Dec-2016 3:00 PM CST"
             "fecha": fecha.strftime('%d-%b-%Y %-I:%M %p %Z'),
+            #Coordenadas de la denuncia.
             "latitud": obj.latitud,
             "longitud": obj.longitud,
         }
@@ -42,13 +57,19 @@ class DenunciaSerializer(Serializer):
         return dic
 
 
+"""
+Retorna una respuesta en JSON, que es consumida por Ajax desde la applicacion
+móvil. La respuesta tiene información de la ubicación de las denuncias, con esto
+se llena el mapa de denuncias. Se devuelven solo las denuncias hechas en los
+últimos siete días.
+"""
 def getDenuncias(request):
 
+    #Se filtran las denuncias que no tienen ubicación.
     denuncias = Denuncia.objects.exclude(longitud = 0, latitud = 0)
     denuncias = denuncias.exclude(longitud = None, latitud = None)
 
-    # print timezone.now()-timedelta(days=11)
-
+    #Se filtran las denuncias con más de siete días de antigüedad.
     fecha_desde = timezone.now()-timedelta(days=7)
     denuncias = denuncias.filter(
         fecha__range = (
@@ -57,12 +78,16 @@ def getDenuncias(request):
         )
     )
 
+    #Se serializan las denuncias con el serializador personalizado.
     data = DenunciaSerializer().serialize(denuncias)
 
     return HttpResponse(data, content_type='application/json')
 
 #------------------------------------------------
 
+"""
+Vista para realizar denuncias, funciona de la misma forma que la api.
+"""
 def denunciar(request):
 
     instituciones = Institucion.objects.all()
@@ -166,45 +191,70 @@ def denunciar(request):
 
     return render(request,'denuncia.html',context)
 
-
+"""
+Muestra un mensaje de exito.
+"""
 def success(request):
     return render(request,'success.html',{})
 
+"""
+Retorna una respuesta JSON con una lista de motivos filtrados por tipo.
+Si se especifica otro parametro en la URL, se busca por institucion.
+"""
 def busquedaMo(request):
     vID = request.GET['id']
 
     try:
+        #Si existe el parametro 'tipo' en la URL, se buscan los motivos
+        #filtrados por institucion.
         if request.GET['tipo']:
             mots = Motivo.objects.filter(instituciones__id=vID)
 
     except:
+        #Si no, solo se filtran por tipo.
         mots = Motivo.objects.filter(tipo = vID)
 
     data = serializers.serialize('json', mots, fields = ('motivo'))
 
     return HttpResponse(data, content_type='application/json')
 
+"""
+Vista que muestra la lista de denuncias, dependiendo de los privilegios del
+usuario.
+"""
 @login_required(login_url='inicio')
 def denunciasList(request):
+    #Se obtiene la informacion del usuario.
     zona = request.user.zona
     tipo = request.user.institucion.tipo
     institucion = request.user.institucion
 
+    #En la vista, se utiliza la lista de motivos para hacer busquedas.
     motivos = Motivo.objects.all()
 
+    #Si es superusuario, se le da acceso completo, las denuncias se ordenan por
+    #fecha, desde la más reciente.
     if request.user.is_staff:
         denuncias = Denuncia.objects.all().order_by('-fecha')
+    #Si no, Se verifica que tipo es.
     else:
+        #Si no tiene algún tipo de institucion, se le muestran todas las
+        #denuncias de su zona, usuario dirigido a COCODES.
         if tipo == 'NG':
             denuncias = Denuncia.objects.filter(direccion=zona).order_by('-fecha')
+        #Si no, se filtran por institucion.
         else:
             denuncias = Denuncia.objects.filter(
                 # direccion=zona,
                 motivo__institucion=institucion
                 ).order_by('-fecha')
 
-            motivos = motivos.filter(institucion=request.user.institucion)
+            #También se filtran los motivos relacionados a su institucion
+            motivos = motivos.filter(institucion=institucion)
 
+            #Si el usuario es de tipo 'respuesta', se filtran las denuncias
+            #por las de los ultimos siete dias. Se aplican las mismas reglas
+            #que de los usuarios de analisis.
             if request.user.is_res:
                 fecha_hasta = timezone.now()+timedelta(days=1)
                 fecha_desde = timezone.now()-timedelta(days=8)
@@ -214,40 +264,35 @@ def denunciasList(request):
                             fecha_hasta)
                             )
 
-    # errores = []
-
+    #La vista tiene una seccion de busquedas, eston son los parametros.
+    #Cabe destacar que los filtros se aplican uno sobre otro.
     if request.GET:
+        #Si se busca por año.
+        #ej: Todas las denuncias del 2016.
         try:
             denuncias = denuncias.filter(fecha__year=request.GET['año'])
-            # errores.append('Año:' + str(request.GET['año']))
         except:
             pass
-
+        #Si se busca por mes.
+        #ej: Todas las denuncias de febrero.
         try:
             denuncias = denuncias.filter(fecha__month=request.GET['mes'])
-            # errores.append('Mes:' + str(request.GET['mes']))
         except:
             pass
-
+        #Si se busca por dia.
+        #ej: Todas las denuncias de la fecha 16.
         try:
             denuncias = denuncias.filter(fecha__day=request.GET['dia'])
-            # errores.append('Dia:' + str(request.GET['dia']))
         except:
             pass
-
-        # try:
-        #     denuncias = denuncias.filter(nombre__icontains=request.GET['nombre'])
-        #     # denuncias = denuncias.filter(nombre__iexact=request.GET['nombre'])
-        #     # errores.append('Nombre:' + str(request.GET['nombre']))
-        # except:
-        #     pass
-
+        #Si se busca por motivo.
+        #ej: Todas las denuncias por Robo.
         try:
             denuncias = denuncias.filter(motivo__id=request.GET['motivo'])
-            # errores.append('Motivo:' + str(
-            #                         Motivo.objects.get(request.GET['motivo'])))
         except:
             pass
+        #Si se busca por institucion. Este filtro solo aplica para COCODES y SU.
+        #ej: Todas las denuncias dirigidas a PNC.
         try:
             if request.user.is_staff or tipo == 'NG':
                 denuncias = denuncias.filter(motivo__instituciones=request.GET['institucion'])
@@ -258,6 +303,7 @@ def denunciasList(request):
         except:
             pass
 
+    #Si no hay respuesta, se muestra un error de "no coincidencias".
     if len(denuncias) == 0:
         messages.error(request, 'No existen coincidencias con esos parametros.')
         # for error in errores:
@@ -268,6 +314,7 @@ def denunciasList(request):
         "motivos": motivos
     }
 
+    #Si es SU o COCODE, se mandan todas las instituciones para hacer busquedas.
     if request.user.is_staff or tipo == 'NG':
         context.update({
             "instituciones": Institucion.objects.all()
