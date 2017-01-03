@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 from django.db import models
@@ -66,7 +67,7 @@ class UsuarioManager(BaseUserManager):
 
 
 """
-Modelo que guarda a los usuarios, tiene como gestor a UsuarioManager, herede de
+Modelo que guarda a los usuarios, tiene como gestor a UsuarioManager, hereda de
 AbstractBaseUser.
 
 --------------------------------------------------------------------------------
