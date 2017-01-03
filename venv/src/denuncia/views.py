@@ -265,7 +265,7 @@ def denunciasList(request):
                             )
 
     #La vista tiene una seccion de busquedas, eston son los parametros.
-    #Cabe destacar que los filtros se aplican uno sobre otro.
+    # Cabe destacar que los filtros se aplican uno sobre otro.
     if request.GET:
         #Si se busca por año.
         #ej: Todas las denuncias del 2016.
@@ -323,6 +323,32 @@ def denunciasList(request):
 
     return render(request,'usuario/denuncias_list.html', context)
 
+"""
+Clase de vista generica, sirve para visualizar los detalles de la denuncia,
+aplicando sus filtros correspondientes.
+
+--------------------------------------------------------------------------------
+|     VARIABLE     |       TIPO      |              DESCRIPCION                |
+-------------------+-----------------+------------------------------------------
+|       model      |      Model      |  Indica sobre que modelo se va a basar  |
+|                  |                 |  la vista, en este caso es una vista de |
+|                  |                 |  'Denuncia'.                            |
+--------------------------------------------------------------------------------
+|     login_url    |      String     |  Contiene el nombre de la url de inicio |
+|                  |                 |  de sesión.                             |
+--------------------------------------------------------------------------------
+|   template_name  |      String     |  Es la ruta de la plantilla             |
+|                  |                 |  correspondiente a la vista.            |
+--------------------------------------------------------------------------------
+|     dispatch     |     funcion     |  Define la forma en que se visualiza la |
+|                  |                 |  vista. Está decorado con               |
+|                  |                 |  'login_required', para obligar al      |
+|                  |                 |  usuario a iniciar sesión al ingresar a |
+|                  |                 |  la vista.                              |
+--------------------------------------------------------------------------------
+| get_context_data |     funcion     |  Actualiza el diccionario de la vista.  |
+--------------------------------------------------------------------------------
+"""
 class DenunciaDetail(DetailView):
     model = Denuncia
     login_url = 'inicio'
@@ -330,43 +356,59 @@ class DenunciaDetail(DetailView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        #Se obtiene el manejador de la funcion sin sobreescribir.
         handler = super(DenunciaDetail, self).dispatch(request, *args, **kwargs)
 
+        #Se guarda al usuario.
         user = request.user
+        #Se guarda el objeto que se va a mostrar.
         objeto = self.get_object(self.get_queryset())
 
+        #Aplican filtros de permisos.
+        #Si no es SU
         if not user.is_staff:
+            #Si es Admin y COCODE
             if user.is_admin and user.institucion.tipo == 'NG':
+                #Si no coincide con su direccion y su municipio
                 if objeto.direccion != user.zona:
                     if objeto.direccion.municipio != user.zona.municipio:
-                        # return render(request, 'error/permisos.html', {})
+                        #Se lanza un 404
                         raise Http404('error')
+            #Si no es COCODE
             else:
-                if objeto.motivo.institucion != user.institucion:
-                    # return render(request, 'error/permisos.html', {})
+                #Y no coinciden las instituciones, se lanza un 404
+                if objeto.motivo.instituciones != user.institucion:
                     raise Http404('error')
 
-                # fecha_limite = timezone.now().replace(day=timezone.now().day-8)
+                #Si es de Respuesta, y supera el limite de tiempo, se lanza 404.
                 fecha_limite = timezone.now()-timedelta(days=8)
                 if user.is_res and objeto.fecha < fecha_limite:
-                    # return render(request, 'error/permisos.html', {})
                     raise Http404('error')
 
+        #Se retorna el manejador.
         return handler
 
     def get_context_data(self, **kwargs):
+        #Se obtiene el contexto de la vista.
         context = super(DenunciaDetail, self).get_context_data(**kwargs)
 
+        #Se guarda el objeto.
         objeto = self.get_object(self.get_queryset())
+        #Se utilza una bandera para especificar el uso de Google Maps.
+        #Si la denuncia no tiene coordenadas o estan a 0, se pone falso
+        #y no se utilizan los mapas.
         geo = False
         if objeto.latitud is not None and objeto.longitud is not None:
             if objeto.latitud != 0 and objeto.longitud != 0:
                 geo = True
 
+        #Se actualiza el diccionario del contexto.
+        #El indice 'label' se utiliza para mandar la primer letra del motivo
+        #y utilizarlo en el marcador del mapa.
         context.update({
             "geo": geo,
             "label": objeto.motivo.motivo[0]
         })
 
-
+        #Se retorna el diccionario
         return context
