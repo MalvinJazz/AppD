@@ -46,7 +46,6 @@ class MunicipioResource(ModelResource):
                     attribute='departamento',
                     full=True,
                     )
-    # departamento = fields.CharField(attribute='departamento')
 
     class Meta:
         queryset = Municipio.objects.all()
@@ -64,8 +63,6 @@ class DireccionResource(ModelResource):
         attribute='municipio',
         full=True
     )
-
-    # municipio = fields.CharField(attribute='municipio')
 
     class Meta:
         queryset = Direccion.objects.all()
