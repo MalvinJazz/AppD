@@ -18,26 +18,28 @@ from django.conf.urls.static import static
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from denuncia.views import busquedaMo
+from denuncia.views import busquedaMo, denunciar, success
+from usuario.views import cerrar, inicio, confirmarPass
+from localizaciones.views import mapa
 
 urlpatterns = [
     url(r'^a84cdb3a7c1d949ede1fc3a72a1e781d3f4de971/', admin.site.urls),
-    url(r'^logout/', 'usuario.views.cerrar', name='logout'),
+    url(r'^logout/', cerrar, name='logout'),
     url(r'^usuario/', include('usuario.urls', namespace='usuario')),
     url(r'^institucion/', include('institucion.urls', namespace='institucion')),
-    url(r'^$', 'usuario.views.inicio',name='inicio'),
-    url(r'^denunciar/','denuncia.views.denunciar',name='denunciar'),
+    url(r'^$', inicio,name='inicio'),
+    url(r'^denunciar/',denunciar,name='denunciar'),
     url(r'^denuncias/', include('denuncia.urls', namespace='denuncias')),
-    url(r'^success/', 'denuncia.views.success', name = 'success'),
+    url(r'^success/', success, name = 'success'),
     url(r'^busqMot/', busquedaMo, name='mots'),
     url(r'^estadisticas/', include('localizaciones.urls', namespace="local")),
-    url(r'^mapa/','localizaciones.views.mapa',name="mapa"),
-    url(r'^confirmar/', 'usuario.views.confirmarPass', name='confirmarPass'),
-    url(r'^push/', include('gcm.urls')),
+    url(r'^mapa/', mapa,name="mapa"),
+    url(r'^confirmar/', confirmarPass, name='confirmarPass'),
+    # url(r'^push/', include('gcm.urls')),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
-else:
-    urlpatterns += url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
-            {'document_root': settings.STATIC_ROOT}),
+#else:
+#    urlpatterns += url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
+#            {'document_root': settings.STATIC_ROOT}),

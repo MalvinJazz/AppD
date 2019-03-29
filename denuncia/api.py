@@ -162,16 +162,11 @@ class DenunciaResource(ModelResource):
         #respectivas ubicaciones y tipos.
         correos = Correo.objects.none()
         for institucion in vIn:
-            if institucion.tipo == "MU":
-                temp = Correo.objects.filter(
-                            institucion = institucion,
-                            municipio = municipio
-                            )
-            else:
-                temp = Correo.objects.filter(
-                            institucion = institucion,
-                            municipio__departamento = departamento
-                            )
+            temp = Correo.objects.filter(
+                        institucion = institucion,
+                        municipio = municipio
+                        )
+                        
             correos = correos | temp
 
         try:
