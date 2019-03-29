@@ -1,0 +1,15 @@
+[
+{
+  "model": "denuncia.motivo",
+  "pk": 1,
+  "fields": {
+    "motivo": "Accidente Vial",
+    "cantidad": 0,
+    "tipo": "MU",
+    "instituciones": [
+      1,
+      2
+    ]
+  }
+}
+]

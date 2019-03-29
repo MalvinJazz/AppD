@@ -11,6 +11,18 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import netifaces
+
+# Find out what the IP addresses are at run time
+# This is necessary because otherwise Gunicorn will reject the connections
+def ip_addresses():
+    ip_list = ['denunciappguatemala.com', 'www.denunciappguatemala.com']
+    for interface in netifaces.interfaces():
+        addrs = netifaces.ifaddresses(interface)
+        for x in (netifaces.AF_INET, netifaces.AF_INET6):
+            if x in addrs:
+                ip_list.append(addrs[x][0]['addr'])
+    return ip_list
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,15 +35,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '6s1($s@0v)v8$4@v=qm7a0tdx0hofrdtfs44+cs$1m$#%ae(&x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not True
+DEBUG = True
 
-#ALLOWED_HOSTS = ['localhost', '0.0.0.0', '192.168.0.89']
-ALLOWED_HOSTS = ['denunciappguatemala.com', 'www.denunciappguatemala.com']
+# Discover our IP address
+ALLOWED_HOSTS = ip_addresses()
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django_admin_bootstrapped',
+#    'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tastypie',
-    'gcm',
+#    'gcm',
     'denuncia',
     'localizaciones',
     'institucion',
@@ -82,22 +94,38 @@ WSGI_APPLICATION = 'Denuncias.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-   # 'default': {
-   #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-   #     'NAME': 'DenunciaMovil',
-   #     'USER': 'meljua',
-   #     'PASSWORD':'superroot',
-   #     'HOST':'localhost',
-   #     'PORT':'',
-   # }
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME': 'denunciapp',
-         'USER': 'denunciapp',
-         'PASSWORD':'F8a$acHa*atH',
-         'HOST':'198.211.106.40',
-         'PORT':'5432',
-     }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'django',
+        'USER': 'django',
+        'PASSWORD': '39aa2c77458a580f5d05850992bab4af',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        }
+    }
 }
 
 
@@ -162,10 +190,34 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = '/var/www/denunciapp.com/static' #'/home/meljua/www/denunciamovil.com/static'
+STATIC_ROOT = '/home/django/static' #'/home/meljua/www/denunciamovil.com/static'
+MEDIA_ROO = '/home/django/media'
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# Allow Django from all hosts. This snippet is installed from
+# /var/lib/digitalocean/allow_hosts.py
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+
+import os
+import netifaces
+
+# Find out what the IP addresses are at run time
+# This is necessary because otherwise Gunicorn will reject the connections
+def ip_addresses():
+    ip_list = ['denunciappguatemala.com', 'www.denunciappguatemala.com']
+    for interface in netifaces.interfaces():
+        addrs = netifaces.ifaddresses(interface)
+        for x in (netifaces.AF_INET, netifaces.AF_INET6):
+            if x in addrs:
+                ip_list.append(addrs[x][0]['addr'])
+    return ip_list
+
+# Discover our IP address
+ALLOWED_HOSTS = ip_addresses()
+
