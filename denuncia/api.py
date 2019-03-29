@@ -160,14 +160,10 @@ class DenunciaResource(ModelResource):
 
         #Se obtienen los correos de las instituciones, para sus
         #respectivas ubicaciones y tipos.
-        correos = Correo.objects.none()
-        for institucion in vIn:
-            temp = Correo.objects.filter(
-                        institucion = institucion,
-                        municipio = municipio
-                        )
-                        
-            correos = correos | temp
+        correos = Correo.objects.filter(
+            institucion=vIn,
+            municipio=municipio
+        )
 
         try:
             text_content = 'Denuncia'
